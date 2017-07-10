@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 10, 2017 at 11:17 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Generation Time: Jul 10, 2017 at 12:16 PM
+-- Server version: 10.1.22-MariaDB
+-- PHP Version: 7.1.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,7 +34,7 @@ CREATE TABLE `Account` (
   `password` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `role` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `id_Employee` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
-  `enabled` int(1) NOT NULL
+  `enabled` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -42,10 +42,8 @@ CREATE TABLE `Account` (
 --
 
 INSERT INTO `Account` (`id`, `username`, `password`, `role`, `id_Employee`, `enabled`) VALUES
-(0, 'Harry', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'E03', 1),
-(1, 'Tom', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'E01', 1),
-(2, 'Jerry', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E02', 1),
-(4, 'Tinh', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E04', 1);
+(1, 'Tom1', 'e10adc3949ba59abbe56e057f20f883e', 'Admin', 'E01', 1),
+(9, 'Quan', 'e10adc3949ba59abbe56e057f20f883e', 'User', 'E02', 1);
 
 -- --------------------------------------------------------
 
@@ -64,10 +62,12 @@ CREATE TABLE `Category` (
 
 INSERT INTO `Category` (`id`, `name`) VALUES
 (1, 'Ram'),
+(2, 'PC'),
 (3, 'Keyboard'),
 (4, 'Mouse'),
 (5, 'Monitor'),
-(6, 'PC');
+(6, 'HDD'),
+(7, 'HDD');
 
 -- --------------------------------------------------------
 
@@ -106,21 +106,16 @@ CREATE TABLE `Devices` (
   `warranty` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `isnew` int(1) NOT NULL,
   `status` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `picture` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `date_start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `picture` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Devices`
 --
 
-INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `date_start`) VALUES
-('DV01', '123', 0, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use ', 'ram-1-w628.jpg', '2017-07-04 06:41:16'),
-('DV01', '1234', 1, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'ram-1-w628.jpg', '2017-06-28 10:09:35'),
-('DV01', '12345', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'ram-1-w628.jpg', '2017-06-28 09:50:07'),
-('M01', '12', 0, 5, 'Monitor', 'VietNam', '30', '3 years', 1, 'No use', 'dell-ultrasharp-u2412m-lcd-monitor-56a6f9cc3df78cf772913a70.jpg', '2017-07-04 06:39:06'),
-('R01', 'R1_Kingston', 2, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30', '3 years', 0, 'No use ', 'loi-ram-laptop.jpg', '2017-07-04 06:55:52'),
-('R01', 'R2_Kingston', 0, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30', '3 years', 1, 'In use ', 'loi-ram-laptop.jpg', '2017-07-04 06:39:20');
+INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`) VALUES
+('R01', 'R1_Kingston', 1, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30$', '3 years', 1, 'Đang sử dụng', 'ram1.jpg'),
+('R01', 'R2_Kingston', 2, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30$', '3 years', 1, 'Đang sử dụng', '');
 
 -- --------------------------------------------------------
 
@@ -146,7 +141,7 @@ CREATE TABLE `Employee` (
 INSERT INTO `Employee` (`id`, `name`, `birthday`, `address`, `phone`, `picture`, `id_Position`, `id_Team`) VALUES
 ('E01', 'Tommy Tran', '1995-06-07', 'Ha Tinh', '01666394426', '', '4', '-1'),
 ('E02', 'Phan Le', '1991-06-13', 'Ha Tinh', '01666394426', '', '1', 'J01'),
-('E03', 'Tina', '1995-06-20', '', '', '', '', '');
+('E12', 'torres', '2017-06-07', 'dasdasda', '3453534534', 'fsdfsf', 'fsdfs', 'fsfsf');
 
 -- --------------------------------------------------------
 
@@ -262,12 +257,12 @@ ALTER TABLE `Team`
 -- AUTO_INCREMENT for table `Account`
 --
 ALTER TABLE `Account`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `Category`
 --
 ALTER TABLE `Category`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `Contact`
 --
