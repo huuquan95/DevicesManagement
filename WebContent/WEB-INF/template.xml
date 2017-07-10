@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+  <definition name="devices.template" template="/WEB-INF/templates/template.jsp">
+    <put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
+    <put-attribute name="leftbar" value="/WEB-INF/templates/leftbar.jsp" />
+  	<put-attribute name="content" value="" />
+  	<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+  </definition>
+  
+  <!-- Account -->
+  <definition name="account.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/account/index.jsp" />
+  </definition>
+  
+  <definition name="account.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/account/add.jsp" />
+  </definition>
+  <!--  -->
+  
+  <!-- Cat -->
+  <definition name="cat.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/index.jsp" />
+  </definition>
+  
+   <definition name="cat.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/add.jsp" />
+  </definition>
+  
+  <definition name="cat.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/edit.jsp" />
+  </definition>
+  
+  <definition name="cat.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/detailbycat.jsp" />
+  </definition>
+  <!--  -->
+  
+  <!-- Contact -->
+  <definition name="contact.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/contact/index.jsp" />
+  </definition>
+  
+   <definition name="contact.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/contact/add.jsp" />
+  </definition>
+  <!--  -->
+  
+  <!-- Employee -->
+  <definition name="employee.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/employee/index.jsp" />
+  </definition>
+  
+  <definition name="employee.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/employee/add.jsp" />
+  </definition>
+  <!--  -->
+  
+   <!-- Device -->
+  <definition name="device.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/index.jsp" />
+  </definition>
+  
+  <definition name="device.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/add.jsp" />
+  </definition>
+  
+  <definition name="device.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/detail.jsp" />
+  </definition>
+  
+  <definition name="device.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/edit.jsp" />
+  </definition>
+  
+  <definition name="device.detail.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/add1.jsp" />
+  </definition>
+  
+   <definition name="device.detail.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/device/edit1.jsp" />
+  </definition>
+  <!--  --> 
+  
+  <!-- History -->
+  <definition name="history.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/history/index.jsp" />
+  </definition>
+  
+   <definition name="history.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/history/add.jsp" />
+  </definition>
+  <!--  -->
+  
+  <!-- Home -->
+  <definition name="home.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/home/index.jsp" />
+  </definition>
+  <!--  -->
+  
+   <!-- Position-->
+  <definition name="position.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/index.jsp" />
+  </definition>
+  
+   <definition name="position.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/add.jsp" />
+  </definition>
+  <!--  -->
+  
+  <!-- Team -->
+  <definition name="team.index" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/team/index.jsp" />
+  </definition>
+  
+   <definition name="team.add" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/team/add.jsp" />
+  </definition>
+  <!--  -->
+  
+  
+  
+  
+</tiles-definitions>
