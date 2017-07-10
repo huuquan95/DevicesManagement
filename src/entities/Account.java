@@ -14,7 +14,8 @@ public class Account {
 		// TODO Auto-generated constructor stub
 	}
 	public Account(int id, String username, String password, String role, String id_Employee, String name,
-			String picture) {
+			String picture, int enabled) {
+		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -22,6 +23,7 @@ public class Account {
 		this.id_Employee = id_Employee;
 		this.name = name;
 		this.picture = picture;
+		this.enabled = enabled;
 	}
 	public int getId() {
 		return id;
@@ -64,6 +66,12 @@ public class Account {
 	}
 	public void setPicture(String picture) {
 		this.picture = picture;
+	}
+	public int getEnabled() {
+		return enabled;
+	}
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 	
 	
