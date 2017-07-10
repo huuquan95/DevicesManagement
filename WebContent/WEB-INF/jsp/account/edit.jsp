@@ -32,7 +32,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Add Account
+			<span class="fa fa-arrow-circle-o-left"></span> Edit Account
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -43,27 +43,32 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form action="${pageContext.request.contextPath}/account/add"
+				<c var="objItem" items="${objItem}">
+					<form action="${pageContext.request.contextPath}/account/edit/${objItem.id}"
 						class="form-horizontal" role="form" method="post">
+						
+						
+						
 						<div class="col-md-12">
 							<div class="form-group">
 								<label class="col-md-3 col-xs-12 control-label">Username</label>
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
 										<span class="input-group-addon"><span
-											class="fa fa-pencil"></span></span> <input type="text"
-											name="username" class="form-control" />
+											class="fa fa-pencil">  </span></span> 
+											<input type="text"
+											name="username" class="form-control" value="${objItem.username }"/>
 									</div>
 									<span class="help-block">This is sample of text field</span>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 col-xs-12 control-label">Password</label>
+								<label class="col-md-3 col-xs-12 control-label">The New Password</label>
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
 										<span class="input-group-addon"><span
 											class="fa fa-pencil"></span></span> <input type="password"
-											name="password" class="form-control" />
+											name="password" class="form-control" value=""/>
 									</div>
 									<span class="help-block">This is sample of text field</span>
 								</div>
@@ -72,24 +77,25 @@
 							<div class="form-group">
 								<label class="col-md-3 col-xs-12 control-label">Role</label>
 								<div class="col-md-6 col-xs-12">
-									<select class="form-control select" name="role">
-										<option >Admin</option>
-										<option>User</option>
+									<select class="form-control select" name="role" disabled="disabled">
+										 
+                                               <c:choose>
+                                               <c:when test="${objItem.role=='User' }">
+                                               	<option selected="selected" value="User">User</option>
+                                               	<option>Admin</option>
+                                               	</c:when>
+                                               	 <c:otherwise>
+                                               	<option>Admin</option>
+                                               	<option>User</option>
+                                               	</c:otherwise>
+                                               	</c:choose>
+                                               
 									</select> <span class="help-block">Select box example</span>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-md-3 col-xs-12 control-label">Employee</label>
-								<div class="col-md-6 col-xs-12">
-									<select class="form-control select" name="id_Employee">
-										<c:forEach var="objItem" items="${listItem}">
-											<option value="${objItem.id}">${objItem.name}(${objItem.id})</option>
-
-										</c:forEach>
-									</select> <span class="help-block">Select box example</span>
-								</div>
-							</div>
+							
 						</div>
+						</c>
 						<div class="panel-footer">
 							<button class="btn btn-default">Clear Form</button>
 							<button class="btn btn-primary pull-right">Submit</button>
