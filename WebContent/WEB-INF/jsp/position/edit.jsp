@@ -1,20 +1,7 @@
 
     <%@ include file="/templates/taglib.jsp" %>
     <script type="text/javascript">
-            /*   $(document).ready(function(){
-            $("#frm").validate({
-              rules:{
-                name:{
-                  required: true,
-                },
-              },
-              messages:{
-                name:{
-                  required: "<span style='color:red;display:block'>Name is required</span>",
-                },
-              },
-            });
-          }); */
+        
         
 var mikExp = /[$\\@\!\\\#%\^\&\*\(\)\[\]\+\_\{\}\`\~\=\|]/;
 function check(val) {
@@ -60,7 +47,7 @@ val.value = tst;
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Position</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Update Position</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -77,17 +64,13 @@ val.value = tst;
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input onKeyUp="return check(this)" type="text" name="name" class="form-control"/>
+                                                <input onKeyUp="return check(this)" value="${objItem.name}" type="text" name="name" class="form-control"/>
                                             </div>                                         
                                             <span class="help-block">
-                                            <form:errors path="objItem.name" style="color:red"></form:errors>
-                                            <c:if test="${param['check'] eq 'err' }">
-			                                    <p style="color:red">This name exists already.</p>
+                                            <form:errors path="objItemUpdate.name" style="color:red"></form:errors>
+                                            <c:if test="${param['msg'] eq 'err' }">
+			                                    <p style="color:red">Edit Unsuccessfully.</p>
 			                                </c:if>
-			                                <c:if test="${param['msg'] eq 'err' }">
-			                                    <p style="color:red">Add Unsuccessfully.</p>
-			                                </c:if>
-			                                
                                             </span>
                                         </div>
                                     </div>
@@ -95,7 +78,7 @@ val.value = tst;
                                     <div class="panel-footer">
                                     <button type="reset" class="btn btn-default">Clear Form</button>
                                     <!-- <input type="submit" name="submit" value="Submit"/>  -->                                    
-                                    <button type="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
+                                    <button type="submit" name="submit" class="btn btn-primary pull-right">Update</button>
                                 </div>                                        
                                 </form>                                
                             </div>

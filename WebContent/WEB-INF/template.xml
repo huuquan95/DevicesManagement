@@ -100,20 +100,22 @@
     <put-attribute name="content" value="/WEB-INF/jsp/home/index.jsp" />
   </definition>
   <!--  -->
-  
-   <!-- Position-->
+
+  <!-- Position-->
   <definition name="position.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/index.jsp" />
   </definition>
-  
-   <definition name="position.add" extends="devices.template">
+
+  <definition name="position.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/add.jsp" />
   </definition>
+
    <definition name="position.edit" extends="devices.template">
+
     <put-attribute name="content" value="/WEB-INF/jsp/position/edit.jsp" />
   </definition>
   <!--  -->
-  
+
   <!-- Team -->
    <definition name="team.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/index.jsp" />
@@ -121,8 +123,10 @@
   <definition name="team.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
   </definition>
+
   
    <definition name="team.add" extends="devices.template">
+
     <put-attribute name="content" value="/WEB-INF/jsp/team/add.jsp" />
   </definition>
   <!--  -->
