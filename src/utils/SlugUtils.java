@@ -11,7 +11,7 @@ public class SlugUtils {
   private static final Pattern WHITESPACE = Pattern.compile("[\\s]");  
   
   public static String makeSlug(String input) {  
-    String nowhitespace = WHITESPACE.matcher(input).replaceAll("-");  
+    String nowhitespace = WHITESPACE.matcher(input).replaceAll("-").replaceAll("Đ", "D").replaceAll("đ", "d");  
     String normalized = Normalizer.normalize(nowhitespace, Form.NFD);  
     String slug = NONLATIN.matcher(normalized).replaceAll("");  
     return slug.toLowerCase(Locale.ENGLISH);  

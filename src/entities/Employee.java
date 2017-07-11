@@ -2,15 +2,33 @@ package entities;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Employee {
+	@NotEmpty(message = "Do not be empty")
 	private String id;
+	
+	@NotEmpty(message = "Do not be empty")
 	private String name;
+	
+	@NotNull(message = "Do not be empty")
+	 @DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date birthday;
+	
+	@NotEmpty(message = "Do not be empty")
 	private String address;
+	
+	@NotEmpty(message = "Do not be empty")
+	@Pattern(regexp="(^$|[0-9]{10}|[0-9]{11})",message = "Wrong.Please enter format phonenumber")
 	private String phone;
+	
 	private String picture;
 	private String id_Position;
-	private String postion;
+	private String namePos;
 	private String id_Team;
 	private String nameTeam;
 
@@ -70,12 +88,14 @@ public class Employee {
 		this.id_Position = id_Position;
 	}
 
-	public String getPostion() {
-		return postion;
+	
+
+	public String getNamePos() {
+		return namePos;
 	}
 
-	public void setPostion(String postion) {
-		this.postion = postion;
+	public void setNamePos(String namePos) {
+		this.namePos = namePos;
 	}
 
 	public String getId_Team() {
