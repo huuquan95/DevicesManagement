@@ -52,14 +52,14 @@ public class TeamController {
 	}
 
 	@RequestMapping(value="edit/{id}", method=RequestMethod.GET)
-	public String edit(ModelMap modelMap,@PathVariable("id") int id){
+	public String edit(ModelMap modelMap,@PathVariable("id") String id){
 		modelMap.addAttribute("objItem", mainDAO.getItem(id));
 		return "team.edit";
 	}
 
 
 	@RequestMapping(value="edit/{id}", method=RequestMethod.POST)
-	public String edit(@PathVariable("id") int id,@Valid @ModelAttribute("objItemUpdate") Team objItemUpdate,BindingResult bindingResult ){
+	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objItemUpdate") Team objItemUpdate,BindingResult bindingResult ){
 		if(bindingResult.hasErrors()){
 			return "team.edit";
 		}
@@ -72,7 +72,7 @@ public class TeamController {
 	}
 
 	@RequestMapping(value="del/{id}", method=RequestMethod.GET)
-	public String edit(@PathVariable("id") int id){
+	public String edit(@PathVariable("id") String id){
 		if(mainDAO.delItem(id)>0){
 			return "redirect:/team?msg=del";
 		}else{

@@ -3,18 +3,15 @@ package entities;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Team {
-	private int id;
+	private String id;
 	@NotEmpty(message="Name is not null!")
 	private String name;
 
-	
-	
-	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

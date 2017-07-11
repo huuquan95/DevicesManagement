@@ -6,17 +6,18 @@ public class Position {
 public int id;
 	
 	@NotEmpty(message="Name is not null!")
-	public String  name;
+	public String  namePos;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getNamePos() {
+		return namePos;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setNamePos(String namePos) {
+		this.namePos = namePos;
 	}
+	
 }

@@ -1,16 +1,13 @@
 package dao;
 
-import org.springframework.stereotype.Repository;
-
-import entities.Position;
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import entities.Position;
 
 @Repository
 public class PositionDAO {
@@ -27,7 +24,7 @@ public class PositionDAO {
 	
 	public int addItem(Position objItem) {
 		String sql="insert into role(name) value (?)";
-		return jdbcTemplate.update(sql, new Object[]{objItem.getName()});
+		return jdbcTemplate.update(sql, new Object[]{objItem.getNamePos()});
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -49,7 +46,7 @@ public class PositionDAO {
 	
 	public int editItem(Position objItem) {
 		String sql="update role set name=? where id=?";
-		return jdbcTemplate.update(sql, new Object[]{objItem.getName(),objItem.getId()});
+		return jdbcTemplate.update(sql, new Object[]{objItem.getNamePos(),objItem.getId()});
 	}
 	
 	public int delItem(int id) {

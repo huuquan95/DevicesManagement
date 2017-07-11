@@ -40,7 +40,7 @@ public class PositionController {
 		if(bindingResult.hasErrors()){
 			return "position.add";
 		}
-		if(mainDAO.checkPos(objItem.getName())!=null){
+		if(mainDAO.checkPos(objItem.getNamePos())!=null){
 			return "redirect:/position/add?check=err";
 
 		}

@@ -37,7 +37,7 @@ public class TeamDAO {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Team getItem(int id) {
+	public Team getItem(String id) {
 		String sql="select * from team where id=?";
 		return (Team) jdbcTemplate.queryForObject(sql, new Object[]{id},new BeanPropertyRowMapper(Team.class));
 	}
@@ -48,7 +48,7 @@ public class TeamDAO {
 		return jdbcTemplate.update(sql, new Object[]{objItem.getName(),objItem.getId()});
 	}
 	
-	public int delItem(int id) {
+	public int delItem(String id) {
 		String sql="delete from team where id=?";
 		return jdbcTemplate.update(sql, new Object[]{id});
 	}
