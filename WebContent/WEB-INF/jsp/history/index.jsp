@@ -1,4 +1,4 @@
-
+<%@include file = "/templates/taglib.jsp" %>
 
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
@@ -31,20 +31,42 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Sortable Tables</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span>	History</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">                
-                
+                <c:choose>
+			<c:when test="${param['msg'] eq 'add'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Add
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'edit'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Update
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'del'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Delete
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'exist'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Id
+					emplyee existed</div>
+			</c:when>
+			<c:when test="${param['msg'] eq null}">
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
+			</c:otherwise>
+		</c:choose>
                     <div class="row">
                         <div class="col-md-12">
 
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">                                
-                                    <a href="" type="button" class="btn btn-info">Add</a>
+                                    <a href="${pageContext.request.contextPath }/history/add" type="button" class="btn btn-info">Add New</a>
                                     <ul class="panel-controls">
                                         <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
@@ -55,71 +77,39 @@
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th width="100">status</th>
-                                                <th>Start date</th>
+                                                <th>ID</th>
+                                                <th>Devices</th>
+                                                 <th>Seri number</th>
                                                 <th>actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <c:forEach items="${listHis}" var="objItem">
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td><span class="label label-success">New</span></td>
-                                                <td>2011/04/25</td>
+                                                <td>${objItem.id }</td>
+                                                <td>${objItem.name }</td>
+                                                <td>${objItem.seri_number }</td>
                                                 <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
+                                                <c:choose>
+                                                	<c:when test="${objItem.action eq 0 }">
+                                                		<span class="label label-danger">Fixing</span>
+                                                	</c:when>
+                                                	<c:when test="${objItem.action eq 1}">
+                                                		<span class="label label-success">Buying</span>
+                                                	</c:when>
+                                                	<c:otherwise>
+                                                		<span class="label label-info">Using</span>
+                                                	</c:otherwise>
+                                                </c:choose>
+                                                </td>
+                                                <td>
+                                                          <a href="${pageContext.request.contextPath }/history/detail/${objItem.id}"
+											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-camera-retro fa-lg"></span></button></a>
+                                                        <a href="${pageContext.request.contextPath }/history/del/${objItem.id}"
+											title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button></a>
                                                  </td>
                                             </tr>
-                                            <tr>
-                                                <td>Garrett Winters</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                <td><span class="label label-danger">Pending</span></td>
-                                                <td>2011/07/25</td>
-                                                <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ashton Cox</td>
-                                                <td>Junior Technical Author</td>
-                                                <td>San Francisco</td>
-                                                 <td><span class="label label-info">In Queue</span></td>
-                                                <td>2009/01/12</td>
-                                               <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cedric Kelly</td>
-                                                <td>Senior Javascript Developer</td>
-                                                <td>Edinburgh</td>
-                                                 <td><span class="label label-info">In Queue</span></td>
-                                                <td>2012/03/29</td>
-                                                <td>
-                                                        <button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></button>
-                                                        <button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Airi Satou</td>
-                                                <td>Accountant</td>
-                                                <td>Tokyo</td>
-                                                 <td><span class="label label-info">In Queue</span></td>
-                                                <td>2008/11/28</td>
-                                                <td>
-                                                        <a href="" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                        <a href=""  class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></a>
-                                                    </td>
-                                            </tr>
-                                            
+	                                     </c:forEach>       
                                         </tbody>
                                     </table>
                                 </div>

@@ -1,5 +1,4 @@
-
-
+<%@include file = "/templates/taglib.jsp" %>
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
 
@@ -41,16 +40,17 @@
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
-                                <form class="form-horizontal" role="form">
+                                <form class="form-horizontal" action = "${pageContext.request.contextPath }/employee/add" method = "POST"  enctype = "multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Id Employee</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name = "id" class="form-control"/>
+                                                
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"><form:errors path = "objEmployee.id" style="color:red"></form:errors></span>
                                         </div>
                                     	</div>
                                     	
@@ -59,21 +59,20 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name = "name" class="form-control"/>
+                                                 
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"><form:errors path = "objEmployee.name" style="color:red"></form:errors></span>
                                         </div>
                                     	</div>
                                         
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Postion</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
+                                            <select name = "id_Position" class="form-control select">
+                                            <c:forEach items="${listPosition}" var="objItemPos">
+                                            	<option value = "${objItemPos.id}" >${objItemPos.namePos}</option>
+                                            </c:forEach>
                                             </select>
                                             <span class="help-block">Select box example</span>
                                         </div>
@@ -84,9 +83,9 @@
                                         <div class="col-md-6 col-xs-12">
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                                                <input type="text" class="form-control datepicker" value="2014-11-01">                                            
+                                                <input type="text" name = "birthday" class="form-control datepicker" value="">
                                             </div>
-                                            <span class="help-block">Click on input field to get datepicker</span>
+                                            <span class="help-block"><form:errors path = "objEmployee.birthday" style="color:red"></form:errors></span>
                                         </div>
                                     </div>    
                                     </div>
@@ -96,21 +95,19 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name = "address" class="form-control"/>
                                             </div>                                            
-                                            <span class="help-block">This is sample of text field</span>
+                                            <span class="help-block"><form:errors path = "objEmployee.address" style="color:red"></form:errors></span>
                                         </div>
                                     	</div>
                                     	
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Id team</label>
                                         <div class="col-md-6 col-xs-12">                                                                                            
-                                            <select class="form-control select">
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
+                                            <select name = "id_Team" class="form-control select">
+                                            <c:forEach items="${listTeam}" var="objItemTeam">
+                                            	<option value = "${objItemTeam.id}" >${objItemTeam.name}</option>	
+                                            </c:forEach>
                                             </select>
                                             <span class="help-block">Select box example</span>
                                         </div>
@@ -121,9 +118,10 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" class="form-control"/>
+                                                <input type="text" name = "phone" class="form-control"/>
+                                                               
                                             </div>                                            
-                                            <span class="help-block">Example: </span>
+                                            <span class="help-block"><form:errors path = "objEmployee.phone" style="color:red"></form:errors>   </span>
                                         </div>
                                     	</div>
                                     	
@@ -131,7 +129,7 @@
                                     	<div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Avatar</label>
                                         <div class="col-md-6 col-xs-12">                                                                                                                                        
-                                            <input type="file" class="fileinput btn-primary" name="filename" id="filename" title="Browse file"/>
+                                            <input type="file" class="fileinput btn-primary" name="img"  title="Browse file"/>
                                             <span class="help-block">Input type file</span>
                                         </div>
                                         </div>
