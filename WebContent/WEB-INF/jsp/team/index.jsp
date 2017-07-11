@@ -1,5 +1,5 @@
 
-
+		<%@ include file="/templates/taglib.jsp" %>
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
 
@@ -31,7 +31,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Category</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Team</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -44,7 +44,17 @@
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">                                
-                                    <a href="" type="button" class="btn btn-info">Add</a>
+                                    <a href="${pageContext.request.contextPath }/team/add" type="button" class="btn btn-info">Add</a>
+                                    <c:if test="${param['msg'] eq 'add' }">
+                                    <div style="color:blue; font-size:20px;text-align:center">Add Successfully</div>
+                                </c:if>
+                                	<c:if test="${param['msg'] eq 'edit' }">
+                                    <div style="color:blue; font-size:20px;text-align:center">Edit Successfully</div>
+                                </c:if>
+                                <c:if test="${param['msg'] eq 'del' }">
+                                    <div style="color:blue; font-size:20px;text-align:center">Delete Successfully</div>
+                                </c:if>
+                                
                                     <ul class="panel-controls">
                                         <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
@@ -61,15 +71,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <c:forEach var="objItem" items="${listItems}">
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
+                                                <td>${objItem.id }</td>
+                                                <td>${objItem.name }</td>
                                                 <td>
-                                                        <a href="" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
-                                                        <a href=""  class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></a>
+                                                        <a href="${pageContext.request.contextPath }/team/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
+                                                        <a href="${pageContext.request.contextPath }/team/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
                                                     </td>
                                             </tr>
-                                            
+                                       </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
