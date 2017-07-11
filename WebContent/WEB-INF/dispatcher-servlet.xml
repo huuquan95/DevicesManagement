@@ -53,5 +53,11 @@
     <property name="prefix" value="/WEB-INF/jsp/"/>
     <property name="suffix" value=".jsp"/>
 </bean>
-		
+	<bean class = "utils.StringUtils"></bean>
+	
+	<bean class = "utils.ConvertStringVN"></bean>
+	
+	<bean class = "utils.RenameFileLibrary"></bean>
+	
+	<bean class = "utils.SlugUtils"></bean> 	
 </beans>
