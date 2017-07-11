@@ -57,6 +57,10 @@
   <definition name="employee.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/employee/add.jsp" />
   </definition>
+  
+  <definition name="employee.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/employee/edit.jsp" />
+  </definition>
   <!--  -->
   
    <!-- Device -->
@@ -92,6 +96,10 @@
   
    <definition name="history.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/add.jsp" />
+  </definition>
+  
+   <definition name="history.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/history/detail.jsp" />
   </definition>
   <!--  -->
   
