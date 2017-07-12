@@ -23,15 +23,14 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="#">Employee</a></li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Sortable Tables
+			<span class="fa fa-arrow-circle-o-left"></span> Employee
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -129,7 +128,7 @@
 												<button class="btn btn-default btn-rounded btn-sm">
 													<span class="fa fa-pencil"></span>
 												</button>
-										</a> <a
+										</a> <a class = "notice" onClick="return confirm('Are you sure that you wanna delete it?')"
 											href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
 											title="">
 												<button class="btn btn-danger btn-rounded btn-sm">
@@ -143,7 +142,6 @@
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->
-
 
 
 

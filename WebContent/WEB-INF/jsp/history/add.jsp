@@ -23,8 +23,8 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="#">History</a></li>
+		<li class="active">Add new history</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 

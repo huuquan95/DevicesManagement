@@ -1,4 +1,4 @@
-<%@include file="/templates/taglib.jsp"%>
+	<%@include file="/templates/taglib.jsp"%>
 
 <!-- PAGE CONTENT -->
 <div class="page-content">
@@ -24,8 +24,8 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="#">History</a></li>
+		<li class="active">Detail</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
