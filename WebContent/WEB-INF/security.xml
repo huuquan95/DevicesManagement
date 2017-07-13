@@ -10,24 +10,24 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	<http use-expressions="true">
 		<csrf disabled="true"/>
 		
-        <intercept-url pattern="/home" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/employee" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/cat" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/device" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/home" access="permitAll()" />
+		 <intercept-url pattern="/employee" access="permitAll()" />
+		 <intercept-url pattern="/cat" access="permitAll()" />
+		 <intercept-url pattern="/device" access="permitAll()" />
 		 <intercept-url pattern="/account" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		  <intercept-url pattern="/contact" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/history" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/position" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/team" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		  <intercept-url pattern="/history" access="permitAll()" />
+		  <intercept-url pattern="/position" access="permitAll()')" />
+		  <intercept-url pattern="/team" access="permitAll()" />
 		       
-        <intercept-url pattern="/employee/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/cat/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/device/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/employee/**" access="permitAll()" />
+        <intercept-url pattern="/cat/**" access="permitAll()" />
+        <intercept-url pattern="/device/**" access="permitAll()" />
         <intercept-url pattern="/account/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/contact/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/history/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/position/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/team/**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/history/**" access="permitAll()" />
+        <intercept-url pattern="/position/**" access="permitAll()" />
+        <intercept-url pattern="/team/**" access="permitAll()" />
         
         <intercept-url pattern="/**" access="permitAll()" />
  

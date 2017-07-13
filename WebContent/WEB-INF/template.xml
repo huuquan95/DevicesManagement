@@ -122,6 +122,14 @@
   <definition name="position.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/edit.jsp" />
   </definition>
+  
+  <definition name="position.employee" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/employee.jsp" />
+  </definition>
+  
+  <definition name="position.devices" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/devices.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Team -->
@@ -135,6 +143,15 @@
    <definition name="team.edit" extends="devices.template">
 
     <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
+  </definition>
+   <definition name="team.employee" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/employee.jsp" />
+  </definition>
+  
+  <definition name="team.devices" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/devices.jsp" />
   </definition>
   <!--  -->
   
