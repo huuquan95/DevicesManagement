@@ -130,6 +130,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String edit(@PathVariable("id") String id, ModelMap modelMap) {
+		modelMap.addAttribute("title-ii", "Upcate employee");
 		modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
 		return "employee.edit";
 	}

@@ -99,6 +99,10 @@
    <definition name="history.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/add.jsp" />
   </definition>
+  
+   <definition name="history.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/history/detail.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Home -->

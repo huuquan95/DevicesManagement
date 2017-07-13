@@ -1,4 +1,4 @@
-	
+	<%@include file = "/templates/taglib.jsp" %>
 
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
@@ -39,14 +39,18 @@
 						<div class="widget widget-default widget-carousel">
 							<div class="owl-carousel" id="owl-example">
 								<div>
-									<div class="widget-title">Total Visitors</div>
+									<div class="widget-title">Total Devices</div>
 									<div class="widget-subtitle">27/08/2014 15:23</div>
-									<div class="widget-int">3,548</div>
+									<c:if test="${numberOfDevices ne null or numberOfDevices ne ''}">
+										<div class="widget-int">${numberOfDevices}</div>
+									</c:if>
 								</div>
 								<div>
-									<div class="widget-title">Returned</div>
+									<div class="widget-title">Total Category</div>
 									<div class="widget-subtitle">Visitors</div>
-									<div class="widget-int">1,695</div>
+									<c:if test="${numberOfCat ne null or numberOfCat ne ''}">
+										<div class="widget-int">${numberOfCat}</div>
+									</c:if>
 								</div>
 								<div>
 									<div class="widget-title">New</div>
@@ -72,7 +76,7 @@
 								<span class="fa fa-envelope"></span>
 							</div>
 							<div class="widget-data">
-								<div class="widget-int num-count">48</div>
+								<div class="widget-int num-count">${sizeMessage}</div>
 								<div class="widget-title">New messages</div>
 								<div class="widget-subtitle">In your mailbox</div>
 							</div>
@@ -94,7 +98,7 @@
 								<span class="fa fa-user"></span>
 							</div>
 							<div class="widget-data">
-								<div class="widget-int num-count">375</div>
+								<div class="widget-int num-count">${sizeEmployee}</div>
 								<div class="widget-title">Registred users</div>
 								<div class="widget-subtitle">On your website</div>
 							</div>
