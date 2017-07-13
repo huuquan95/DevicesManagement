@@ -105,7 +105,7 @@
 										<td>${objItem.role }</td>
 										<td>${objItem.name }</td>
 										<td><img
-											src="<%=request.getContextPath() %>/${objItem.picture }"
+											src="${pageContext.request.contextPath}/${objItem.picture }"
 											alt="" /></td>
 										<td id="ajaxpicture${objItem.id}">
 										<c:choose>
@@ -114,14 +114,14 @@
 												<img
 													onclick="return getActive(${objItem.id },${objItem.enabled })"
 													height="25px" width="25px"
-													src="<%=request.getContextPath() %>/templates/img/icons/68111340feb.jpg"
+													src="${pageContext.request.contextPath}/templates/img/icons/en.png"
 													alt="" />
 											</c:when> 
 											<c:otherwise>
 												<img
 													onclick="return getActive(${objItem.id },${objItem.enabled })"
 													height="25px" width="25px"
-													src="<%=request.getContextPath() %>/templates/img/icons/delete-icon.png"
+													src="${pageContext.request.contextPath}/templates/img/icons/un.png"
 													alt="" />
 											</c:otherwise>
 										</c:choose>	
@@ -160,7 +160,7 @@
 											},
 											error: function (){
 											// Xử lý nếu có lỗi
-											alert("Có lỗi trong quá trình xử lý");
+											//alert("Có lỗi trong quá trình xử lý");
 											}
 										});
 										return false;

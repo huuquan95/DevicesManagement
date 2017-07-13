@@ -99,6 +99,18 @@
 									<span class="help-block"><form:errors path = "objEmployee.birthday" style="color:red"></form:errors></span>
 								</div>
 							</div>
+							<div class="form-group">
+								<label class="col-md-3 col-xs-12 control-label">Email</label>
+								<div class="col-md-6 col-xs-12">
+									<div class="input-group">
+										<span class="input-group-addon"><span
+											class="fa fa-pencil"></span></span> <input type="text"
+											value="${objEmployee.email}" name="email"
+											class="form-control" />
+									</div>
+									<span class="help-block"><form:errors path = "objEmployee.address" style="color:red"></form:errors></span>
+								</div>
+							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">

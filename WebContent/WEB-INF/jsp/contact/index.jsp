@@ -32,7 +32,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> C
+			<span class="fa fa-arrow-circle-o-left"></span> Category
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -83,17 +83,13 @@
 												<c:if test="${objItem.getStatus() eq 'new'}">
 													<option value="new" selected="selected">new</option>
 													<option value="in progress">in progress</option>
-													<option value="resolved">resolved</option>
 												</c:if>
 												<c:if test="${objItem.getStatus() eq 'in progress'}">
-													<option value="new">new</option>
 													<option value="in progress" selected="selected">in
 														progress</option>
 													<option value="resolved">resolved</option>
 												</c:if>
 												<c:if test="${objItem.getStatus() eq 'resolved'}">
-													<option value="new">new</option>
-													<option value="in progress"">in progress</option>
 													<option value="resolved" selected="selected">resolved</option>
 												</c:if>
 										</select></td>

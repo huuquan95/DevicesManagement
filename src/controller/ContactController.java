@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.AccountDAO;
 import dao.ContactDAO;
+import entities.Account;
 import entities.Contact;
 
 @Controller
@@ -37,15 +38,15 @@ public class ContactController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(HttpSession session, ModelMap modelMap) {
-		String username = (String) session.getAttribute("userInfo");
-		modelMap.addAttribute("idAccount", accountDAO.getItem(username).getId());
 		return "contact.add";
 	}
 
-	@RequestMapping(value = "/add/{idAccount}", method = RequestMethod.POST)
-	public String add(@PathVariable("idAccount") int idAccount, @RequestParam("description") String description,
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String add(HttpSession session,@RequestParam("description") String description,
 			ModelMap modelMap) {
-
+		String username = (String) session.getAttribute("userLogin");
+		Account objAC = accountDAO.getItem(username);
+		int idAccount=objAC.getId();
 		Contact contact = new Contact(idAccount, description);
 
 		if (mainDAO.addItem(contact) == 1) {

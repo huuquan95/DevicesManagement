@@ -19,6 +19,9 @@
   <definition name="account.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/account/add.jsp" />
   </definition>
+  <definition name="account.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/account/detail.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Cat -->
@@ -57,7 +60,6 @@
   <definition name="employee.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/employee/add.jsp" />
   </definition>
-  
   <definition name="employee.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/employee/edit.jsp" />
   </definition>
@@ -97,10 +99,6 @@
    <definition name="history.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/add.jsp" />
   </definition>
-  
-   <definition name="history.detail" extends="devices.template">
-    <put-attribute name="content" value="/WEB-INF/jsp/history/detail.jsp" />
-  </definition>
   <!--  -->
   
   <!-- Home -->
@@ -117,6 +115,9 @@
    <definition name="position.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/add.jsp" />
   </definition>
+  <definition name="position.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/edit.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Team -->
@@ -126,6 +127,10 @@
   
    <definition name="team.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/add.jsp" />
+  </definition>
+   <definition name="team.edit" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
   </definition>
   <!--  -->
   

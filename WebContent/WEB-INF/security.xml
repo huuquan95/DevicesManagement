@@ -32,7 +32,13 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
     </http>
     
     <authentication-manager>
-   
+    <authentication-provider>
+            <user-service>
+                <user name="Tom1" password="123456" authorities="admin" />
+                <user name="admin1" password="12345" authorities="user" />
+            </user-service>
+        </authentication-provider>
+    
         <!-- authentication from database -->
         <authentication-provider>
            	<password-encoder hash="md5" />

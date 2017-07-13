@@ -2,10 +2,10 @@
 -- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: localhost:3307
--- Thời gian đã tạo: Th7 10, 2017 lúc 03:12 AM
--- Phiên bản máy phục vụ: 5.6.36
--- Phiên bản PHP: 5.6.30
+-- Host: localhost
+-- Generation Time: Jul 13, 2017 at 08:15 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,85 +19,86 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `devicesmanagement`
+-- Database: `DevicesManagement`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `account`
+-- Table structure for table `Account`
 --
 
-CREATE TABLE `account` (
+CREATE TABLE `Account` (
   `id` int(255) NOT NULL,
   `username` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `role` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `id_Employee` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
-  `enable` int(11) NOT NULL
+  `enabled` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `account`
+-- Dumping data for table `Account`
 --
 
-INSERT INTO `account` (`id`, `username`, `password`, `role`, `id_Employee`, `enable`) VALUES
-(1, 'Tom', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'E01', 1),
-(2, 'Jerry', 'e10adc3949ba59abbe56e057f20f883e', 'admin', 'E25', 0),
-(3, 'Tommy', 'e10adc3949ba59abbe56e057f20f883e', 'user', 'E22', 0),
-(4, 'Tinh', '123456', 'admin', 'E20', 0);
+INSERT INTO `Account` (`id`, `username`, `password`, `role`, `id_Employee`, `enabled`) VALUES
+(0, 'Riot', 'e10adc3949ba59abbe56e057f20f883e', 'ADMIN', 'E11', 1),
+(1, 'Tom', 'fd41b79badfc9543abe6fb2451aba81d', 'ADMIN', 'E01', 1),
+(2, 'Jerry', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E02', 1),
+(4, 'Tinh', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E04', 0);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `Category`
 --
 
-CREATE TABLE `category` (
+CREATE TABLE `Category` (
   `id` int(255) NOT NULL,
   `name` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `category`
+-- Dumping data for table `Category`
 --
 
-INSERT INTO `category` (`id`, `name`) VALUES
+INSERT INTO `Category` (`id`, `name`) VALUES
 (1, 'Ram'),
-(2, 'PC'),
 (3, 'Keyboard'),
 (4, 'Mouse'),
 (5, 'Monitor'),
-(6, 'HDD'),
-(7, 'HDD');
+(6, 'PC');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `contact`
+-- Table structure for table `Contact`
 --
 
-CREATE TABLE `contact` (
+CREATE TABLE `Contact` (
   `id` int(255) NOT NULL,
   `id_Account` int(255) NOT NULL,
-  `description` varchar(2000) COLLATE utf8_vietnamese_ci NOT NULL
+  `description` varchar(2000) COLLATE utf8_vietnamese_ci NOT NULL,
+  `status` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `contact`
+-- Dumping data for table `Contact`
 --
 
-INSERT INTO `contact` (`id`, `id_Account`, `description`) VALUES
-(1, 1, 'My PC is slow. Can I change it?'),
-(2, 3, 'My PC is slow. Can I change it?');
+INSERT INTO `Contact` (`id`, `id_Account`, `description`, `status`) VALUES
+(1, 1, 'My PC is slow. Can I change it?', 'in progress'),
+(2, 3, 'My PC is slow. Can I change it?', 'in progress'),
+(3, 1, 'abcdef', 'new'),
+(4, 1, 'Monitor doesn\'t work ', 'new');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `devices`
+-- Table structure for table `Devices`
 --
 
-CREATE TABLE `devices` (
+CREATE TABLE `Devices` (
   `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `seri_number` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `idAccount` int(255) NOT NULL,
@@ -113,22 +114,24 @@ CREATE TABLE `devices` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `devices`
+-- Dumping data for table `Devices`
 --
 
-INSERT INTO `devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `date_start`) VALUES
-('DV01', '123', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use ', 'ram-1-w628.jpg', '2017-06-28 10:09:31'),
-('DV01', '1234', 1, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'ram-1-w628.jpg', '2017-06-28 10:09:35'),
-('DV01', '12345', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'ram-1-w628.jpg', '2017-06-28 09:50:07'),
-('R01', 'R1_Kingston', 1, 3, 'Ram DDR3 4Gb', 'Hong Kong', '30$', '3 years', 0, 'No use ', 'ram-la-gi-1.jpg', '2017-06-28 10:10:23');
+INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `date_start`) VALUES
+('DV01', '123', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use ', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:34:18'),
+('DV01', '1234', 1, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:35:34'),
+('DV01', '12345', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:34:32'),
+('M01', '12', 1, 5, 'Monitor', 'VietNam', '30', '3 years', 1, 'No use', 'dell-ultrasharp-u2412m-lcd-monitor-56a6f9cc3df78cf772913a70.jpg', '2017-07-11 05:16:51'),
+('R01', 'R1_Kingston', 1, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30', '3 years', 0, 'No use ', 'loi-ram-laptop.jpg', '2017-07-11 05:17:00'),
+('R01', 'R2_Kingston', 1, 1, 'Ram DDR3 4Gb', 'Hong Kong', '30', '3 years', 1, 'In use ', 'loi-ram-laptop.jpg', '2017-07-11 05:16:59');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `employee`
+-- Table structure for table `Employee`
 --
 
-CREATE TABLE `employee` (
+CREATE TABLE `Employee` (
   `id` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `birthday` date NOT NULL,
@@ -136,28 +139,28 @@ CREATE TABLE `employee` (
   `phone` varchar(20) COLLATE utf8_vietnamese_ci NOT NULL,
   `picture` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
   `id_Position` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
-  `id_Team` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL
+  `id_Team` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
+  `email` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `employee`
+-- Dumping data for table `Employee`
 --
 
-INSERT INTO `employee` (`id`, `name`, `birthday`, `address`, `phone`, `picture`, `id_Position`, `id_Team`) VALUES
-('E19', 'Quinto', '2017-06-27', 'DN', '01635266058', '17426130_1073903916047390_4463100204824136675_n-19833404484973.jpg', '1', 'P01'),
-('E20', 'Tina', '2017-06-21', 'Ha Tinh', '0123456789', '15940414_1009616859171970_7798589069182843414_n-19845216164532.jpg', '1', 'J01'),
-('E22', 'Kevin', '2017-06-27', 'DN', '01635266058', '16426027_1636141026681553_3022039283928362087_n-19855904087775.jpg', '1', 'J01'),
-('E25', 'Torres', '2017-06-18', 'DN', '01635266058', '3954234579-storm-clouds-coming-anime-art-298P-1920x1080-MM-100-20100901988832.jpg', '1', 'J01'),
-('E30', 'Thor', '2017-06-12', 'DN', '01635266058', '', '3', 'P01'),
-('E33', 'Tom', '2017-07-20', 'Ha Tinh', '01635266058', '18557049_1970800019822850_2976533477387153543_n-20338465264710.jpg', '2', 'P01');
+INSERT INTO `Employee` (`id`, `name`, `birthday`, `address`, `phone`, `picture`, `id_Position`, `id_Team`, `email`) VALUES
+('E01', 'Quinto', '2017-06-27', 'DN', '01635266058', '17426130_1073903916047390_4463100204824136675_n-19833404484973.jpg', '1', 'J01', 'tinhchocopie087@gmail.com'),
+('E02', 'Kevin', '2017-06-27', 'DN', '01635266058', '16426027_1636141026681553_3022039283928362087_n-19855904087775.jpg', '1', 'J01', ''),
+('E11', 'Riot', '2017-06-26', 'Hòa Khánh', '0123455689', 'Screenshot from 2017-07-05 08-22-23-23732582926607.png', '1', 'J01', ''),
+('E30', 'Thor', '2017-06-12', 'DN', '01635266058', '', '3', 'P01', ''),
+('E33', 'Tom', '2017-07-20', 'Ha Tinh', '01635266058', '18557049_1970800019822850_2976533477387153543_n-20338465264710.jpg', '2', 'P01', '');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `history`
+-- Table structure for table `History`
 --
 
-CREATE TABLE `history` (
+CREATE TABLE `History` (
   `id` int(255) NOT NULL,
   `id_Account` int(255) NOT NULL,
   `timestart` date NOT NULL,
@@ -167,11 +170,11 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `history`
+-- Dumping data for table `History`
 --
 
-INSERT INTO `history` (`id`, `id_Account`, `timestart`, `action`, `idEquipment`, `seri_number`) VALUES
-(8, 3, '2017-07-05', 1, 'DV01', '123'),
+INSERT INTO `History` (`id`, `id_Account`, `timestart`, `action`, `idEquipment`, `seri_number`) VALUES
+(8, 1, '2017-07-05', 1, 'DV01', '123'),
 (17, 0, '2017-07-12', 1, 'DV01', '1234'),
 (18, 2, '2017-07-20', 0, 'DV01', '12345'),
 (19, 4, '2017-07-04', 2, 'R01', 'R1_Kingston');
@@ -179,19 +182,19 @@ INSERT INTO `history` (`id`, `id_Account`, `timestart`, `action`, `idEquipment`,
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `role`
+-- Table structure for table `Role`
 --
 
-CREATE TABLE `role` (
+CREATE TABLE `Role` (
   `id` varchar(100) COLLATE utf8_vietnamese_ci NOT NULL,
   `namePos` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `role`
+-- Dumping data for table `Role`
 --
 
-INSERT INTO `role` (`id`, `namePos`) VALUES
+INSERT INTO `Role` (`id`, `namePos`) VALUES
 ('1', 'Dev'),
 ('2', 'HR'),
 ('3', 'Manager'),
@@ -200,97 +203,97 @@ INSERT INTO `role` (`id`, `namePos`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `team`
+-- Table structure for table `Team`
 --
 
-CREATE TABLE `team` (
+CREATE TABLE `Team` (
   `id` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `team`
+-- Dumping data for table `Team`
 --
 
-INSERT INTO `team` (`id`, `name`) VALUES
+INSERT INTO `Team` (`id`, `name`) VALUES
 ('J01', 'Java_Vic'),
 ('P01', 'PHP_Jin');
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `account`
+-- Indexes for table `Account`
 --
-ALTER TABLE `account`
+ALTER TABLE `Account`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `Category`
 --
-ALTER TABLE `category`
+ALTER TABLE `Category`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `contact`
+-- Indexes for table `Contact`
 --
-ALTER TABLE `contact`
+ALTER TABLE `Contact`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `devices`
+-- Indexes for table `Devices`
 --
-ALTER TABLE `devices`
+ALTER TABLE `Devices`
   ADD PRIMARY KEY (`id`,`seri_number`);
 
 --
--- Chỉ mục cho bảng `employee`
+-- Indexes for table `Employee`
 --
-ALTER TABLE `employee`
+ALTER TABLE `Employee`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `history`
+-- Indexes for table `History`
 --
-ALTER TABLE `history`
+ALTER TABLE `History`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `role`
+-- Indexes for table `Role`
 --
-ALTER TABLE `role`
+ALTER TABLE `Role`
   ADD PRIMARY KEY (`id`);
 
 --
--- Chỉ mục cho bảng `team`
+-- Indexes for table `Team`
 --
-ALTER TABLE `team`
+ALTER TABLE `Team`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `account`
+-- AUTO_INCREMENT for table `Account`
 --
-ALTER TABLE `account`
+ALTER TABLE `Account`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `Category`
+--
+ALTER TABLE `Category`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `Contact`
+--
+ALTER TABLE `Contact`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `History`
 --
-ALTER TABLE `category`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT cho bảng `contact`
---
-ALTER TABLE `contact`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT cho bảng `history`
---
-ALTER TABLE `history`
+ALTER TABLE `History`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

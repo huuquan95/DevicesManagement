@@ -7,6 +7,9 @@ public class Team {
 	@NotEmpty(message="Name is not null!")
 	private String name;
 
+	
+	
+
 	public String getId() {
 		return id;
 	}

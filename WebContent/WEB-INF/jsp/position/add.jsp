@@ -77,10 +77,10 @@ val.value = tst;
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input onKeyUp="return check(this)" type="text" name="name" class="form-control"/>
+                                                <input onKeyUp="return check(this)" type="text" name="namePos" class="form-control"/>
                                             </div>                                         
                                             <span class="help-block">
-                                            <form:errors path="objItem.name" style="color:red"></form:errors>
+                                            <form:errors path="objItem.namePos" style="color:red"></form:errors>
                                             <c:if test="${param['check'] eq 'err' }">
 			                                    <p style="color:red">This name exists already.</p>
 			                                </c:if>

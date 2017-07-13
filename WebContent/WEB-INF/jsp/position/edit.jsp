@@ -64,7 +64,7 @@ val.value = tst;
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input onKeyUp="return check(this)" value="${objItem.name}" type="text" name="name" class="form-control"/>
+                                                <input onKeyUp="return check(this)" value="${objItem.namePos}" type="text" name="namePos" class="form-control"/>
                                             </div>                                         
                                             <span class="help-block">
                                             <form:errors path="objItemUpdate.name" style="color:red"></form:errors>

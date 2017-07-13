@@ -31,6 +31,19 @@ public class Employee {
 	private String namePos;
 	private String id_Team;
 	private String nameTeam;
+	
+	@NotEmpty(message = "Do not be empty")
+	private String email;
+	
+	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;

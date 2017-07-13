@@ -1,3 +1,4 @@
+
 package dao;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class HistoryDAO {
 		String sql="select distinct d.id as id, d.seri_number as seri_number, c.id as idCat,"
 				+ "d.name, d.made_in, d.picture,c.name as cname from Devices as d "
 				+ "inner join Category as c on c.id=d.idCat"
-				+ " Where d.seri_number not in (SELECT seri_number FROM history)";
+				+ " Where d.seri_number not in (SELECT seri_number FROM History)";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Devices.class));
 	}  
 	

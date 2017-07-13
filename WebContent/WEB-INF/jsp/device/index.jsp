@@ -40,8 +40,12 @@
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
+					
+					
+					 <%-- <c:if test="${objAC.role eq 'ADMIN' }"> --%>
 						<a href="${pageContext.request.contextPath }/device/add"
 							type="button" class="btn btn-info">Add</a>
+							<%-- </c:if>  --%>
 						<c:if test="${param['msg'] eq 'add' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Add
 								Success</div>

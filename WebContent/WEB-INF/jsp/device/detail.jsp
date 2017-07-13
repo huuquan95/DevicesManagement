@@ -33,6 +33,7 @@ function Change(idAccount,seri) {
 		},
 		success:function(data){
 			$('#change-'+seri).html(data);
+			alert("Ok");
 		},
 		error:function(){
 			alert("Error");

@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import entities.Cat;
 import entities.Contact;
 
 @Repository
@@ -18,7 +17,8 @@ public class ContactDAO {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Contact> getItems() {
-		String sql = "select id,id_Account, (SELECT username from Account WHERE Account.id= id_Account) as userName, status, description from Contact GROUP BY id DESC";
+		String sql = "select id,id_Account, (SELECT username from Account WHERE Account.id= id_Account) as userName, "
+				+ " status, description from Contact GROUP BY id DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Contact.class));
 	}
 

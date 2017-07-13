@@ -25,6 +25,7 @@ public class Account {
 		this.picture = picture;
 		this.enabled = enabled;
 	}
+	
 	public int getId() {
 		return id;
 	}
