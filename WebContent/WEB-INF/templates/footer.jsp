@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <!-- footer_main -->
-<div class="row footer">
+<div class="row footer" id="footer">
 	<div class="col-md-12 top_footer">
 		<h3 class="underline">
 			DEVICES MANAGEMENT<span class="glyphicon glyphicon-open float_right">
