@@ -23,9 +23,9 @@
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath}/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath}/account">Account</a></li>
+                    <li class="active"><a href="${pageContext.request.contextPath}/account">Detail Devices of Account</a></li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
@@ -39,7 +39,7 @@
                 <div class="page-content-wrap">                
                 
                     <div class="row">
-                        <div class="col-md-12" id="body">
+                        <div class="col-md-12">
 
                            <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
@@ -52,7 +52,7 @@
                                     </ul>                                
                                 </div>
                               
-                                <div class="panel-body" id="body">
+                                <div class="panel-body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
@@ -69,9 +69,11 @@
                                         <tbody>
                                         <c:forEach var="objItem" items="${objDevice}">
                                        <tr>
-                                            	<td>${objItem.id}</td>
+                                            	<td><a
+											href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.id}</a></td>
                                             	<td>${objItem.seri_number}</td>
-                                            	<td>${objItem.name}</td>
+                                            	<td><a
+											href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.name}</a></td>
                                             	<td><img src="<%=request.getContextPath() %>/...../${objItem.picture}" alt="" /></td>
                                             	<td>${objItem.made_in}</td>
                                             	<td>${objItem.price}</td>

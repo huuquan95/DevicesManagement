@@ -23,9 +23,9 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+		<li><a href="${pageContext.request.contextPath}/account">Account</a></li>
+		<li class="active"><a href="${pageContext.request.contextPath}/account">Edit Account</a></li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -41,7 +41,7 @@
 	<div class="page-content-wrap">
 
 		<div class="row">
-			<div class="col-md-12" id="body">
+			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
 				<c var="objItem" items="${objItem}">
 					<form action="${pageContext.request.contextPath}/account/edit/${objItem.id}"
