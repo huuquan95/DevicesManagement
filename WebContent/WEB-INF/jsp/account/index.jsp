@@ -83,7 +83,7 @@
 							<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
 						</c:otherwise>
 					</c:choose>
-					<div class="panel-body">
+					<div class="panel-body" id="body">
 						<table class="table datatable">
 							<thead>
 								<tr>

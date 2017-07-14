@@ -32,7 +32,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Category
+			<span class="fa fa-arrow-circle-o-left"></span> Contact
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -61,7 +61,7 @@
 								Again</div>
 						</c:if>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="body">
 						<table class="table datatable">
 							<thead>
 								<tr>

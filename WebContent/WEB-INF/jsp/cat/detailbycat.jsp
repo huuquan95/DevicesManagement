@@ -51,7 +51,7 @@
                                     <div style="color:blue; font-size:20px;text-align:center">Error.Try Again</div>
                                 </c:if>
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" id="body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>

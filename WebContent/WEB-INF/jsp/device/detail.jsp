@@ -78,7 +78,7 @@ function Change(idAccount,seri) {
 								Again</div>
 						</c:if>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="body">
                                     <table class="table datatable" style="text-align:center">
                                         <thead>
                                             <tr>
