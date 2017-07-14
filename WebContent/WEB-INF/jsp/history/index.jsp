@@ -73,7 +73,7 @@
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul>                                
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" id="body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>

@@ -140,7 +140,7 @@
 				</div>
 				<!-- END WIDGETS -->
 
-					<div class="row">
+					<div class="row" id="body">
 						<div class="col-md-7">
 							<img
 									src="${pageContext.request.contextPath}/templates/img/ENCLAVE.png"

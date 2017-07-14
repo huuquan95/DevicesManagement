@@ -31,7 +31,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Category</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Position</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -51,7 +51,7 @@
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul>                                
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" id="body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>

@@ -52,7 +52,7 @@
                                     </ul>                                
                                 </div>
                               
-                                <div class="panel-body">
+                                <div class="panel-body" id="body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
