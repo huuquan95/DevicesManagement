@@ -41,7 +41,7 @@
 	<div class="page-content-wrap">
 
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
 					<form action="${pageContext.request.contextPath}/account/add"
 						class="form-horizontal" role="form" method="post">

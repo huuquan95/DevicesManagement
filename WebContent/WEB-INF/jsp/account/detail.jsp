@@ -39,7 +39,7 @@
                 <div class="page-content-wrap">                
                 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="body">
 
                            <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
