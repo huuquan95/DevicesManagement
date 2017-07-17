@@ -23,9 +23,9 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+		<li><a href="${pageContext.request.contextPath}/account">Account</a></li>
+		
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -83,6 +83,7 @@
 							<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
 						</c:otherwise>
 					</c:choose>
+
 					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
@@ -99,7 +100,8 @@
 							<tbody>
 								<c:forEach var="objItem" items="${listItems}">
 									<tr>
-										<td>${objItem.id }</td>
+										<td><a type="button"
+											href="${pageContext.request.contextPath}/account/detail/${objItem.id}">${objItem.id }</a></td>
 										<td><a type="button"
 											href="${pageContext.request.contextPath}/account/detail/${objItem.id}">${objItem.username }</a></td>
 										<td>${objItem.role }</td>
@@ -125,16 +127,35 @@
 											</c:otherwise>
 										</c:choose>	
 										</td>
-										<td><a
+										<td>
+											<c:choose>
+										   	<c:when test="${objLogin.role eq 'ADMIN'}">
+										   		<a
 											href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
 													class="btn btn-default btn-rounded btn-sm">
 													<span class="fa fa-pencil"></span>
 												</button></a> <a
 											href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
 													class="btn btn-danger btn-rounded btn-sm"
-													onClick="delete_row('trow_1');">
+													onClick="return confirm('Do you want to delete this Account belong to this id?')">
 													<span class="fa fa-times"></span>
-												</button></a></td>
+												</button></a>
+										   	
+										   	</c:when>
+										   	<c:otherwise>
+										   	<c:when test="${objLogin.id} == ${objItem.id} ">
+										   	<a
+											href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
+													class="btn btn-default btn-rounded btn-sm">
+													<span class="fa fa-pencil"></span>
+												</button></a>
+										   	
+										   	</c:when>
+										   	</c:otherwise>
+										        
+											</c:choose>
+											
+									</td>
 									</tr>
 								</c:forEach>
 

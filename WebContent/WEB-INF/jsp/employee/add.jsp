@@ -38,7 +38,7 @@
                 <div class="page-content-wrap">                
                 
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="body">
 							<div class="panel panel-default" style="padding:10px;">
 							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form class="form-horizontal" action = "${pageContext.request.contextPath }/employee/add" method = "POST"  enctype = "multipart/form-data">

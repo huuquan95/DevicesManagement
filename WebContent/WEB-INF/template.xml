@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
@@ -93,7 +94,6 @@
     <put-attribute name="content" value="/WEB-INF/jsp/device/edit1.jsp" />
   </definition>
   <!--  --> 
-  
   <!-- History -->
   <definition name="history.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/index.jsp" />
@@ -102,7 +102,8 @@
    <definition name="history.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/add.jsp" />
   </definition>
-  <definition name="history.detail" extends="devices.template">
+  
+   <definition name="history.detail" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/detail.jsp" />
   </definition>
   <!--  -->
@@ -124,9 +125,18 @@
   <definition name="position.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/edit.jsp" />
   </definition>
+  
+  <definition name="position.employee" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/employee.jsp" />
+  </definition>
+  
+  <definition name="position.devices" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/devices.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Team -->
+  
   <definition name="team.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/index.jsp" />
   </definition>
@@ -134,9 +144,18 @@
    <definition name="team.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/add.jsp" />
   </definition>
-  
    <definition name="team.edit" extends="devices.template">
+
     <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
+  </definition>
+   <definition name="team.employee" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/employee.jsp" />
+  </definition>
+  
+  <definition name="team.devices" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/devices.jsp" />
   </definition>
   <!--  -->
   

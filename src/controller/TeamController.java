@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dao.DeviceDAO;
+import dao.EmployeeDAO;
 import dao.TeamDAO;
 
 import entities.Team;
@@ -23,6 +25,10 @@ public class TeamController {
 
 	@Autowired
 	private TeamDAO mainDAO;
+	@Autowired
+	private EmployeeDAO employeeDAO;
+	@Autowired
+	private DeviceDAO deviceDAO;
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String home(ModelMap modelMap){
 		modelMap.addAttribute("listItems", mainDAO.getItems());
@@ -35,6 +41,22 @@ public class TeamController {
 	}
 
 
+	@RequestMapping(value="devices/{id}", method=RequestMethod.GET)
+	public String devices(ModelMap modelMap,@PathVariable("id") String id){
+		modelMap.addAttribute("listItems", deviceDAO.getItemsByEmployee(id));
+	
+		return "team.devices";
+	}
+	
+	@RequestMapping(value="employee/{id}", method=RequestMethod.GET)
+	public String member(ModelMap modelMap,@PathVariable("id") String id){
+		modelMap.addAttribute("listItems", employeeDAO.getListByTeam(id));
+	
+		return "team.employee";
+	}
+	
+	
+	
 	@RequestMapping(value="/add", method=RequestMethod.POST)
 	public String add(@Valid @ModelAttribute("objItem") Team objItem,BindingResult bindingResult ){
 		if(bindingResult.hasErrors()){

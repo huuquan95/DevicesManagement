@@ -81,6 +81,7 @@
                                                 <th>Devices</th>
                                                  <th>Seri number</th>
                                                 <th>actions</th>
+						<th>Function</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -104,7 +105,7 @@
                                                 </td>
                                                 <td>
                                                           <a href="${pageContext.request.contextPath }/history/detail/${objItem.id}"
-											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-camera-retro fa-lg"></span></button></a>
+											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="glyphicon glyphicon-list-alt"></span></button></a>
                                                         <a href="${pageContext.request.contextPath }/history/del/${objItem.id}"
 											title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button></a>
                                                  </td>
