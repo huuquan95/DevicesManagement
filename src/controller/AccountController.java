@@ -26,8 +26,7 @@ public class AccountController {
 	@Autowired
 	private AccountDAO mainDAO;
 
-	
-
+	  
 	@ModelAttribute
 	public void addCommons(ModelMap modelMap) {
 
@@ -49,7 +48,6 @@ public class AccountController {
 			
 			return "redirect:/account?msg=notadd";
 		}
-		
 		
 	}
 

@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
@@ -22,8 +23,7 @@
   <definition name="account.detail" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/account/detail.jsp" />
   </definition>
-
-   <definition name="account.edit" extends="devices.template">
+  <definition name="account.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/account/edit.jsp" />
   </definition>
   <!--  -->
@@ -94,7 +94,6 @@
     <put-attribute name="content" value="/WEB-INF/jsp/device/edit1.jsp" />
   </definition>
   <!--  --> 
-  
   <!-- History -->
   <definition name="history.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/index.jsp" />

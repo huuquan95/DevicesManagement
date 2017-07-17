@@ -1,7 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/templates/taglib.jsp" %>
-
+<%-- <c:set var="objLoginMain" value="${objLogin.getItem(userLogin)}"></c:set> --%>
+<style>
+a:hover{
+text-decoration: none;
+color:#F30E2B;
+}
+</style>
 	<!-- START PAGE SIDEBAR -->
 	<div class="page-sidebar">
 			<!-- START X-NAVIGATION -->
@@ -9,22 +15,23 @@
 				<li class="xn-logo"><a href="#"></a> <a
 					href="#" class="x-navigation-control"></a></li>
 				<li class="xn-profile"><a href="#" class="profile-mini"> <img
-						src="${pageContext.request.contextPath}/templates/assets/images/users/avatar.jpg"
-						alt="John Doe" />
+						src="${pageContext.request.contextPath}/files/${objLogin.picture}"
+						alt="${objLogin.username}" />
 				</a>
 					<div class="profile">
 						<div class="profile-image">
 							<img
-								src="${pageContext.request.contextPath}/templates/assets/images/users/avatar.jpg"
-								alt="John Doe" />
+								src="${pageContext.request.contextPath}/files/${objLogin.picture}"
+								alt="${objLogin.username}" />
 						</div>
 						<div class="profile-data">
-							<div class="profile-data-name">${username}</div>
-							<div class="profile-data-title">${principal.authorities}</div>
+							<div class="profile-data-name">${userLogin}</div>
+							<%-- <c:set var="objLoginMain" value="${objLogin.getItem(userLogin)}"></c:set> --%>
+							<div class="profile-data-title">${objLogin.role}</div>
 						</div>
 						<div class="profile-controls">
-							<a href="pages-profile.html" class="profile-control-left"><span
-								class="fa fa-info"></span></a> <a href="pages-messages.html"
+							<a href="${pageContext.request.contextPath}/account/edit/${objLogin.id}" class="profile-control-left"><span
+								class="fa fa-info"></span></a> <a href="${pageContext.request.contextPath}/contact"
 								class="profile-control-right"><span class="fa fa-envelope"></span></a>
 						</div>
 					</div></li>

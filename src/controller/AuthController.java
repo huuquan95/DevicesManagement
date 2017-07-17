@@ -43,7 +43,7 @@ public class AuthController {
 	public String er403(){
 		return "auth/er403";
 	}
-	
+    	
 	@RequestMapping(value="/forgetpass",method=RequestMethod.GET)
 	public String forgetpass(){
 		return "auth/forgetpass";
@@ -64,7 +64,7 @@ public class AuthController {
 //	        		Account objAC=accountDAO.getItemByIDEmployee(objE.getId());
 //	        		System.out.println(objAC.toString());
 	        		String alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!@#$%^&*()";
-	    			int N = alphabet.length();
+	     			int N = alphabet.length();
 
 	    			Random r = new Random();
 	    			StringBuffer output = new StringBuffer();
@@ -97,5 +97,10 @@ public class AuthController {
 		        	return "redirect:/login";
 		        }
 	        }
+	}
+	
+	@RequestMapping(value="/404",method=RequestMethod.GET)
+	public String er404(){
+		return "auth/er404";
 	}
 }

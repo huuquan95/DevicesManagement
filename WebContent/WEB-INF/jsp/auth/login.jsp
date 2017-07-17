@@ -36,9 +36,14 @@
         <label>Password:</label>
         <input type="password" class="form-control" placeholder="Your password" name="password">
       </div>
+      <div class="form-group">
+        <label>Remember me:</label>
+        <input type="checkbox" style="width:20px;height:20px" name="remember-me">
+      </div>
       
       <button name="submit" type="submit" class="btn btn-login">Login</button></br>
-      <div style="text-align: center;margin:30px"><a href="${pageContext.request.contextPath}/forgetpass" style="text-decoration: underline;"> Forget password </a></div>
+      <div style="margin:30px"><a href="${pageContext.request.contextPath}/forgetpass" style="text-decoration: underline;"> Forget password </a></div>
+      <div style="margin-bottom:30px;color:black">&copy;  Copyright ENCLAVE</div>
     </form>
   </div>
   </center>

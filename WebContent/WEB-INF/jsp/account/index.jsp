@@ -83,7 +83,8 @@
 							<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
 						</c:otherwise>
 					</c:choose>
-					<div class="panel-body">
+
+					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
 								<tr>
@@ -112,8 +113,7 @@
 										<c:choose>
 											<c:when
 												test="${objItem.enabled eq 1}">
-												<img
-													onclick="return getActive(${objItem.id },${objItem.enabled })"
+												<img onclick="return getActive(${objItem.id },${objItem.enabled })"
 													height="25px" width="25px"
 													src="${pageContext.request.contextPath}/templates/img/icons/en.png"
 													alt="" />
@@ -160,7 +160,7 @@
 								</c:forEach>
 
 							</tbody>
-						</table>
+						</table></div>
 					</div>
 					<script type="text/javascript">
 									function getActive(id, enabled){

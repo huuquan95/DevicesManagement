@@ -32,7 +32,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Contact
+			<span class="fa fa-arrow-circle-o-left"></span> Category
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -61,7 +61,7 @@
 								Again</div>
 						</c:if>
 					</div>
-					<div class="panel-body" id="body">
+					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
 								<tr>
@@ -101,7 +101,7 @@
 												class="fa fa-times"></span></a></td>
 								</c:forEach>
 							</tbody>
-						</table>
+						</table></div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->

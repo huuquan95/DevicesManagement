@@ -113,5 +113,11 @@ public class DeviceDAO {
 		return jdbcTemplate.update(sql, new Object[]{idAccount,seri});
 		
 	}
+	
+	public int delItemByIDCat(int idCat) {
+		String sql="delete from Devices where idCat=?";
+		return jdbcTemplate.update(sql, new Object[]{idCat});
+		
+	}
 
 }

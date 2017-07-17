@@ -40,6 +40,7 @@
                     <div class="row">
                         <div class="col-md-12" id="body">
 							<div class="panel panel-default" style="padding:10px;">
+							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form class="form-horizontal" action = "${pageContext.request.contextPath }/employee/add" method = "POST"  enctype = "multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -150,7 +151,7 @@
                                     <button class="btn btn-default">Clear Form</button>                                    
                                     <button class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
-                                </form>                                
+                                </form>    </div></div>                            
                             </div>
                         </div>
                          

@@ -78,7 +78,7 @@
 									class="fa fa-times"></span></a></li>
 						</ul>
 					</div>
-					<div class="panel-body" id="body">
+					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
 								<tr>
@@ -139,7 +139,7 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-						</table>
+						</table></div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->

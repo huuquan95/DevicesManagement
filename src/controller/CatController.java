@@ -81,6 +81,7 @@ public class CatController {
 	
 	@RequestMapping(value="del/{id}", method=RequestMethod.GET)
 	public String edit(@PathVariable("id") int id){
+		deviceDAO.delItemByIDCat(id);
 		if(mainDAO.delItem(id)>0){
 			return "redirect:/cat?msg=del";
 		}else{
