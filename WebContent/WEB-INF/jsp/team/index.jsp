@@ -61,7 +61,7 @@
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul>                                
                                 </div>
-                                <div class="panel-body" id="body">
+                                <div class="panel-body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
@@ -74,7 +74,7 @@
                                             <c:forEach var="objItem" items="${listItems}">
                                             <tr>
                                                 <td>${objItem.id }</td>
-                                                <td>${objItem.name }</td>
+                                                <td><a href="${pageContext.request.contextPath }/team/employee/${objItem.id}">${objItem.name }</a></td>
                                                 <td>
                                                         <a href="${pageContext.request.contextPath }/team/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
                                                         <a href="${pageContext.request.contextPath }/team/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
