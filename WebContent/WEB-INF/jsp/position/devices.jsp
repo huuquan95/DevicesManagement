@@ -47,7 +47,7 @@
 											
 												<th>Picture</th>
 												<th>Detail</th>
-												<th>Action</th>
+												
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -69,10 +69,7 @@
 											href="${pageContext.request.contextPath }/device/detail/${objItem.id}"
 											style="background-color: #A9F5F2"
 											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
-									    <td width="15%">
-                                           <a href="${pageContext.request.contextPath }/device/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
-                                           <a href="${pageContext.request.contextPath }/device/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want to delete all device belong to this id?')"><span class="fa fa-times">Del</span></a>
-                                        </td>
+									   
 									</tr>
                                        </c:forEach>
                                         </tbody>
