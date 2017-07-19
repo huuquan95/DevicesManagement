@@ -109,15 +109,15 @@ function format_curency(a) {
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/device">Devices</a></li>
+                    <li class="active">Add Devices</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Equipment</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Devices</h2>
                 </div>
                 <div style="text-align :center"> 
                 	<c:if test="${param['check'] eq 'err' }">
@@ -132,10 +132,11 @@ function format_curency(a) {
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
+							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form onsubmit="return check()" name="frm" class="form-horizontal" action="${pageContext.request.contextPath}/device/add" method="post" enctype="multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                        <label class="col-md-3 col-xs-12 control-label">ID Equipment</label>
+                                        <label class="col-md-3 col-xs-12 control-label">ID Device</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
@@ -263,7 +264,7 @@ function format_curency(a) {
                                     <button type="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
                                 </form>                                
-                            </div>
+                            </div></div></div>
                         </div>
                          
                     </div>                                

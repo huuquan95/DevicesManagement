@@ -19,12 +19,24 @@ public class EmployeeDAO {
 		String sql = "Select Employee.id,Employee.name,birthday,address,phone,picture,Role.namePos as namePos,Team.name as nameTeam from Employee left join Role on Employee.id_Position = Role.id left join Team on Employee.id_Team = Team.id";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Employee> getListByTeam(String id) {
+		String sql = "select * from employee where id_Team ='" + id + "'";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Employee> getListByRole(String id) {
+		String sql = "select * from employee where id_Position ='" +id +"'";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
+	}
 
 	public int addItem(Employee objItem) {
-		String sql = "Insert into Employee(id,name,birthday,address,phone,picture,id_Position,id_Team) values(?,?,?,?,?,?,?,?)";
+		String sql = "Insert into Employee(id,name,birthday,address,phone,picture,id_Position,id_Team,email) values(?,?,?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(sql,
 				new Object[] { objItem.getId(), objItem.getName(), objItem.getBirthday(), objItem.getAddress(),
-						objItem.getPhone(), objItem.getPicture(), objItem.getId_Position(), objItem.getId_Team() });
+						objItem.getPhone(), objItem.getPicture(), objItem.getId_Position(), objItem.getId_Team(),objItem.getEmail() });
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
@@ -55,11 +67,12 @@ public class EmployeeDAO {
 
 	public int editItem(Employee objEmployee) {
 
-		String sql = "UPDATE Employee SET name = ?, birthday = ?, address = ?, phone = ?, picture = ?, id_Position = ?, id_Team = ? WHERE id = ?";
+		String sql = "UPDATE Employee SET name = ?, birthday = ?, address = ?, phone = ?, picture = ?, id_Position = ?, id_Team = ? ,email=? WHERE id = ?";
 		return jdbcTemplate.update(sql,
 				new Object[] { objEmployee.getName(), objEmployee.getBirthday(), objEmployee.getAddress(),
 						objEmployee.getPhone(), objEmployee.getPicture(), objEmployee.getId_Position(),
-						objEmployee.getId_Team(), objEmployee.getId() });
+						objEmployee.getId_Team(),objEmployee.getEmail(), objEmployee.getId() });
 
 	}
+	
 }

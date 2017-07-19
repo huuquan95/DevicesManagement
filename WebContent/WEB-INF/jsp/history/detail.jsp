@@ -1,4 +1,4 @@
-	<%@include file="/templates/taglib.jsp"%>
+<%@include file="/templates/taglib.jsp"%>
 
 <!-- PAGE CONTENT -->
 <div class="page-content">
@@ -24,8 +24,8 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">History</a></li>
-		<li class="active">Detail</li>
+		<li><a href="#">Tables</a></li>
+		<li class="active">Data Tables</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -41,7 +41,7 @@
 	<div class="page-content-wrap">
 
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
 
 					<form class="form-horizontal"

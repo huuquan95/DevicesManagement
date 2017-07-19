@@ -8,7 +8,7 @@
     <put-attribute name="header" value="/WEB-INF/templates/header.jsp" />
     <put-attribute name="leftbar" value="/WEB-INF/templates/leftbar.jsp" />
   	<put-attribute name="content" value="" />
-  	 <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" /> 
+  	<put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
   </definition>
   
   <!-- Account -->
@@ -19,6 +19,12 @@
   <definition name="account.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/account/add.jsp" />
   </definition>
+  <definition name="account.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/account/detail.jsp" />
+  </definition>
+  <definition name="account.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/account/edit.jsp" />
+  </definition>
   <!--  -->
   
   <!-- Cat -->
@@ -28,6 +34,14 @@
   
    <definition name="cat.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/cat/add.jsp" />
+  </definition>
+  
+  <definition name="cat.edit" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/edit.jsp" />
+  </definition>
+  
+  <definition name="cat.detail" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/cat/detailbycat.jsp" />
   </definition>
   <!--  -->
   
@@ -49,13 +63,12 @@
   <definition name="employee.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/employee/add.jsp" />
   </definition>
-  
   <definition name="employee.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/employee/edit.jsp" />
   </definition>
   <!--  -->
   
-    <!-- Device -->
+   <!-- Device -->
   <definition name="device.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/device/index.jsp" />
   </definition>
@@ -80,7 +93,6 @@
     <put-attribute name="content" value="/WEB-INF/jsp/device/edit1.jsp" />
   </definition>
   <!--  --> 
-  
   <!-- History -->
   <definition name="history.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/history/index.jsp" />
@@ -109,33 +121,43 @@
    <definition name="position.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/add.jsp" />
   </definition>
-   <definition name="position.edit" extends="devices.template">
+  <definition name="position.edit" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/position/edit.jsp" />
+  </definition>
+  
+  <definition name="position.employee" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/employee.jsp" />
+  </definition>
+  
+  <definition name="position.devices" extends="devices.template">
+    <put-attribute name="content" value="/WEB-INF/jsp/position/devices.jsp" />
   </definition>
   <!--  -->
   
   <!-- Team -->
-   <definition name="team.index" extends="devices.template">
+  
+  <definition name="team.index" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/index.jsp" />
-  </definition>
-  <definition name="team.edit" extends="devices.template">
-    <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
   </definition>
   
    <definition name="team.add" extends="devices.template">
     <put-attribute name="content" value="/WEB-INF/jsp/team/add.jsp" />
   </definition>
-  <!--  -->
-  <!-- login  -->
-  	  <definition name="login.template" template="/WEB-INF/templates/login/template.jsp">
-    <put-attribute name="header" value="/WEB-INF/templates/login/header.jsp" />
-  	<put-attribute name="content" value="" />
-  	<put-attribute name="footer" value="/WEB-INF/templates/login/footer.jsp" />
+   <definition name="team.edit" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/edit.jsp" />
   </definition>
-	  <definition name="public.auth.login" extends="login.template">
-	    <put-attribute name="content" value="/WEB-INF/jsp/auth/login.jsp" />
-	  </definition>
-  <!-- end login  -->
+   <definition name="team.employee" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/employee.jsp" />
+  </definition>
+  
+  <definition name="team.devices" extends="devices.template">
+
+    <put-attribute name="content" value="/WEB-INF/jsp/team/devices.jsp" />
+  </definition>
+  <!--  -->
+  
   
   
   

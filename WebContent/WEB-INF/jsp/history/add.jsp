@@ -23,8 +23,8 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">History</a></li>
-		<li class="active">Add new history</li>
+		<li><a href="#">Tables</a></li>
+		<li class="active">Data Tables</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -47,7 +47,7 @@
 		</c:otherwise>
 	</c:choose>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
 					<form class="form-horizontal"
 						action="${pageContext.request.contextPath }/history/add"

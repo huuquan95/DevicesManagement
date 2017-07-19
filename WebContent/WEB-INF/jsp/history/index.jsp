@@ -24,7 +24,8 @@
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                     <li><a href="#">Home</a></li>                    
-                    <li><a href="#">History</a></li>
+                    <li><a href="#">Tables</a></li>
+                    <li class="active">Data Tables</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
@@ -60,7 +61,7 @@
 			</c:otherwise>
 		</c:choose>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12" id="body">
 
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
@@ -72,7 +73,7 @@
                                         <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                                     </ul>                                
                                 </div>
-                                <div class="panel-body">
+                               <div class="panel-body" id="body"><div class="table-responsive">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
@@ -80,6 +81,7 @@
                                                 <th>Devices</th>
                                                  <th>Seri number</th>
                                                 <th>actions</th>
+						<th>Function</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -103,14 +105,14 @@
                                                 </td>
                                                 <td>
                                                           <a href="${pageContext.request.contextPath }/history/detail/${objItem.id}"
-											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="fa fa-camera-retro fa-lg"></span></button></a>
-                                                        <a onClick="return confirm('Are you sure that you wanna delete it?')" href="${pageContext.request.contextPath }/history/del/${objItem.id}"
+											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="glyphicon glyphicon-list-alt"></span></button></a>
+                                                        <a href="${pageContext.request.contextPath }/history/del/${objItem.id}"
 											title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button></a>
                                                  </td>
                                             </tr>
 	                                     </c:forEach>       
                                         </tbody>
-                                    </table>
+                                    </table></div>
                                 </div>
                             </div>
                             <!-- END DEFAULT DATATABLE -->

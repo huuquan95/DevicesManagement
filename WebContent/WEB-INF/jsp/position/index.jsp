@@ -31,7 +31,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Category</h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Role</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -64,7 +64,7 @@
                                              <c:forEach var="objItem" items="${listItems}">
                                             <tr>
                                                 <td>${objItem.id }</td>
-                                                <td>${objItem.name }</td>
+                                                <td><a href="${pageContext.request.contextPath }/position/employees/${objItem.id}">${objItem.namePos }</a></td>
                                                 <td>
                                                         <a href="${pageContext.request.contextPath }/position/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
                                                         <a href="${pageContext.request.contextPath }/position/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
@@ -85,7 +85,4 @@
                     </div>                                
 
     
-
-
-
-                
+ 

@@ -23,7 +23,8 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Employee</a></li>
+		<li><a href="#">Tables</a></li>
+		<li class="active">Data Tables</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -54,6 +55,9 @@
 				<div class=" alert alert-success" style="font-size: 20px;">Id
 					emplyee existed</div>
 			</c:when>
+			<c:when test="${param['msg'] eq 'wrong'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Your access be not allow</div>
+			</c:when>
 			<c:when test="${param['msg'] eq null}">
 			</c:when>
 			<c:otherwise>
@@ -61,13 +65,15 @@
 			</c:otherwise>
 		</c:choose>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="${pageContext.request.contextPath }/employee/add"
+						<c:if test="${check ne null}">
+							<a href="${pageContext.request.contextPath }/employee/add"
 							type="button" class="btn btn-info">Add</a>
+						</c:if>
 						<ul class="panel-controls">
 							<li><a href="#" class="panel-collapse"><span
 									class="fa fa-angle-down"></span></a></li>
@@ -77,7 +83,7 @@
 									class="fa fa-times"></span></a></li>
 						</ul>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
 								<tr>
@@ -128,20 +134,25 @@
 												<button class="btn btn-default btn-rounded btn-sm">
 													<span class="fa fa-pencil"></span>
 												</button>
-										</a> <a class = "notice" onClick="return confirm('Are you sure that you wanna delete it?')"
-											href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
-											title="">
-												<button class="btn btn-danger btn-rounded btn-sm">
-													<span class="fa fa-times"></span>
-												</button>
-										</a></td>
+										</a>
+										<c:if test="${check ne null}">
+											 <a
+												href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+												title="">
+													<button class="btn btn-danger btn-rounded btn-sm">
+														<span class="fa fa-times"></span>
+													</button>
+											</a>
+										</c:if>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
-						</table>
+						</table></div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->
+
 
 
 

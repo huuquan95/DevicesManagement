@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import dao.AccountDAO;
-import dao.DeviceDAO;
-import dao.EmployeeDAO;
 import entities.Account;
 
 @Controller
@@ -28,11 +25,8 @@ public class AccountController {
 
 	@Autowired
 	private AccountDAO mainDAO;
-	@Autowired
-	private DeviceDAO DeviceDAO;
 
-	
-
+	  
 	@ModelAttribute
 	public void addCommons(ModelMap modelMap) {
 
@@ -54,7 +48,6 @@ public class AccountController {
 			
 			return "redirect:/account?msg=notadd";
 		}
-		
 		
 	}
 
@@ -112,7 +105,7 @@ public class AccountController {
 				response.getWriter()
 						.print("<img onclick='return getActive(" + id + "," + 0
 								+ ")' height=\"25px\" width=\"25px\" src=\"" + request.getContextPath()
-								+ "/templates/img/icons/delete-icon.png\" alt=\"\" />");
+								+ "/templates/img/icons/un.png\" alt=\"\" />");
 			}
 		}
 		if (enabled == 0) {
@@ -120,7 +113,7 @@ public class AccountController {
 				response.getWriter()
 						.print("<img onclick='return getActive(" + id + "," + 1
 								+ ")' height=\"25px\" width=\"25px\" src=\"" + request.getContextPath()
-								+ "/templates/img/icons/68111340feb.jpg\" alt=\"\" />");
+								+ "/templates/img/icons/en.png\" alt=\"\" />");
 			}
 		}
 
@@ -129,7 +122,7 @@ public class AccountController {
 	@RequestMapping(value = "detail/{id}", method = RequestMethod.GET)
 	public String detail(ModelMap modelMap, @PathVariable("id") int id) {
 		System.out.println("detail");
-		modelMap.addAttribute("objDevice", DeviceDAO.getItems(id));
+		modelMap.addAttribute("objDevice", mainDAO.getItems(id));
 		return "account.detail";
 	}
 

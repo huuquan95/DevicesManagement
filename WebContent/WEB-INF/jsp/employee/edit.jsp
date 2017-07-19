@@ -24,8 +24,8 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="#">Home</a></li>
-		<li><a href="#">Employee</a></li>
-		<li class="active">Update employee</li>
+		<li><a href="#">Tables</a></li>
+		<li class="active">Data Tables</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -41,7 +41,7 @@
 	<div class="page-content-wrap">
 
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
 
 					<form class="form-horizontal"
@@ -97,6 +97,18 @@
 											value="${birthday}" name="birthday">
 									</div>
 									<span class="help-block"><form:errors path = "objEmployee.birthday" style="color:red"></form:errors></span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 col-xs-12 control-label">Email</label>
+								<div class="col-md-6 col-xs-12">
+									<div class="input-group">
+										<span class="input-group-addon"><span
+											class="fa fa-pencil"></span></span> <input type="text"
+											value="${objEmployee.email}" name="email"
+											class="form-control" />
+									</div>
+									<span class="help-block"><form:errors path = "objEmployee.address" style="color:red"></form:errors></span>
 								</div>
 							</div>
 						</div>

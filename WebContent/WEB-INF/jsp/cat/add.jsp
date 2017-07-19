@@ -51,11 +51,11 @@ function check(str) {
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
 
-			 <!-- START BREADCRUMB -->
+			  <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+                    <li><a href="${pageContext.request.contextPath }/cat">Category</a></li>
+                    <li class="active">add</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
@@ -71,6 +71,7 @@ function check(str) {
                     <div class="row">
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
+							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form id="frm" class="form-horizontal" action="" method="post">
                                     <div class="col-md-12">
                                     <div class="form-group">
@@ -95,7 +96,7 @@ function check(str) {
                                     <button type="submit" name="submit" class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
                                 </form>                                
-                            </div>
+                            </div></div></div>
                         </div>
                          
                     </div>                                
