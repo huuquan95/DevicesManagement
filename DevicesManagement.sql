@@ -117,7 +117,7 @@ CREATE TABLE `Devices` (
 -- Dumping data for table `Devices`
 --
 
-INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `date_start`) VALUES
+INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `time_start`) VALUES
 ('DV01', '123', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use ', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:34:18'),
 ('DV01', '1234', 1, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:35:34'),
 ('DV01', '12345', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:34:32'),
