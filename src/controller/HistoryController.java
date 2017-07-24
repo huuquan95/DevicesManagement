@@ -3,6 +3,7 @@ package controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,12 @@ public class HistoryController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String home(ModelMap modelMap) {
+	public String home(HttpSession session, ModelMap modelMap) {
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accDAO.checkAccount(username).getRole())){
+			session.setAttribute("check", true);
+		}
+		
 		modelMap.addAttribute("listHis", hisDAO.getItems());
 		return "history.index";
 	}

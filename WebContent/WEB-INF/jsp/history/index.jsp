@@ -65,8 +65,10 @@
 
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
-                                <div class="panel-heading">                                
+                                <div class="panel-heading">    
+                                <c:if test="${check ne null}">                            
                                     <a href="${pageContext.request.contextPath }/history/add" type="button" class="btn btn-info">Add New</a>
+                                </c:if>
                                     <ul class="panel-controls">
                                         <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
                                         <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
@@ -81,7 +83,9 @@
                                                 <th>Devices</th>
                                                  <th>Seri number</th>
                                                 <th>actions</th>
-						<th>Function</th>
+                                                <c:if test="${check ne null}">
+													<th>Function</th>
+												</c:if>	
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -90,25 +94,27 @@
                                                 <td>${objItem.id }</td>
                                                 <td>${objItem.name }</td>
                                                 <td>${objItem.seri_number }</td>
-                                                <td>
-                                                <c:choose>
-                                                	<c:when test="${objItem.action eq 0 }">
-                                                		<span class="label label-danger">Fixing</span>
-                                                	</c:when>
-                                                	<c:when test="${objItem.action eq 1}">
-                                                		<span class="label label-success">Buying</span>
-                                                	</c:when>
-                                                	<c:otherwise>
-                                                		<span class="label label-info">Using</span>
-                                                	</c:otherwise>
-                                                </c:choose>
-                                                </td>
-                                                <td>
-                                                          <a href="${pageContext.request.contextPath }/history/detail/${objItem.id}"
-											title=""><button class="btn btn-default btn-rounded btn-sm"><span class="glyphicon glyphicon-list-alt"></span></button></a>
-                                                        <a href="${pageContext.request.contextPath }/history/del/${objItem.id}"
-											title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button></a>
-                                                 </td>
+	                                            <td>
+	                                                <c:choose>
+	                                                	<c:when test="${objItem.action eq 0 }">
+	                                                		<span class="label label-danger">Fixing</span>
+	                                                	</c:when>
+	                                                	<c:when test="${objItem.action eq 1}">
+	                                                		<span class="label label-success">Buying</span>
+	                                                	</c:when>
+	                                                	<c:otherwise>
+	                                                		<span class="label label-info">Using</span>
+	                                                	</c:otherwise>
+	                                                </c:choose>
+	                                            </td>
+	                                             <c:if test="${check ne null}">
+		                                                <td>
+		                                                          <a href="${pageContext.request.contextPath }/history/detail/${objItem.id}"
+													title=""><button class="btn btn-default btn-rounded btn-sm"><span class="glyphicon glyphicon-list-alt"></span></button></a>
+		                                                        <a href="${pageContext.request.contextPath }/history/del/${objItem.id}"
+													title=""><button class="btn btn-danger btn-rounded btn-sm" onClick="delete_row('trow_1');"><span class="fa fa-times"></span></button></a>
+		                                                 </td>
+                                                 </c:if>
                                             </tr>
 	                                     </c:forEach>       
                                         </tbody>
