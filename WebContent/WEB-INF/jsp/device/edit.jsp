@@ -76,7 +76,7 @@ function format_curency(a) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Edit Devices</h2>
+                    <h2>Edit Devices</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

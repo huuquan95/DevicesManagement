@@ -22,16 +22,16 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		<li><a href="${pageContext.request.contextPath }/history">History</a></li>                    
+        <li class="active">Add</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Add History
+			 Add History
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->

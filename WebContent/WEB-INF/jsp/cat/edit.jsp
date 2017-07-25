@@ -60,7 +60,7 @@ val.value = tst;
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Update Category</h2>
+                    <h2>Update Category</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

@@ -23,22 +23,33 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		<li class="active">Contact</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
-		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Category
-		</h2>
+		<h2>Contact</h2>
 	</div>
 	<!-- END PAGE TITLE -->
 
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
+<c:choose>
+			<c:when test="${param['msg'] eq 'add'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Add
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'del'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Delete
+					Success</div>
+			</c:when>
+			<c:when test="${param['msg'] eq 'err'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Error.Try
+								Again</div>
+			</c:when>
+		</c:choose>
 
 		<div class="row">
 			<div class="col-md-12">
@@ -46,62 +57,80 @@
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<a href="${pageContext.request.contextPath}/contact/add"
-							type="button" class="btn btn-info">Add</a>
-						<c:if test="${param['msg'] eq 'add' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Add
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'del' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Del
-								Success</div>
-						</c:if>
-						<c:if test="${param['msg'] eq 'err' }">
-							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
-								Again</div>
-						</c:if>
+
+						<c:choose>
+							<c:when test="${objLogin.getRole() eq 'USER'}">
+
+								<a href="${pageContext.request.contextPath}/contact/add"
+									type="button" class="btn btn-info">Add</a>
+
+							</c:when>
+							<c:otherwise>
+
+								<td>${objItem.getStatus()}</td>
+
+							</c:otherwise>
+						</c:choose>
 					</div>
-					<div class="panel-body" id="body"><div class="table-responsive">
-						<table class="table datatable">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Employee</th>
-									<th>Status</th>
-									<th>Description</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="objItem" items="${listItems}">
+					<div class="panel-body" id="body">
+						<div class="table-responsive">
+							<table class="table datatable">
+								<thead>
 									<tr>
-										<td>${objItem.getId()}</td>
-										<td>${objItem.getUserName()}</td>
-										<td id="td_Status"><select id="status" name="status"
-											onchange="changeStatus(${objItem.getId()})"
-											class="form-control" style="width: 70%;">
-												<c:if test="${objItem.getStatus() eq 'new'}">
-													<option value="new" selected="selected">new</option>
-													<option value="in progress">in progress</option>
-												</c:if>
-												<c:if test="${objItem.getStatus() eq 'in progress'}">
-													<option value="in progress" selected="selected">in
-														progress</option>
-													<option value="resolved">resolved</option>
-												</c:if>
-												<c:if test="${objItem.getStatus() eq 'resolved'}">
-													<option value="resolved" selected="selected">resolved</option>
-												</c:if>
-										</select></td>
-										<td>${objItem.getDescription()}</td>
-										<td><a
-											href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
-											class="btn btn-danger btn-rounded btn-sm"
-											onClick="return confirm('Do you want delete?')"><span
-												class="fa fa-times"></span></a></td>
-								</c:forEach>
-							</tbody>
-						</table></div>
+										<th>ID</th>
+										<th>Employee</th>
+										<th>Status</th>
+										<th>Description</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="objItem" items="${listItems}">
+										<tr>
+											<td>${objItem.getId()}</td>
+											<td>${objItem.getUserName()}</td>
+
+											<c:choose>
+												<c:when
+													test="${objLogin.getRole() eq 'ADMIN' && objItem.getStatus() ne 'resolved'}">
+
+													<td id="td_Status${objItem.getId()}"><select
+														id="status${objItem.getId()}" name="status"
+														onchange="changeStatus(${objItem.getId()})"
+														class="form-control" style="width: 70%;">
+
+															<c:if test="${objItem.getStatus() eq 'new'}">
+																<option value="new" selected="selected">new</option>
+																<option value="in progress">in progress</option>
+															</c:if>
+
+															<c:if test="${objItem.getStatus() eq 'in progress'}">
+																<option value="in progress" selected="selected">in
+																	progress</option>
+																<option value="resolved">resolved</option>
+															</c:if>
+
+															<c:if test="${objItem.getStatus() eq 'resolved'}">
+																<option value="resolved" selected="selected">resolved</option>
+															</c:if>
+
+													</select></td>
+												</c:when>
+												<c:otherwise>
+													<td>${objItem.getStatus()}</td>
+												</c:otherwise>
+											</c:choose>
+
+											<td>${objItem.getDescription()}</td>
+											<td><a
+												href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
+												class="btn btn-danger btn-rounded btn-sm"
+												onClick="return confirm('Do you want delete?')"><span
+													class="fa fa-times"></span></a></td>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->
@@ -110,26 +139,28 @@
 		</div>
 		<script type="text/javascript">
 		function changeStatus(id){
-			var se = document.getElementById("status");
+			
+			var idSelect="status"+id;
+			var idTd="td_Status"+id;
+			var se = document.getElementById(idSelect);
 			var status = se.options[se.selectedIndex].text;
-			alert(id+" "+status);
+			
+			//alert(id+" "+status+idTd);
+			
 			$.ajax({
 				url: '${pageContext.request.contextPath}/contact/edit',
 				type: 'POST',
 				cache: false, 
 				data: {
-						//Dữ liệu gửi đi
 					id: id,
 				    status: status,
-						},
+				},
 				success: function(data){
-					// Xử lý thành công
-				
-					$("td_Status").html(data);
+					//alert(data);
+					$("#"+idTd).html(data);
 				},
 				error: function (){
-				// Xử lý nếu có lỗi
-				alert("Có lỗi trong quá trình xử lý");
+				alert("Have some errors");
 				}
 			});
 		}

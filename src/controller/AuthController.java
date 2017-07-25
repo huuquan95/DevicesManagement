@@ -25,7 +25,7 @@ public class AuthController {
 	@Autowired
 	private AccountDAO accountDAO;
 
-	@RequestMapping(value="/login",method=RequestMethod.GET)
+	@RequestMapping(value={"/login","/"},method=RequestMethod.GET)
 	public String login(Principal principal,ModelMap modelMap){
 		if(principal!=null){
 			return "redirect:/home";

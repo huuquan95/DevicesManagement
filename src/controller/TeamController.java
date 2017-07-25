@@ -39,19 +39,21 @@ public class TeamController {
 	public String add(){
 		return "team.add";
 	}
-
+  
 
 	@RequestMapping(value="devices/{id}", method=RequestMethod.GET)
 	public String devices(ModelMap modelMap,@PathVariable("id") String id){
 		modelMap.addAttribute("listItems", deviceDAO.getItemsByEmployee(id));
-	
+		String nameEm=employeeDAO.getItem(id).getName();
+		modelMap.addAttribute("nameEmDetail", nameEm);
 		return "team.devices";
 	}
 	
 	@RequestMapping(value="employee/{id}", method=RequestMethod.GET)
 	public String member(ModelMap modelMap,@PathVariable("id") String id){
 		modelMap.addAttribute("listItems", employeeDAO.getListByTeam(id));
-	
+		String name=mainDAO.getItem(id).getName();
+	    modelMap.addAttribute("nameTeamDetail", name);
 		return "team.employee";
 	}
 	
