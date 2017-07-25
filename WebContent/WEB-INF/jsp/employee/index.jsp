@@ -128,22 +128,34 @@
 												</c:otherwise>
 											</c:choose></td>
 
-										<td><a
-											href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
-											title="">
-												<button class="btn btn-default btn-rounded btn-sm">
-													<span class="fa fa-pencil"></span>
-												</button>
-										</a>
-										<c:if test="${check ne null}">
-											 <a
-												href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+										<td>
+											<c:if test="${check ne null}">
+												<a
+												href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
 												title="">
-													<button class="btn btn-danger btn-rounded btn-sm">
-														<span class="fa fa-times"></span>
+													<button class="btn btn-default btn-rounded btn-sm">
+														<span class="fa fa-pencil"></span>
 													</button>
-											</a>
-										</c:if>
+												</a>
+												 <a
+													href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+													title="">
+														<button class="btn btn-danger btn-rounded btn-sm">
+															<span class="fa fa-times"></span>
+														</button>
+												</a>
+											</c:if>
+											<c:if test="${check eq null}">
+												<c:if test="${idObjLogin eq item.getId()}">
+													<a
+													href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+													title="">
+														<button class="btn btn-default btn-rounded btn-sm">
+															<span class="fa fa-pencil"></span>
+														</button>
+													</a>
+												</c:if>
+											</c:if>
 										</td>
 									</tr>
 								</c:forEach>

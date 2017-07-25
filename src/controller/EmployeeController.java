@@ -71,13 +71,23 @@ public class EmployeeController {
 		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
 			session.setAttribute("check", true);
 		}
+		
+		String idObjLogin = accountDAO.getItem(username).getId_Employee();
+		modelMap.addAttribute("idObjLogin", idObjLogin);
+		
 		modelMap.addAttribute("listItems", employeeDAO.getList());
 		return "employee.index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add() {
-		return "employee.add";
+	public String add(ModelMap modelMap, HttpSession session) {
+		//check role access.
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+				return "employee.add";
+		}else {
+			return "redirect:/employee?msg=wrong";
+		}
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -120,7 +130,13 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/del/{id}", method = RequestMethod.GET)
-	public String del(@PathVariable("id") String id, HttpServletRequest request) {
+	public String del(@PathVariable("id") String id, HttpServletRequest request, HttpSession session) {
+		//check role access.
+		String username = (String) session.getAttribute("userLogin");
+		if(!"admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+			return "redirect:/employee?msg=wrong";
+		}
+		
 		// delete file img
 		String picture = employeeDAO.getItem(id).getPicture();
 		final String path = request.getServletContext().getRealPath("files");
