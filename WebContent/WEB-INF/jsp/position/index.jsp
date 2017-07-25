@@ -30,7 +30,9 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
+
                     <h2>Position</h2>
+
                 </div>
                 <!-- END PAGE TITLE -->                
 

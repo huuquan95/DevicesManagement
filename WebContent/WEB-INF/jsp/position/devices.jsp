@@ -31,7 +31,9 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
+
                     <h2><span class="fa fa-arrow-circle-o-left"></span> Device of <strong> ${nameEm}</strong> </h2>
+
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -53,6 +55,7 @@
 												<th>Made</th>
 											
 												<th>Picture</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -70,6 +73,7 @@
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>
+
 									</tr>
                                        </c:forEach>
                                         </tbody>
