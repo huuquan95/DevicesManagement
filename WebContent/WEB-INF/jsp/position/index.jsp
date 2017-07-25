@@ -21,43 +21,59 @@
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
 
-			 <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
-                </ul>
-                <!-- END BREADCRUMB -->
+			<!-- START BREADCRUMB -->
+			<ul class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+		        <li class="active">Position</li>
+			</ul>
+			<!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Role</h2>
+
+                    <h2>Position</h2>
+
                 </div>
                 <!-- END PAGE TITLE -->                
 
                 <!-- PAGE CONTENT WRAPPER -->
                 <div class="page-content-wrap">                
-                
+                <c:choose>
+	<c:when test="${param['msg'] eq 'add'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Add
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'edit'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Update
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'del'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Delete
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'err'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
+								Again</div>
+	</c:when>
+</c:choose>
+
                     <div class="row">
                         <div class="col-md-12">
 
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
+                            <c:if test="${objLogin.role eq 'ADMIN' }"> 
                                 <div class="panel-heading">                                
                                     <a href="${pageContext.request.contextPath }/position/add" type="button" class="btn btn-info">Add</a>
-                                    <ul class="panel-controls">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                    </ul>                                
-                                </div>
+                                </div></c:if>
                                 <div class="panel-body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Name</th>
-                                                <th>Actions</th>
+                                                <c:if test="${objLogin.role eq 'ADMIN' }"> 
+                                                <th>Actions</th></c:if>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,10 +81,11 @@
                                             <tr>
                                                 <td>${objItem.id }</td>
                                                 <td><a href="${pageContext.request.contextPath }/position/employees/${objItem.id}">${objItem.namePos }</a></td>
+                                                <c:if test="${objLogin.role eq 'ADMIN' }"> 
                                                 <td>
                                                         <a href="${pageContext.request.contextPath }/position/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil"></span></a>
                                                         <a href="${pageContext.request.contextPath }/position/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want delete?')"><span class="fa fa-times"></span></a>
-                                                    </td>
+                                                    </td></c:if>
                                             </tr>
                                        </c:forEach>
                                             

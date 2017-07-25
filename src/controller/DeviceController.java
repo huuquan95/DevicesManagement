@@ -64,9 +64,9 @@ public class DeviceController {
 	public String add(@ModelAttribute("objItem") Devices objItem, BindingResult bindingResult,
 			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request) {
 
-		// if(bindingResult.hasErrors()){
-		// return "device.add";
-		// }
+		 if(bindingResult.hasErrors()){
+		 return "device.add";
+		 }
 		// if(objItem.getIdAccount()==-1){
 		// objItem.setIdAccount(1);
 		// }

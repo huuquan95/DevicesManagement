@@ -19,7 +19,7 @@
 <!-- Validate  --> 
 
 <link rel="icon"
-	href="${pageContext.request.contextPath}/templates/img/favicon.ico"
+	href="${pageContext.request.contextPath}/templates/img/title.png"
 	type="image/x-icon" />
 <!-- END META SECTION -->
 

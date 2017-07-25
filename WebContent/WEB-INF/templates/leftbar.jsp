@@ -20,7 +20,7 @@ color:#F30E2B;
 				</a>
 					<div class="profile">
 						<div class="profile-image">
-							<img
+							<img style="width:100px;height:112px"
 								src="${pageContext.request.contextPath}/files/${objLogin.picture}"
 								alt="${objLogin.username}" />
 						</div>
@@ -31,8 +31,19 @@ color:#F30E2B;
 						</div>
 						<div class="profile-controls">
 							<a href="${pageContext.request.contextPath}/account/edit/${objLogin.id}" class="profile-control-left"><span
-								class="fa fa-info"></span></a> <a href="${pageContext.request.contextPath}/contact"
+								class="fa fa-info"></span></a> 
+								<c:choose>
+									
+									<c:when test="${objLogin.role eq 'ADMIN' }">
+										<a href="${pageContext.request.contextPath}/contact"
 								class="profile-control-right"><span class="fa fa-envelope"></span></a>
+									</c:when>
+									
+									<c:otherwise>
+										<a href="${pageContext.request.contextPath}/contact/add"
+								class="profile-control-right"><span class="fa fa-envelope"></span></a>
+									</c:otherwise>
+								</c:choose>
 						</div>
 					</div></li>
 				<li class="xn-title">Management</li>

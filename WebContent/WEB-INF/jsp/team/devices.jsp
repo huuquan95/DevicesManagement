@@ -20,11 +20,18 @@
 				
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
-
+				<!-- START BREADCRUMB -->
+				<ul class="breadcrumb">
+					<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+			        <li><a href="${pageContext.request.contextPath }/team">Team</a></li>                     
+					<li class="active">Devices of ${nameEmDetail} </li>
+				</ul>
+				<!-- END BREADCRUMB -->
+				
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Device of ${objCat.name} </h2>
+                    <h2> Device of <strong>${nameEmDetail}</strong> </h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -46,8 +53,6 @@
 												<th>Made</th>
 											
 												<th>Picture</th>
-												<th>Detail</th>
-												<th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,14 +70,6 @@
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>
-										<td><a
-											href="${pageContext.request.contextPath }/device/detail/${objItem.id}"
-											style="background-color: #A9F5F2"
-											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
-									    <td width="15%">
-                                           <a href="${pageContext.request.contextPath }/device/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
-                                           <a href="${pageContext.request.contextPath }/device/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want to delete all device belong to this id?')"><span class="fa fa-times">Del</span></a>
-                                        </td>
 									</tr>
                                        </c:forEach>
                                         </tbody>

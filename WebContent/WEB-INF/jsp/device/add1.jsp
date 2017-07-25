@@ -102,7 +102,7 @@ function format_curency(a) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Devices</h2>
+                    <h2> Add Devices</h2>
                 </div>
                 <div style="text-align :center"> 
                 	<c:if test="${param['check'] eq 'err' }">

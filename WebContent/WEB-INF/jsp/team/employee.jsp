@@ -22,16 +22,16 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+        <li><a href="${pageContext.request.contextPath }/team">Team</a></li>                     
+		<li class="active">Member of ${nameTeamDetail } </li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Sortable Tables
+			 Member of team <strong>${nameTeamDetail }</strong>
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -56,7 +56,6 @@
 									<th>Position</th>
 									<th>Date birth</th>
 									<th>Address</th>
-									<th>Team</th>
 									<th>Phone</th>
 									<th>Avatar</th>
 									
@@ -75,12 +74,6 @@
 											</c:choose></td>
 										<td>${item.getBirthday()}</td>
 										<td>${item.getAddress()}</td>
-										<td><c:choose>
-												<c:when test="${item.getNameTeam() eq null or item.getNameTeam() eq ''}">
-													<span class="label label-success">New</span>
-												</c:when>
-												<c:otherwise>${item.getNameTeam()}</c:otherwise>
-											</c:choose></td>
 										<td>${item.getPhone()}</td>
 										<td><c:choose>
 												<c:when test="${item.getPicture() eq ''}">

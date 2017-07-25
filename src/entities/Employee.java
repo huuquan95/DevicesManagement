@@ -33,7 +33,6 @@ public class Employee {
 	private String nameTeam;
 	
 	@NotEmpty(message = "Do not be empty")
-	@Email
 	private String email;
 	
 	

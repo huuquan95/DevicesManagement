@@ -20,11 +20,20 @@
 				
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
-
+			
+			<!-- START BREADCRUMB -->
+			<ul class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		        <li><a href="${pageContext.request.contextPath }/position">Position</a></li>                     
+				<li class="active">Devices of ${nameEm} </li>
+			</ul>
+			<!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span>  </h2>
+
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Device of <strong> ${nameEm}</strong> </h2>
+
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -46,8 +55,7 @@
 												<th>Made</th>
 											
 												<th>Picture</th>
-												<th>Detail</th>
-												
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -65,11 +73,7 @@
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>
-										<td><a
-											href="${pageContext.request.contextPath }/device/detail/${objItem.id}"
-											style="background-color: #A9F5F2"
-											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
-									   
+
 									</tr>
                                        </c:forEach>
                                         </tbody>
