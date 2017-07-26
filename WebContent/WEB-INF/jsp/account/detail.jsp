@@ -61,7 +61,8 @@
                                         <tbody>
                                         <c:forEach var="objItem" items="${objDevice}">
                                        <tr>
-                                            	<td>${objItem.id}</td>
+                                            	<td><a
+											href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.id}</a></td>
                                             	<td>${objItem.seri_number}</td>
                                             	<td>${objItem.name}</td>
                                             	<td><img height="70px" width="70px" src="${pageContext.request.contextPath}/files/${objItem.picture}" alt="" /></td>

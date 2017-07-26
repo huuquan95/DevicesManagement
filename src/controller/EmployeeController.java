@@ -48,6 +48,9 @@ public class EmployeeController {
 	private AccountDAO accountDAO;
 	
 	@Autowired
+	private AccountDAO accountDAO;
+	
+	@Autowired
 	private RenameFileLibrary renameFileLibrary;
 	
 	// cấu hình dữ liệu của web theo hướng mà bạn muốn mà
@@ -69,15 +72,25 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public String home(ModelMap modelMap,HttpSession session) {
-		Account objLogin = (Account) session.getAttribute("objLogin");
-		modelMap.addAttribute("idEmLogin", objLogin.getId_Employee());
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+			session.setAttribute("check", true);
+		}
+		String idObjLogin = accountDAO.getItem(username).getId_Employee();
+		modelMap.addAttribute("idObjLogin", idObjLogin);
 		modelMap.addAttribute("listItems", employeeDAO.getList());
 		return "employee.index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add() {
-		return "employee.add";
+	public String add(ModelMap modelMap, HttpSession session) {
+		//check role access.
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+				return "employee.add";
+		}else {
+			return "redirect:/employee?msg=wrong";
+		}
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -120,12 +133,13 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/del/{id}", method = RequestMethod.GET)
-	public String del(@PathVariable("id") String id, HttpServletRequest request,HttpSession session) {
-		Account objLogin = (Account) session.getAttribute("objLogin");
-		Account objEdit=accountDAO.getItemByIDEmployee(id);
-		if(!"ADMIN".equals(objLogin.getRole()) && (objLogin.getId()!=objEdit.getId())){
-			return "redirect:/403";
+	public String del(@PathVariable("id") String id, HttpServletRequest request, HttpSession session) {
+		//check role access.
+		String username = (String) session.getAttribute("userLogin");
+		if(!"admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+			return "redirect:/employee?msg=wrong";
 		}
+		
 		// delete file img
 		String picture = employeeDAO.getItem(id).getPicture();
 		final String path = request.getServletContext().getRealPath("files");
@@ -143,24 +157,27 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") String id, ModelMap modelMap,HttpSession session) {
-		Account objLogin = (Account) session.getAttribute("objLogin");
-		Account objEdit=accountDAO.getItemByIDEmployee(id);
-		if(!"ADMIN".equals(objLogin.getRole()) && (objLogin.getId()!=objEdit.getId())){
-			return "redirect:/403";
+	public String edit(@PathVariable("id") String id, ModelMap modelMap, HttpSession session) {
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+				modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
+				return "employee.edit";
+		}else {
+			if(id.equals(accountDAO.getItem(username).getId_Employee())) {
+				modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
+				return "employee.edit";
+			}else 
+				return "redirect:/employee?msg=wrong";
 		}
-		modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
-		return "employee.edit";
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult,
-			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, 
+	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult, @RequestParam("filename") CommonsMultipartFile commonsMultipartFile, 
 			HttpServletRequest request,HttpSession session,Principal principal) {
 		// change picture and update it
 		String user=(String)session.getAttribute("userLogin");
 		Account objLogin = (Account) session.getAttribute("objLogin");
-		
+
 		if(bindingResult.hasErrors()){
 			return "employee.edit";
 		}
@@ -193,7 +210,7 @@ public class EmployeeController {
 				}
 
 				File fileUpload = new File(filePath + File.separatorChar + fileRename);
-
+				
 				try {
 					commonsMultipartFile.transferTo(fileUpload);
 					System.out.println("upload file success");
@@ -208,8 +225,6 @@ public class EmployeeController {
 		}
 
 		if (employeeDAO.editItem(objEmployee) > 0) {
-			System.out.println(employeeDAO.getItem(id).getId());
-			System.out.println(objLogin.getId_Employee());
 			if((employeeDAO.getItem(id).getId()).equals(objLogin.getId_Employee())){
 				session.removeAttribute("objLogin");
 				session.setAttribute("objLogin",accountDAO.getItem(user));

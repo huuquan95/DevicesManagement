@@ -50,7 +50,6 @@
 								Again</div>
 			</c:when>
 		</c:choose>
-
 		<div class="row">
 			<div class="col-md-12">
 
@@ -138,8 +137,7 @@
 
 		</div>
 		<script type="text/javascript">
-		function changeStatus(id){
-			
+		function changeStatus(id){	
 			var idSelect="status"+id;
 			var idTd="td_Status"+id;
 			var se = document.getElementById(idSelect);

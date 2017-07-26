@@ -37,7 +37,8 @@ public class AccountDAO {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Account getItem(String username) {
-		String sql = "Select a.id_Employee,a.id as id, username,e.picture as picture, password,role from Account as a inner join Employee as e on a.id_Employee= e.id where username = ?";
+		String sql = "Select a.id as id,e.id as id_Employee,username,e.picture as picture, password,role from Account as a inner join Employee as e on a.id_Employee= e.id where username = ?";
+
 		return (Account) jdbcTemplate.queryForObject(sql, new Object[] { username },
 				new BeanPropertyRowMapper(Account.class));
 	}

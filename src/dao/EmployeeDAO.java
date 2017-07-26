@@ -22,13 +22,13 @@ public class EmployeeDAO {
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Employee> getListByTeam(String id) {
-		String sql = "select * from Employee where id_Team ='" + id + "'";
+		String sql = "select * from employee where id_Team ='" + id + "'";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<Employee> getListByRole(int id) {
-		String sql = "select * from Employee where id_Position =" +id;
+	public List<Employee> getListByRole(String id) {
+		String sql = "select * from employee where id_Position ='" +id +"'";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
 	}
 
@@ -74,4 +74,5 @@ public class EmployeeDAO {
 						objEmployee.getId_Team(),objEmployee.getEmail(), objEmployee.getId() });
 
 	}
+	
 }

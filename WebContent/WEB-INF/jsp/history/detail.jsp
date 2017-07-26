@@ -24,8 +24,6 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
-		<li><a href="${pageContext.request.contextPath }/history">History</a></li>                    
-        <li class="active">Edit</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -41,7 +39,7 @@
 	<div class="page-content-wrap">
 
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
 
 					<form class="form-horizontal"

@@ -19,18 +19,15 @@ public class DeviceDAO {
 	// id employee
 	public List<Devices> getItemsByEmployee(String id){
 		String sql="select d.id,d.seri_number,d.idAccount,d.name,d.made_in,d.price,d.warranty,d.picture,"
-				+"Account.id_Employee from Devices as d left join Account "
-				+"on d.idAccount = Account.id where Account.id_Employee ='"+id+"'";
-				
-				
-				
+				+"account.id_Employee from devices as d left join account "
+				+"on d.idAccount = account.id where account.id_Employee ='"+id+"'";		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Devices.class));
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Devices> getItems(){
 		String sql="select distinct d.id as id, c.id as idCat,"
-				+ "d.name, d.made_in, d.picture,c.name as cname from Devices as d "
+				+ "d.name, d.made_in, d.picture,d.seri_number,c.name as cname from Devices as d "
 				+ "inner join Category as c on c.id=d.idCat";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Devices.class));
 	}

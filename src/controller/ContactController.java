@@ -44,12 +44,10 @@ public class ContactController {
 			modelMap.addAttribute("objLogin", objLogin);
 			return "contact.index";
 		}
-
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(HttpSession session, ModelMap modelMap) {
-
 		return "contact.add";
 	}
 
@@ -77,21 +75,18 @@ public class ContactController {
 		contact.setStatus(status);
 
 		if (mainDAO.editItem(contact) == 1) {
-
 			if (status.equals("in progress"))
 				response.getWriter().print("<select id=\"status" + id + "\" name=\"status\" onchange=\"changeStatus("
 						+ id
 						+ ")\" class=\"form-control\" style=\"width: 70%;\"><option value=\"in progress\" selected=\"selected\">inprogress</option><option value=\"resolved\">resolved</option></select>");
 			else
 				response.getWriter().print("resolved");
-
 		} else {
 		}
 	}
 
 	@RequestMapping(value = "del/{id}", method = RequestMethod.GET)
 	public String del(@PathVariable("id") int id) {
-
 		if (mainDAO.delItem(id) > 0) {
 			return "redirect:/contact?msg=del";
 		} else {

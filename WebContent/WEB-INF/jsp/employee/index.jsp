@@ -23,13 +23,14 @@
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
-		<li class="active">Employee</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
-		<h2>Employee</h2>
+		<h2>
+			<span class="fa fa-arrow-circle-o-left"></span> Employee
+		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
 
@@ -52,6 +53,9 @@
 				<div class=" alert alert-success" style="font-size: 20px;">Id
 					emplyee existed</div>
 			</c:when>
+			<c:when test="${param['msg'] eq 'wrong'}">
+				<div class=" alert alert-success" style="font-size: 20px;">Your access be not allow</div>
+			</c:when>
 			<c:when test="${param['msg'] eq null}">
 			</c:when>
 			<c:otherwise>
@@ -59,20 +63,41 @@
 			</c:otherwise>
 		</c:choose>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
-					<c:if test="${objLogin.role eq 'ADMIN' }">
-						<div class="panel-heading">
+					<div class="panel-heading">
+						<c:if test="${check ne null}">
 							<a href="${pageContext.request.contextPath }/employee/add"
-								type="button" class="btn btn-info">Add</a>
-						</div>
-					</c:if>
-					<div class="panel-body" id="body">
-						<div class="table-responsive">
-							<table class="table datatable">
-								<thead>
+							type="button" class="btn btn-info">Add</a>
+						</c:if>
+						<ul class="panel-controls">
+							<li><a href="#" class="panel-collapse"><span
+									class="fa fa-angle-down"></span></a></li>
+							<li><a href="#" class="panel-refresh"><span
+									class="fa fa-refresh"></span></a></li>
+							<li><a href="#" class="panel-remove"><span
+									class="fa fa-times"></span></a></li>
+						</ul>
+					</div>
+					<div class="panel-body" id="body"><div class="table-responsive">
+						<table class="table datatable">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Name</th>
+									<th>Position</th>
+									<th>Date birth</th>
+									<th>Address</th>
+									<th>Team</th>
+									<th>Phone</th>
+									<th>Avatar</th>
+									<th>Function</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${listItems}" var="item">
 									<tr>
 										<th>ID</th>
 										<th>Name</th>
@@ -155,12 +180,41 @@
 												<c:otherwise>
 													<td><span class="label label-default">Disable</span></td>
 												</c:otherwise>
-											</c:choose>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+											</c:choose></td>
+
+										<td>
+											<c:if test="${check ne null}">
+												<a
+												href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+												title="">
+													<button class="btn btn-default btn-rounded btn-sm">
+														<span class="fa fa-pencil"></span>
+													</button>
+												</a>
+												 <a
+													href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+													title="">
+														<button class="btn btn-danger btn-rounded btn-sm">
+															<span class="fa fa-times"></span>
+														</button>
+												</a>
+											</c:if>
+											<c:if test="${check eq null}">
+												<c:if test="${idObjLogin eq item.getId()}">
+													<a
+													href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+													title="">
+														<button class="btn btn-default btn-rounded btn-sm">
+															<span class="fa fa-pencil"></span>
+														</button>
+													</a>
+												</c:if>
+											</c:if>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table></div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->

@@ -39,7 +39,6 @@ public class TeamController {
 	public String add(){
 		return "team.add";
 	}
-  
 
 	@RequestMapping(value="devices/{id}", method=RequestMethod.GET)
 	public String devices(ModelMap modelMap,@PathVariable("id") String id){

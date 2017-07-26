@@ -60,7 +60,11 @@ val.value = tst;
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
+<<<<<<< HEAD
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Team</h2>
+=======
                     <h2> Add Team</h2>
+>>>>>>> master
                 </div>
                 <!-- END PAGE TITLE -->                
 

@@ -70,6 +70,7 @@
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>
+
 									</tr>
                                        </c:forEach>
                                         </tbody>

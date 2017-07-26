@@ -23,9 +23,7 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
-        <li><a href="${pageContext.request.contextPath }/employee">Employee</a></li>
-        <li class="active">Edit</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
@@ -41,7 +39,7 @@
 	<div class="page-content-wrap">
 
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
 
 					<form class="form-horizontal"
@@ -108,7 +106,7 @@
 											value="${objEmployee.email}" name="email"
 											class="form-control" />
 									</div>
-									<span class="help-block"><form:errors path = "objEmployee.email" style="color:red"></form:errors></span>
+									<span class="help-block"><form:errors path = "objEmployee.address" style="color:red"></form:errors></span>
 								</div>
 							</div>
 						</div>

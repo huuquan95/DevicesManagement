@@ -1,5 +1,5 @@
-<%@include file = "/templates/taglib.jsp" %>
-
+	<%@include file = "/templates/taglib.jsp" %>
+	
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
 
@@ -16,8 +16,7 @@
 					class="mb-control" data-box="#mb-signout"><span
 						class="fa fa-sign-out"></span></a></li>
 				<!-- END SIGN OUT -->
-				
-				
+			
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
 
@@ -69,8 +68,7 @@
 					<div class="col-md-3">
 
 						<!-- START WIDGET MESSAGES -->
-						<div class="widget widget-default widget-item-icon"
-							onclick="location.href='pages-messages.html';">
+						<div class="widget widget-default widget-item-icon">
 							<div class="widget-item-left">
 								<span class="fa fa-envelope"></span>
 							</div>
@@ -92,7 +90,7 @@
 
 						<!-- START WIDGET REGISTRED -->
 						<div class="widget widget-default widget-item-icon"
-							onclick="location.href='pages-address-book.html';">
+							>
 							<div class="widget-item-left">
 								<span class="fa fa-user"></span>
 							</div>
