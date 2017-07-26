@@ -38,6 +38,7 @@ public class AccountDAO {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Account getItem(String username) {
 		String sql = "Select a.id as id,e.id as id_Employee,username,e.picture as picture, password,role from Account as a inner join Employee as e on a.id_Employee= e.id where username = ?";
+
 		return (Account) jdbcTemplate.queryForObject(sql, new Object[] { username },
 				new BeanPropertyRowMapper(Account.class));
 	}
@@ -105,7 +106,7 @@ public class AccountDAO {
 	}
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Account getItemByIDEmployee(String id) {
-		String sql = "Select * from Account inner join Employee on Employee.id=Account.id_Employee where Employee.id=?";
+		String sql = "Select Account.id_Employee,Account.id,username,password from Account inner join Employee on Employee.id=Account.id_Employee where Employee.id=?";
 		try{
 			return (Account) jdbcTemplate.queryForObject(sql, new Object[] { id },
 					new BeanPropertyRowMapper(Account.class));

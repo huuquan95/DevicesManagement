@@ -36,9 +36,10 @@ public class PositionController {
 	
 	
 	@RequestMapping(value="employees/{id}", method=RequestMethod.GET)
-	public String member(ModelMap modelMap,@PathVariable("id") String id){
+	public String member(ModelMap modelMap,@PathVariable("id") int id){
 		modelMap.addAttribute("listItems", employeeDAO.getListByRole(id));
-	
+	    String nameRole=mainDAO.getItem(id).getNamePos();
+	    modelMap.addAttribute("nameRole", nameRole);
 		return "position.employee";
 	}
 
@@ -46,7 +47,8 @@ public class PositionController {
 	@RequestMapping(value="devices/{id}", method=RequestMethod.GET)
 	public String devices(ModelMap modelMap,@PathVariable("id") String id){
 		modelMap.addAttribute("listItems", deviceDAO.getItemsByEmployee(id));
-	
+		String nameEm=employeeDAO.getItem(id).getName();
+	    modelMap.addAttribute("nameEm", nameEm);
 		return "position.devices";
 	}
 	

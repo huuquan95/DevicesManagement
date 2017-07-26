@@ -99,30 +99,86 @@
 							<tbody>
 								<c:forEach items="${listItems}" var="item">
 									<tr>
-										<td>${item.getId()}</td>
-										<td>${item.getName()}</td>
-										<td><c:choose>
-												<c:when test="${item.getNamePos() eq null or item.getNamePos() eq ''}">
-													<span class="label label-success">New</span>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Position</th>
+										<th>Date birth</th>
+										<th>Address</th>
+										<th>Team</th>
+										<th>Phone</th>
+										<th>Avatar</th>
+										<th>Function</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${listItems}" var="item">
+										<tr>
+											<td>${item.getId()}</td>
+											<td>${item.getName()}</td>
+											<td><c:choose>
+													<c:when
+														test="${item.getNamePos() eq null or item.getNamePos() eq ''}">
+														<span class="label label-success">New</span>
+													</c:when>
+													<c:otherwise>${item.getNamePos()}</c:otherwise>
+												</c:choose></td>
+											<td>${item.getBirthday()}</td>
+											<td>${item.getAddress()}</td>
+											<td><c:choose>
+													<c:when
+														test="${item.getNameTeam() eq null or item.getNameTeam() eq ''}">
+														<span class="label label-success">New</span>
+													</c:when>
+													<c:otherwise>${item.getNameTeam()}</c:otherwise>
+												</c:choose></td>
+											<td>${item.getPhone()}</td>
+											<td><c:choose>
+													<c:when test="${item.getPicture() eq ''}">
+														<span class="label label-danger">Null</span>
+													</c:when>
+													<c:otherwise>
+														<img style="width: 60px; height: 50px;" alt=""
+															src="${pageContext.request.contextPath}/files/${item.getPicture()}" />
+													</c:otherwise>
+												</c:choose></td>
+											<c:choose>
+												<c:when test="${ idEmLogin eq item.id}">
+													<td><a
+														href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+														title="">
+															<button class="btn btn-default btn-rounded btn-sm">
+																<span class="fa fa-pencil"></span>
+															</button>
+													</a> <c:if test="${(objLogin.role eq 'ADMIN') }">
+															<a
+																href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+																title="">
+																<button class="btn btn-danger btn-rounded btn-sm">
+																	<span class="fa fa-times"></span>
+																</button>
+															</a>
+														</c:if></td>
 												</c:when>
-												<c:otherwise>${item.getNamePos()}</c:otherwise>
-											</c:choose></td>
-										<td>${item.getBirthday()}</td>
-										<td>${item.getAddress()}</td>
-										<td><c:choose>
-												<c:when test="${item.getNameTeam() eq null or item.getNameTeam() eq ''}">
-													<span class="label label-success">New</span>
+												<c:when test="${ objLogin.role eq 'ADMIN'}">
+													<td><a
+														href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+														title="">
+															<button class="btn btn-default btn-rounded btn-sm">
+																<span class="fa fa-pencil"></span>
+															</button>
+													</a> 
+															<a
+																href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+																title="">
+																<button class="btn btn-danger btn-rounded btn-sm">
+																	<span class="fa fa-times"></span>
+																</button>
+															</a>
+														</td>
 												</c:when>
-												<c:otherwise>${item.getNameTeam()}</c:otherwise>
-											</c:choose></td>
-										<td>${item.getPhone()}</td>
-										<td><c:choose>
-												<c:when test="${item.getPicture() eq ''}">
-													<span class="label label-danger">Null</span>
-												</c:when>
+												
 												<c:otherwise>
-													<img style="width: 60px; height: 50px;" alt=""
-														src="${pageContext.request.contextPath}/files/${item.getPicture()}" />
+													<td><span class="label label-default">Disable</span></td>
 												</c:otherwise>
 											</c:choose></td>
 

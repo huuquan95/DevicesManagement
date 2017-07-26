@@ -31,7 +31,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Devices
+			 Devices
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -56,11 +56,6 @@
 		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
 								Again</div>
 	</c:when>
-	<c:when test="${param['msg'] eq null}">
-	</c:when>
-	<c:otherwise>
-		<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
-	</c:otherwise>
 </c:choose>
 
 		<div class="row">
@@ -119,7 +114,7 @@
 										<td><c:if test="${objItem.picture eq ''}">
 												<span class="label label-warning">Updating</span>
 											</c:if> <c:if test="${objItem.picture ne ''}">
-												<img style="width: 60px; height: 60px"
+												<img style="width: 70px; height: 70px"
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>

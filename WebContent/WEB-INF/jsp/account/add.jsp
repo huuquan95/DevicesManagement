@@ -23,16 +23,16 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-		<li><a href="${pageContext.request.contextPath}/account">Account</a></li>
-		<li class="active"><a href="${pageContext.request.contextPath}/account">Add New Account</a></li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+		<li><a href="${pageContext.request.contextPath }/account">Account</a></li>
+         <li class="active">Add New Account</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Add Account
+			 Add Account
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->

@@ -20,14 +20,10 @@ public class DeviceDAO {
 	public List<Devices> getItemsByEmployee(String id){
 		String sql="select d.id,d.seri_number,d.idAccount,d.name,d.made_in,d.price,d.warranty,d.picture,"
 				+"account.id_Employee from devices as d left join account "
-				+"on d.idAccount = account.id where account.id_Employee ='"+id+"'";
-				
-				
-				
+				+"on d.idAccount = account.id where account.id_Employee ='"+id+"'";		
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Devices.class));
 	}
 
-	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Devices> getItems(){
 		String sql="select distinct d.id as id, c.id as idCat,"

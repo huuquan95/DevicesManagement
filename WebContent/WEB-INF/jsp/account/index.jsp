@@ -23,17 +23,14 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-		<li><a href="${pageContext.request.contextPath}/account">Account</a></li>
-		
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		<li class="active">Account</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
-		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Sortable Tables
-		</h2>
+		<h2>Account</h2>
 	</div>
 	<!-- END PAGE TITLE -->
 
@@ -45,18 +42,12 @@
 
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<a href="<%=request.getContextPath()%>/account/add" type="button"
-							class="btn btn-info">Add</a>
-						<ul class="panel-controls">
-							<li><a href="#" class="panel-collapse"><span
-									class="fa fa-angle-down"></span></a></li>
-							<li><a href="#" class="panel-refresh"><span
-									class="fa fa-refresh"></span></a></li>
-							<li><a href="#" class="panel-remove"><span
-									class="fa fa-times"></span></a></li>
-						</ul>
-					</div>
+					<c:if test="${objLogin.role eq 'ADMIN' }">
+						<div class="panel-heading">
+							<a href="<%=request.getContextPath()%>/account/add" type="button"
+								class="btn btn-info">Add</a>
+						</div>
+					</c:if>
 					<c:choose>
 						<c:when test="${param['msg'] eq 'add'}">
 							<div class=" alert alert-success" style="font-size: 20px;">Add
@@ -75,7 +66,8 @@
 								emplyee existed</div>
 						</c:when>
 						<c:when test="${param['msg'] eq 'notadd'}">
-							<div class=" alert alert-danger" style="font-size: 20px;">Don't have Employee to Add New Account</div>
+							<div class=" alert alert-danger" style="font-size: 20px;">Don't
+								have Employee to Add New Account</div>
 						</c:when>
 						<c:when test="${param['msg'] eq null}">
 						</c:when>
@@ -83,84 +75,86 @@
 							<div class="alert alert-danger" style="font-size: 20px;">Failure</div>
 						</c:otherwise>
 					</c:choose>
-
-					<div class="panel-body" id="body"><div class="table-responsive">
-						<table class="table datatable">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Username</th>
-									<th>Role</th>
-									<th>Employee</th>
-									<th>Picture</th>
-									<th>Enabled</th>
-									<th>Function</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="objItem" items="${listItems}">
+					<div class="panel-body" id="body">
+						<div class="table-responsive">
+							<table class="table datatable">
+								<thead>
 									<tr>
-										<td><a type="button"
-											href="${pageContext.request.contextPath}/account/detail/${objItem.id}">${objItem.id }</a></td>
-										<td><a type="button"
-											href="${pageContext.request.contextPath}/account/detail/${objItem.id}">${objItem.username }</a></td>
-										<td>${objItem.role }</td>
-										<td>${objItem.name }</td>
-										<td><img
-											src="${pageContext.request.contextPath}/${objItem.picture }"
-											alt="" /></td>
-										<td id="ajaxpicture${objItem.id}">
-										<c:choose>
-											<c:when
-												test="${objItem.enabled eq 1}">
-												<img onclick="return getActive(${objItem.id },${objItem.enabled })"
-													height="25px" width="25px"
-													src="${pageContext.request.contextPath}/templates/img/icons/en.png"
-													alt="" />
-											</c:when> 
-											<c:otherwise>
-												<img
-													onclick="return getActive(${objItem.id },${objItem.enabled })"
-													height="25px" width="25px"
-													src="${pageContext.request.contextPath}/templates/img/icons/un.png"
-													alt="" />
-											</c:otherwise>
-										</c:choose>	
-										</td>
-										<td>
-											<c:choose>
-										   	<c:when test="${objLogin.role eq 'ADMIN'}">
-										   		<a
-											href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
-													class="btn btn-default btn-rounded btn-sm">
-													<span class="fa fa-pencil"></span>
-												</button></a> <a
-											href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
-													class="btn btn-danger btn-rounded btn-sm"
-													onClick="return confirm('Do you want to delete this Account belong to this id?')">
-													<span class="fa fa-times"></span>
-												</button></a>
-										   	
-										   	</c:when>
-										   	<c:otherwise>
-										   	<c:when test="${objLogin.id} == ${objItem.id} ">
-										   	<a
-											href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
-													class="btn btn-default btn-rounded btn-sm">
-													<span class="fa fa-pencil"></span>
-												</button></a>
-										   	
-										   	</c:when>
-										   	</c:otherwise>
-										        
-											</c:choose>
-											
-									</td>
+										<th>ID</th>
+										<th>Username</th>
+										<th>Role</th>
+										<th>Employee</th>
+										<th>Picture</th>
+										<th>Enabled</th>
+										<th>Function</th>
 									</tr>
-								</c:forEach>
+								</thead>
+								<tbody>
+									<c:forEach var="objItem" items="${listItems}">
+										<tr>
+											<td>${objItem.id }</td>
+											<td><a type="button"
+												href="${pageContext.request.contextPath}/account/detail/${objItem.id}">${objItem.username }</a></td>
+											<td>${objItem.role }</td>
+											<td>${objItem.name }</td>
+											<td><img height="55px" width="55px"
+												src="${pageContext.request.contextPath}/files/${objItem.picture }"
+												alt="" /></td>
+											<td id="ajaxpicture${objItem.id}"><c:choose>
+													<c:when test="${objItem.enabled eq 1}">
+														<img
+															onclick="return getActive(${objItem.id },${objItem.enabled })"
+															height="25px" width="25px"
+															src="${pageContext.request.contextPath}/templates/img/icons/en.png"
+															alt="" />
+													</c:when>
+													<c:otherwise>
+														<img
+															onclick="return getActive(${objItem.id },${objItem.enabled })"
+															height="25px" width="25px"
+															src="${pageContext.request.contextPath}/templates/img/icons/un.png"
+															alt="" />
+													</c:otherwise>
+												</c:choose></td>
+											<c:choose>
+												<c:when test="${idLogin eq objItem.id }">
+													<td><a
+														href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
+																class="btn btn-default btn-rounded btn-sm">
+																<span class="fa fa-pencil"></span>
+															</button></a> <c:if test="${ (objLogin.role eq 'ADMIN') }">
+															<a
+																href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
+																	class="btn btn-danger btn-rounded btn-sm"
+																	onClick="delete_row('trow_1');">
+																	<span class="fa fa-times"></span>
+																</button></a>
+														</c:if></td>
+												</c:when>
+												<c:when test="${objLogin.role eq 'ADMIN'}">
+													<td><a
+														href="${pageContext.request.contextPath}/account/edit/${objItem.id}"><button
+																class="btn btn-default btn-rounded btn-sm">
+																<span class="fa fa-pencil"></span>
+															</button></a> 
+															<a
+																href="${pageContext.request.contextPath}/account/del/${objItem.id}"><button
+																	class="btn btn-danger btn-rounded btn-sm"
+																	onClick="delete_row('trow_1');">
+																	<span class="fa fa-times"></span>
+																</button></a>
+														</td>
+												</c:when>
+												<c:otherwise>
+													<td><span class="label label-default">Disable</span></td>
+												</c:otherwise>
+											</c:choose>
+										</tr>
+									</c:forEach>
 
-							</tbody>
-						</table></div>
+								</tbody>
+							</table>
+						</div>
 					</div>
 					<script type="text/javascript">
 									function getActive(id, enabled){
@@ -169,18 +163,14 @@
 											type: 'POST',
 											cache: false, 
 											data: {
-													//Dữ liệu gửi đi
 												id: id,
 											    enabled: enabled,
 													},
 											success: function(data){
-												// Xử lý thành công
 											
 												$("#ajaxpicture"+id).html(data);
 											},
 											error: function (){
-											// Xử lý nếu có lỗi
-											//alert("Có lỗi trong quá trình xử lý");
 											}
 										});
 										return false;

@@ -39,15 +39,25 @@ val.value = tst;
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
+<<<<<<< HEAD
                     <li><a href="#">Home</a></li>                    
                     <li><a href="#">Tables</a></li>
                     <li class="active">Data Tables</li>
+=======
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath }/position">Position</a></li>                     
+        			<li class="active">Edit</li>
+>>>>>>> master
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
+<<<<<<< HEAD
                     <h2><span class="fa fa-arrow-circle-o-left"></span> Update Position</h2>
+=======
+                    <h2> Edit Position</h2>
+>>>>>>> master
                 </div>
                 <!-- END PAGE TITLE -->                
 

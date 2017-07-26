@@ -31,7 +31,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Device of ${objCat.name} </h2>
+                    <h2> Device of <strong>${objCat.name} </strong></h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

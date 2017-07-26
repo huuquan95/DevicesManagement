@@ -30,7 +30,7 @@
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Edit Employee
+			Edit Employee
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->

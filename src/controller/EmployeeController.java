@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +28,7 @@ import dao.AccountDAO;
 import dao.EmployeeDAO;
 import dao.PositionDAO;
 import dao.TeamDAO;
+import entities.Account;
 import entities.Employee;
 import utils.RenameFileLibrary;
 
@@ -41,6 +43,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private TeamDAO teamDAO;
+	
+	@Autowired 
+	private AccountDAO accountDAO;
 	
 	@Autowired
 	private AccountDAO accountDAO;
@@ -73,7 +78,6 @@ public class EmployeeController {
 		}
 		String idObjLogin = accountDAO.getItem(username).getId_Employee();
 		modelMap.addAttribute("idObjLogin", idObjLogin);
-		
 		modelMap.addAttribute("listItems", employeeDAO.getList());
 		return "employee.index";
 	}
@@ -168,8 +172,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult,
-			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request , HttpSession session) {
+	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult, @RequestParam("filename") CommonsMultipartFile commonsMultipartFile, 
+			HttpServletRequest request,HttpSession session,Principal principal) {
+		// change picture and update it
+		String user=(String)session.getAttribute("userLogin");
+		Account objLogin = (Account) session.getAttribute("objLogin");
+
 		if(bindingResult.hasErrors()){
 			return "employee.edit";
 		}
@@ -217,8 +225,11 @@ public class EmployeeController {
 		}
 
 		if (employeeDAO.editItem(objEmployee) > 0) {
-			String username = (String) session.getAttribute("userLogin");
-			session.setAttribute("objLogin",accountDAO.getItem(username));
+			if((employeeDAO.getItem(id).getId()).equals(objLogin.getId_Employee())){
+				session.removeAttribute("objLogin");
+				session.setAttribute("objLogin",accountDAO.getItem(user));
+				accountDAO.getItem(user).getPicture();
+			}
 			return "redirect:/employee?msg=edit";
 		} else {
 			return "redirect:/employee?msg=error";

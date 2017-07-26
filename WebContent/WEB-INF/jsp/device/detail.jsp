@@ -54,7 +54,7 @@ function Change(idAccount,seri) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Devices</h2>
+                    <h2> Devices</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -124,6 +124,7 @@ function Change(idAccount,seri) {
                                                 <%-- <td>
                                                     <c:if test="${objItem.idAccount ne -1}">${objItem.idAccount}</c:if>
                                                 </td> --%>
+                                                <c:if test="${objLogin.role eq 'ADMIN' }">
                                                 <td  id="change${objItem.seri_number }">
                                                 	<select onchange="return Change(this.value,'${objItem.seri_number}')" name="idAccount" class="form-control select">
 		                                            <c:forEach items="${listAccounts }" var="objAccount">
@@ -138,6 +139,25 @@ function Change(idAccount,seri) {
 		                                            </c:forEach>
 	                                            	</select>
                                                 </td>
+                                                </c:if>
+                                                
+                                                <c:if test="${objLogin.role eq 'USER' }">
+                                                <td>
+                                                	<select disabled="disabled" name="idAccount" class="form-control select">
+		                                            <c:forEach items="${listAccounts }" var="objAccount">
+		                                            <c:choose>
+		                                               <c:when test="${objItem.idAccount eq objAccount.id }">
+		                                               	<option selected='selected' value="${objAccount.id }">${objAccount.username  }</option>
+		                                               	</c:when>
+		                                               	 <c:otherwise>
+		                                               	<option value="${objAccount.id }">${objAccount.username }</option>
+		                                               	</c:otherwise>
+	                                               	</c:choose>
+		                                            </c:forEach>
+	                                            	</select>
+                                                </td>
+                                                </c:if>
+                                                
                                                 <c:choose>
                                                <c:when test="${objItem.isnew eq 1}">
                                                		<td><span class="label label-info">New</span></td>

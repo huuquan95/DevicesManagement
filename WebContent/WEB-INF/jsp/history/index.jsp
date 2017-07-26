@@ -24,12 +24,13 @@
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span>	History</h2>
+                    <h2>History</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -80,7 +81,7 @@
                                                 <th>ID</th>
                                                 <th>Devices</th>
                                                  <th>Seri number</th>
-                                                <th>actions</th>
+                                                <th>actions</th>s
                                                 <c:if test="${check ne null}">
 													<th>Function</th>
 												</c:if>	

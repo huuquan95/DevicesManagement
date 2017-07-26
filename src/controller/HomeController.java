@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.AccountDAO;
 import dao.CatDAO;
+<<<<<<< HEAD
 import dao.ContactDAO;
 import dao.DeviceDAO;
 import dao.EmployeeDAO;
@@ -20,7 +21,6 @@ import dao.EmployeeDAO;
 @Controller
 @RequestMapping(value="/home")
 public class HomeController {
-
 	@Autowired 
 	private EmployeeDAO employDAO;
 	
@@ -42,10 +42,10 @@ public class HomeController {
 			session.setAttribute("userLogin",principal.getName());
 			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
 		}
-		
 	}
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
+
 	public String home(Principal principal, ModelMap modelMap, HttpSession session){
 		if(principal==null){
 			return "redirect:/login";

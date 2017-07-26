@@ -1,23 +1,18 @@
 
     <%@ include file="/templates/taglib.jsp" %>
     <script type="text/javascript">
-            /*   $(document).ready(function(){
-            $("#frm").validate({
-              rules:{
-                name:{
-                  required: true,
-                },
-              },
-              messages:{
-                name:{
-                  required: "<span style='color:red;display:block'>Name is required</span>",
-                },
-              },
-            });
-          }); */
+    function checkID(){
+    	var x=document.frm.name.value;
+    	var check=true;
+		 if (x == '') {
+			document.getElementById("erCat").innerHTML = "Please input!";
+			check=false;
+		}
+		 return check;
+}
 </script>
 <script type="text/javascript">
-function check(str) {
+function check(str,id) {
 	  var mikExp = /[$\\@\!\\\#%\^\&\*\(\)\[\]\+\_\{\}\`\~\=\|]/;
 	  for (var i = 0; i < str.length; i++) {
 	    var temp = str.substring(i, i + 1);
@@ -25,8 +20,14 @@ function check(str) {
 	      return str.substring(0, i);
 	    }
 	  }
+	  if (str == '') {
+			document.getElementById(id).innerHTML = "Please input!";
+		}else{
+			document.getElementById(id).innerHTML = "";
+		}
 	  return str;
 	}
+	
 </script>
 
 
@@ -61,7 +62,7 @@ function check(str) {
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Account</h2>
+                    <h2>  Add Category</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -72,16 +73,16 @@ function check(str) {
                         <div class="col-md-12">
 							<div class="panel panel-default" style="padding:10px;">
 							<div class="panel-body" id="body"><div class="table-responsive">
-                                <form id="frm" class="form-horizontal" action="" method="post">
+                                <form onsubmit="return checkID()" name="frm" id="frm" class="form-horizontal" action="" method="post">
                                     <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Name</label>
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input onkeyup="this.value=check(this.value);"  type="text" name="name" class="form-control"/>
+                                                <input onfocus="this.value=check(this.value,'erCat');" onkeyup="this.value=check(this.value,'erCat');"  type="text" name="name" class="form-control"/>
                                             </div>                                         
-                                            <span class="help-block">
+                                            <span id="erCat" style="color:red" class="help-block">
                                             <form:errors path="objItem.name" style="color:red"></form:errors>
                                             <c:if test="${param['check'] eq 'err' }">
 			                                    <p style="color:red">This name is exist</p>

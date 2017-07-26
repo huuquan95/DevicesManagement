@@ -59,7 +59,6 @@ public class HistoryController {
 		if("admin".equalsIgnoreCase(accDAO.checkAccount(username).getRole())){
 			session.setAttribute("check", true);
 		}
-		
 		modelMap.addAttribute("listHis", hisDAO.getItems());
 		return "history.index";
 	}

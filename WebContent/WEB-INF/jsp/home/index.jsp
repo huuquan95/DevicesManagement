@@ -1,6 +1,5 @@
 	<%@include file = "/templates/taglib.jsp" %>
 	
-
 		<!-- PAGE CONTENT -->
 		<div class="page-content">
 
@@ -17,15 +16,13 @@
 					class="mb-control" data-box="#mb-signout"><span
 						class="fa fa-sign-out"></span></a></li>
 				<!-- END SIGN OUT -->
-				
-				
+			
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
 
 			<!-- START BREADCRUMB -->
 			<ul class="breadcrumb">
-				<li><a href="#">Home</a></li>
-				<li class="active">Dashboard</li>
+				<li class="active">Home</li>
 			</ul>
 			<!-- END BREADCRUMB -->
 
@@ -158,7 +155,3 @@
 									provide continuing education and professional development.</p>
 						</div>
 					</div>
-
-
-
-

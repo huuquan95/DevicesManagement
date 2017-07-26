@@ -52,15 +52,15 @@ val.value = tst;
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath }/position">Position</a></li>                     
+        			<li class="active">Add New Position</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Position</h2>
+                    <h2>Add Position</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 

@@ -28,7 +28,7 @@
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Add Employee</h2>
+                    <h2> Add Employee</h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -40,6 +40,7 @@
 							<div class="panel panel-default" style="padding:10px;">
 							<div class="panel-body" id="body"><div class="table-responsive">
                                 <form id = "addEmployee" class="form-horizontal" action = "${pageContext.request.contextPath }/employee/add" method = "POST"  enctype = "multipart/form-data">
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Id Employee</label>
@@ -93,6 +94,7 @@
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
                                                 <input type="email" name = "email" class="form-control"/>
+
                                             </div>                                            
                                             <span class="help-block"><form:errors path = "objEmployee.email" style="color:red"></form:errors></span>
                                         </div>
