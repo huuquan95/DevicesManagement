@@ -1,5 +1,3 @@
-
-
 <!-- PAGE CONTENT -->
 <div class="page-content">
 
@@ -17,23 +15,33 @@
 				class="fa fa-sign-out"></span></a></li>
 		<!-- END SIGN OUT -->
 
-
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
+	<script type="text/javascript">
+
+	function check() {
+			var check = true;
+			var description = document.frm.description.value;
+
+			if (description == '') {
+				document.getElementById("erDescription").innerHTML = "Please input";
+				check = false;
+			}
+			return check;
+		}
+	</script>
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		<li><a href="${pageContext.request.contextPath }/contact">Contact</a></li>
+		<li class="active">Add</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
-		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Add Contact
-		</h2>
+		<h2>Add Contact</h2>
 	</div>
 	<!-- END PAGE TITLE -->
 
@@ -43,20 +51,20 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form
+					<form name="frm" onsubmit="return check()"
 						action="${pageContext.request.contextPath}/contact/add"
 						method="post" class="form-horizontal" role="form">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="col-md-3 col-xs-12 control-label">description</label>
+								<label class="col-md-3 col-xs-12 control-label">Description</label>
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
 										<span class="input-group-addon"><span
-											class="fa fa-pencil"></span></span> 
-											<input type="text"
+											class="fa fa-pencil"></span></span> <input type="text"
 											name="description" class="form-control" />
 									</div>
-									<span class="help-block">Ex: My PC was destroyed by
+									<span id="erDescription" style="color: red" class="help-block">
+									</span> <span class="help-block">Ex: My PC was destroyed by
 										Torres.</span>
 								</div>
 							</div>
@@ -68,5 +76,4 @@
 					</form>
 				</div>
 			</div>
-
 		</div>
