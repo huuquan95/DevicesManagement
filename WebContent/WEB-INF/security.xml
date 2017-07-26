@@ -32,12 +32,6 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
         <intercept-url pattern="/device/detail/del/**" access="hasAnyRole('ROLE_ADMIN')" /> -->
         <intercept-url pattern="/device/**" access="hasAnyRole('ROLE_ADMIN')" />
 		
-		<intercept-url pattern="/employee/edit/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		<intercept-url pattern="/employee" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		<intercept-url pattern="/employee/**" access="hasAnyRole('ROLE_ADMIN')" />
-		
-		<intercept-url pattern="/history" access="hasRole('ROLE_ADMIN')" />
-		
 		<intercept-url pattern="/position" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<intercept-url pattern="/position/employees/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<intercept-url pattern="/position/devices/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />

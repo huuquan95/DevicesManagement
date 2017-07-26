@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.AccountDAO;
 import dao.CatDAO;
-<<<<<<< HEAD
 import dao.ContactDAO;
 import dao.DeviceDAO;
 import dao.EmployeeDAO;

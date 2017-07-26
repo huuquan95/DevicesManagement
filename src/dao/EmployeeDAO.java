@@ -27,7 +27,7 @@ public class EmployeeDAO {
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public List<Employee> getListByRole(String id) {
+	public List<Employee> getListByRole(int id) {
 		String sql = "select * from employee where id_Position ='" +id +"'";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
 	}

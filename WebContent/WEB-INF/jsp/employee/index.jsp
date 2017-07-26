@@ -54,7 +54,8 @@
 					emplyee existed</div>
 			</c:when>
 			<c:when test="${param['msg'] eq 'wrong'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Your access be not allow</div>
+				<div class=" alert alert-success" style="font-size: 20px;">Your
+					access be not allow</div>
 			</c:when>
 			<c:when test="${param['msg'] eq null}">
 			</c:when>
@@ -70,7 +71,7 @@
 					<div class="panel-heading">
 						<c:if test="${check ne null}">
 							<a href="${pageContext.request.contextPath }/employee/add"
-							type="button" class="btn btn-info">Add</a>
+								type="button" class="btn btn-info">Add</a>
 						</c:if>
 						<ul class="panel-controls">
 							<li><a href="#" class="panel-collapse"><span
@@ -81,23 +82,10 @@
 									class="fa fa-times"></span></a></li>
 						</ul>
 					</div>
-					<div class="panel-body" id="body"><div class="table-responsive">
-						<table class="table datatable">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Name</th>
-									<th>Position</th>
-									<th>Date birth</th>
-									<th>Address</th>
-									<th>Team</th>
-									<th>Phone</th>
-									<th>Avatar</th>
-									<th>Function</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${listItems}" var="item">
+					<div class="panel-body" id="body">
+						<div class="table-responsive">
+							<table class="table datatable">
+								<thead>
 									<tr>
 										<th>ID</th>
 										<th>Name</th>
@@ -141,80 +129,38 @@
 															src="${pageContext.request.contextPath}/files/${item.getPicture()}" />
 													</c:otherwise>
 												</c:choose></td>
-											<c:choose>
-												<c:when test="${ idEmLogin eq item.id}">
-													<td><a
-														href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
-														title="">
-															<button class="btn btn-default btn-rounded btn-sm">
-																<span class="fa fa-pencil"></span>
-															</button>
-													</a> <c:if test="${(objLogin.role eq 'ADMIN') }">
-															<a
-																href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
-																title="">
-																<button class="btn btn-danger btn-rounded btn-sm">
-																	<span class="fa fa-times"></span>
-																</button>
-															</a>
-														</c:if></td>
-												</c:when>
-												<c:when test="${ objLogin.role eq 'ADMIN'}">
-													<td><a
-														href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
-														title="">
-															<button class="btn btn-default btn-rounded btn-sm">
-																<span class="fa fa-pencil"></span>
-															</button>
-													</a> 
-															<a
-																href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
-																title="">
-																<button class="btn btn-danger btn-rounded btn-sm">
-																	<span class="fa fa-times"></span>
-																</button>
-															</a>
-														</td>
-												</c:when>
-												
-												<c:otherwise>
-													<td><span class="label label-default">Disable</span></td>
-												</c:otherwise>
-											</c:choose></td>
 
-										<td>
-											<c:if test="${check ne null}">
-												<a
-												href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
-												title="">
-													<button class="btn btn-default btn-rounded btn-sm">
-														<span class="fa fa-pencil"></span>
-													</button>
-												</a>
-												 <a
-													href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
-													title="">
-														<button class="btn btn-danger btn-rounded btn-sm">
-															<span class="fa fa-times"></span>
-														</button>
-												</a>
-											</c:if>
-											<c:if test="${check eq null}">
-												<c:if test="${idObjLogin eq item.getId()}">
+											<td><c:if test="${check ne null}">
 													<a
-													href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
-													title="">
+														href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+														title="">
 														<button class="btn btn-default btn-rounded btn-sm">
 															<span class="fa fa-pencil"></span>
 														</button>
 													</a>
-												</c:if>
-											</c:if>
-										</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table></div>
+													<a
+														href="${pageContext.request.contextPath }/employee/del/${item.getId()}"
+														title="">
+														<button class="btn btn-danger btn-rounded btn-sm">
+															<span class="fa fa-times"></span>
+														</button>
+													</a>
+												</c:if> <c:if test="${check eq null}">
+													<c:if test="${idObjLogin eq item.getId()}">
+														<a
+															href="${pageContext.request.contextPath }/employee/edit/${item.getId()}"
+															title="">
+															<button class="btn btn-default btn-rounded btn-sm">
+																<span class="fa fa-pencil"></span>
+															</button>
+														</a>
+													</c:if>
+												</c:if></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->

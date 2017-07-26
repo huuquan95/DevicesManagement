@@ -48,9 +48,6 @@ public class EmployeeController {
 	private AccountDAO accountDAO;
 	
 	@Autowired
-	private AccountDAO accountDAO;
-	
-	@Autowired
 	private RenameFileLibrary renameFileLibrary;
 	
 	// cấu hình dữ liệu của web theo hướng mà bạn muốn mà
