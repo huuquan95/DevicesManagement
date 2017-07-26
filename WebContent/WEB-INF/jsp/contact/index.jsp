@@ -59,17 +59,25 @@
 
 						<c:choose>
 							<c:when test="${objLogin.getRole() eq 'USER'}">
-
 								<a href="${pageContext.request.contextPath}/contact/add"
 									type="button" class="btn btn-info">Add</a>
-
 							</c:when>
 							<c:otherwise>
-
 								<td>${objItem.getStatus()}</td>
-
 							</c:otherwise>
 						</c:choose>
+						<c:if test="${param['msg'] eq 'add' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Add
+								Success</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'del' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Del
+								Success</div>
+						</c:if>
+						<c:if test="${param['msg'] eq 'err' }">
+							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
+								Again</div>
+						</c:if>
 					</div>
 					<div class="panel-body" id="body">
 						<div class="table-responsive">
@@ -121,11 +129,22 @@
 											</c:choose>
 
 											<td>${objItem.getDescription()}</td>
-											<td><a
-												href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
-												class="btn btn-danger btn-rounded btn-sm"
-												onClick="return confirm('Do you want delete?')"><span
-													class="fa fa-times"></span></a></td>
+											<td><c:choose>
+													<c:when test="${objItem.getStatus() eq 'resolved'}">
+														<a
+															href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
+															class="btn btn-danger btn-rounded btn-sm"
+															onClick="return confirm('Do you want to delete?')"><span
+															class="fa fa-times"></span></a>
+													</c:when>
+													<c:otherwise>
+														<a id="td_Del${objItem.getId()}"
+															href="${pageContext.request.contextPath }/contact/del/${objItem.id}"
+															class="btn btn-danger btn-rounded btn-sm"
+															onClick="return confirm('Do you want to delete?')"
+															disabled><span class="fa fa-times"></span></a>
+													</c:otherwise>
+												</c:choose></td>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -137,14 +156,14 @@
 
 		</div>
 		<script type="text/javascript">
-		function changeStatus(id){	
+		
+		function changeStatus(id){
+			
 			var idSelect="status"+id;
 			var idTd="td_Status"+id;
+			var idDel="td_Del"+id;		
 			var se = document.getElementById(idSelect);
 			var status = se.options[se.selectedIndex].text;
-			
-			//alert(id+" "+status+idTd);
-			
 			$.ajax({
 				url: '${pageContext.request.contextPath}/contact/edit',
 				type: 'POST',
@@ -154,8 +173,9 @@
 				    status: status,
 				},
 				success: function(data){
-					//alert(data);
 					$("#"+idTd).html(data);
+					if(data == "resolved")
+						document.getElementById(idDel).removeAttribute("disabled");
 				},
 				error: function (){
 				alert("Have some errors");

@@ -48,6 +48,7 @@ public class ContactController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(HttpSession session, ModelMap modelMap) {
+
 		return "contact.add";
 	}
 
@@ -75,6 +76,7 @@ public class ContactController {
 		contact.setStatus(status);
 
 		if (mainDAO.editItem(contact) == 1) {
+
 			if (status.equals("in progress"))
 				response.getWriter().print("<select id=\"status" + id + "\" name=\"status\" onchange=\"changeStatus("
 						+ id
@@ -87,6 +89,7 @@ public class ContactController {
 
 	@RequestMapping(value = "del/{id}", method = RequestMethod.GET)
 	public String del(@PathVariable("id") int id) {
+
 		if (mainDAO.delItem(id) > 0) {
 			return "redirect:/contact?msg=del";
 		} else {

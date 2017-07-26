@@ -18,37 +18,16 @@
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 	<script type="text/javascript">
-		/* $(document)
-				.ready(
-						function() {
-							$("#frm")
-									.validate(
-											{
-												rules : {
-													description : {
-														required : true,
-													},
-												},
-												messages : {
-													description : {
-														//alert("Description is required");
-														required : "<span style='color:red;display:block'>Description is required</span>",
-													},
-												},
-											});
-						}); */
-	    function checkID(){
-	    	var x=document.frm.description.value;
-	    	var check=true;
-			 if (x == '') {
-				document.getElementById("erDes").innerHTML = "Please input!";
-				check=false;
-			}else{
-				document.getElementById("erDes").innerHTML = "";
-				check=true;
-			}
-			 return check;
-	}
+    function check() {
+        var check = true;
+        var description = document.frm.description.value;
+
+        if (description == '') {
+          document.getElementById("erDescription").innerHTML = "Please input";
+          check = false;
+        }
+        return check;
+      }
 	</script>
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
@@ -66,28 +45,24 @@
 
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
-
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form id="frm" name="frm" onsubmit="return checkID()"
+					<form name="frm" onsubmit="return check()"
 						action="${pageContext.request.contextPath}/contact/add"
 						method="post" class="form-horizontal" role="form">
 						<div class="col-md-12">
 							<div class="form-group">
-								<label class="col-md-3 col-xs-12 control-label">description</label>
+								<label class="col-md-3 col-xs-12 control-label">Description</label>
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
-										<div style="float: left;">
-											<span class="input-group-addon"><span
-												class="fa fa-pencil"></span></span>
-										</div>
-										<div style="float: left;">
-											<input onkeyup="return checkID()" onfocus="return checkID()" type="text" name="description" class="form-control" />
-										</div>
+										<span class="input-group-addon"><span
+											class="fa fa-pencil"></span></span> <input type="text"
+											name="description" class="form-control" />
 									</div>
-									<span id="erDes" style="color:red" class="help-block">
-										</span>
+									<span id="erDescription" style="color: red" class="help-block">
+									</span> <span class="help-block">Ex: My PC was destroyed by
+										Torres.</span>
 								</div>
 							</div>
 						</div>
