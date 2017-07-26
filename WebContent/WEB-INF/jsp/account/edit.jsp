@@ -23,16 +23,16 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+					<li><a href="${pageContext.request.contextPath }/account">Account</a></li>
+			        <li class="active">Edit</li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Edit Account
+			  Edit Account
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -77,7 +77,7 @@
 							<div class="form-group">
 								<label class="col-md-3 col-xs-12 control-label">Role</label>
 								<div class="col-md-6 col-xs-12">
-									<select class="form-control select" name="role" disabled="disabled">
+									<select class="form-control select" name="role">
 										 
                                                <c:choose>
                                                <c:when test="${objItem.role=='User' }">
@@ -85,8 +85,8 @@
                                                	<option>Admin</option>
                                                	</c:when>
                                                	 <c:otherwise>
+                                               	 <option>User</option>
                                                	<option>Admin</option>
-                                               	<option>User</option>
                                                	</c:otherwise>
                                                	</c:choose>
                                                

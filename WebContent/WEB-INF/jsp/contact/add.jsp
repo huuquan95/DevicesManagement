@@ -18,19 +18,17 @@
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 	<script type="text/javascript">
+    function check() {
+        var check = true;
+        var description = document.frm.description.value;
 
-	function check() {
-			var check = true;
-			var description = document.frm.description.value;
-
-			if (description == '') {
-				document.getElementById("erDescription").innerHTML = "Please input";
-				check = false;
-			}
-			return check;
-		}
+        if (description == '') {
+          document.getElementById("erDescription").innerHTML = "Please input";
+          check = false;
+        }
+        return check;
+      }
 	</script>
-
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
 		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
@@ -47,7 +45,6 @@
 
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
-
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default" style="padding: 10px;">

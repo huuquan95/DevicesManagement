@@ -2,10 +2,12 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import dao.AccountDAO;
 import dao.EmployeeDAO;
 import dao.PositionDAO;
 import dao.TeamDAO;
+import entities.Account;
 import entities.Employee;
 import utils.RenameFileLibrary;
 
@@ -39,6 +43,9 @@ public class EmployeeController {
 	
 	@Autowired
 	private TeamDAO teamDAO;
+	
+	@Autowired 
+	private AccountDAO accountDAO;
 	
 	@Autowired
 	private RenameFileLibrary renameFileLibrary;
@@ -61,14 +68,26 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String home(ModelMap modelMap) {
+	public String home(ModelMap modelMap,HttpSession session) {
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+			session.setAttribute("check", true);
+		}
+		String idObjLogin = accountDAO.getItem(username).getId_Employee();
+		modelMap.addAttribute("idObjLogin", idObjLogin);
 		modelMap.addAttribute("listItems", employeeDAO.getList());
 		return "employee.index";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add() {
-		return "employee.add";
+	public String add(ModelMap modelMap, HttpSession session) {
+		//check role access.
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+				return "employee.add";
+		}else {
+			return "redirect:/employee?msg=wrong";
+		}
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
@@ -111,7 +130,13 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/del/{id}", method = RequestMethod.GET)
-	public String del(@PathVariable("id") String id, HttpServletRequest request) {
+	public String del(@PathVariable("id") String id, HttpServletRequest request, HttpSession session) {
+		//check role access.
+		String username = (String) session.getAttribute("userLogin");
+		if(!"admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+			return "redirect:/employee?msg=wrong";
+		}
+		
 		// delete file img
 		String picture = employeeDAO.getItem(id).getPicture();
 		final String path = request.getServletContext().getRealPath("files");
@@ -129,15 +154,27 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-	public String edit(@PathVariable("id") String id, ModelMap modelMap) {
-		modelMap.addAttribute("title-ii", "Upcate employee");
-		modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
-		return "employee.edit";
+	public String edit(@PathVariable("id") String id, ModelMap modelMap, HttpSession session) {
+		String username = (String) session.getAttribute("userLogin");
+		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
+				modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
+				return "employee.edit";
+		}else {
+			if(id.equals(accountDAO.getItem(username).getId_Employee())) {
+				modelMap.addAttribute("objEmployee", employeeDAO.getItem(id));
+				return "employee.edit";
+			}else 
+				return "redirect:/employee?msg=wrong";
+		}
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult,
-			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request) {
+	public String edit(@PathVariable("id") String id,@Valid @ModelAttribute("objEmployee") Employee objEmployee, BindingResult bindingResult, @RequestParam("filename") CommonsMultipartFile commonsMultipartFile, 
+			HttpServletRequest request,HttpSession session,Principal principal) {
+		// change picture and update it
+		String user=(String)session.getAttribute("userLogin");
+		Account objLogin = (Account) session.getAttribute("objLogin");
+
 		if(bindingResult.hasErrors()){
 			return "employee.edit";
 		}
@@ -170,7 +207,7 @@ public class EmployeeController {
 				}
 
 				File fileUpload = new File(filePath + File.separatorChar + fileRename);
-
+				
 				try {
 					commonsMultipartFile.transferTo(fileUpload);
 					System.out.println("upload file success");
@@ -185,6 +222,11 @@ public class EmployeeController {
 		}
 
 		if (employeeDAO.editItem(objEmployee) > 0) {
+			if((employeeDAO.getItem(id).getId()).equals(objLogin.getId_Employee())){
+				session.removeAttribute("objLogin");
+				session.setAttribute("objLogin",accountDAO.getItem(user));
+				accountDAO.getItem(user).getPicture();
+			}
 			return "redirect:/employee?msg=edit";
 		} else {
 			return "redirect:/employee?msg=error";

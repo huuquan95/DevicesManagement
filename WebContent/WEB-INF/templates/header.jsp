@@ -19,7 +19,7 @@
 <!-- Validate  --> 
 
 <link rel="icon"
-	href="${pageContext.request.contextPath}/templates/img/favicon.ico"
+	href="${pageContext.request.contextPath}/templates/img/title.png"
 	type="image/x-icon" />
 <!-- END META SECTION -->
 
@@ -29,25 +29,6 @@
 	<link rel="stylesheet" type="text/css" id="theme"
 	href="${pageContext.request.contextPath}/templates/css/foot_css.css" />
 <!-- EOF CSS INCLUDE -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		fixScreen();
-	});
-
-	window.onresize = function(event) {
-		fixScreen();
-	};
-
-	function fixScreen() {
-		var footer = document.getElementById("footer");
-		var body = document.getElementById("body");
-
-		if (footer.clientHeight + body.clientHeight + 220 >= window.innerHeight)
-			footer.style.position = "relative";
-		else
-			footer.style.position = "absolute";
-	}
-</script>	
 </head>
 <body>
 	<!-- START PAGE CONTAINER -->

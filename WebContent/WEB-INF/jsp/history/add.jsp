@@ -22,16 +22,14 @@
 
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#">Tables</a></li>
-		<li class="active">Data Tables</li>
+		<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
 	</ul>
 	<!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Add History
+			 Add History
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -47,9 +45,9 @@
 		</c:otherwise>
 	</c:choose>
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12" id="body">
 				<div class="panel panel-default" style="padding: 10px;">
-					<form class="form-horizontal"
+					<form id = "addHis" class="form-horizontal"
 						action="${pageContext.request.contextPath }/history/add"
 						method="POST" onsubmit="return validateForm()">
 						<div class="col-md-6">
@@ -127,6 +125,18 @@
 						</div>
 					</form>
 					 <script type="text/javascript">
+	                     $( "#addHis" ).validate({
+	                    	 errorPlacement: function (error, element) {
+                       	      error.insertBefore(element.parent());
+                       	    }, 
+	                    	 rules: {
+	                     	     timeStart: {
+	                     	    	  required: true,
+	                     	    	  date: true,
+	                     	      },
+	                     	  }
+	                     	});
+					 
 						  function validateForm() {
 							    var radios = document.getElementsByName("action");
 							    var formValid = false;

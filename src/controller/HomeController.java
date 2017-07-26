@@ -16,7 +16,6 @@ import dao.CatDAO;
 import dao.ContactDAO;
 import dao.DeviceDAO;
 import dao.EmployeeDAO;
-import entities.Account;
 
 @Controller
 @RequestMapping(value="/home")
@@ -36,24 +35,27 @@ public class HomeController {
 	@Autowired 
 	private AccountDAO accountDAO;
 	
-	
 	@ModelAttribute
 	public void addCommons(ModelMap modelMap,Principal principal,HttpSession session){
 		if(principal!=null){
 			session.setAttribute("userLogin",principal.getName());
-			String username = principal.getName();
-			Account objAC=accountDAO.getItem(username);
-			session.setAttribute("objLogin",objAC);
+			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
 		}
-		
 	}
 	
 	@RequestMapping(value="",method=RequestMethod.GET)
-	public String home(ModelMap modelMap){
-		modelMap.addAttribute("sizeEmployee", employDAO.getList().size());
-		modelMap.addAttribute("numberOfDevices", deviceDAO.getItems().size());
-		modelMap.addAttribute("numberOfCat", catDAO.getItems().size());
-//		modelMap.addAttribute("sizeMessage", contactDAO.getItems().size());
-		return "home.index";
+
+	public String home(Principal principal, ModelMap modelMap, HttpSession session){
+		if(principal==null){
+			return "redirect:/login";
+		}else{
+			modelMap.addAttribute("sizeEmployee", employDAO.getList().size());
+			modelMap.addAttribute("numberOfDevices", deviceDAO.getItems().size());
+			modelMap.addAttribute("numberOfCat", catDAO.getItems().size());
+	        modelMap.addAttribute("sizeMessage", contactDAO.getItems().size());
+//			session.setAttribute("userLogin",principal.getName());
+//			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
+			return "home.index";
+		}
 	}
 }

@@ -23,15 +23,15 @@
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+	                <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+					<li><a href="${pageContext.request.contextPath }/account">Account</a></li>
+			        <li class="active">Devices of ${devicesofName }</li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2><span class="fa fa-arrow-circle-o-left"></span> Sortable Tables</h2>
+                    <h2> Devices of <strong>${devicesofName }</strong>  </h2>
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -43,16 +43,8 @@
 
                            <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
-                                <div class="panel-heading">                                
-                                    <a href="<%=request.getContextPath() %>/account/add" type="button" class="btn btn-info">Add</a>
-                                    <ul class="panel-controls">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span></a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                    </ul>                                
-                                </div>
                               
-                                <div class="panel-body" id="body">
+                                <div class="panel-body" id="body"><div class="table-responsive">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
@@ -69,10 +61,11 @@
                                         <tbody>
                                         <c:forEach var="objItem" items="${objDevice}">
                                        <tr>
-                                            	<td>${objItem.id}</td>
+                                            	<td><a
+											href="${pageContext.request.contextPath }/device/detail/${objItem.id}">${objItem.id}</a></td>
                                             	<td>${objItem.seri_number}</td>
                                             	<td>${objItem.name}</td>
-                                            	<td><img src="<%=request.getContextPath() %>/...../${objItem.picture}" alt="" /></td>
+                                            	<td><img height="70px" width="70px" src="${pageContext.request.contextPath}/files/${objItem.picture}" alt="" /></td>
                                             	<td>${objItem.made_in}</td>
                                             	<td>${objItem.price}</td>
                                             	<td>${objItem.warranty}</td>
@@ -83,7 +76,7 @@
                                             </c:forEach>
                                             
                                         </tbody>
-                                    </table>
+                                    </table></div>
                                 </div>
                                 
                             </div>

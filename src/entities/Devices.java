@@ -28,6 +28,7 @@ public class Devices {
 	@NotEmpty(message="Name is required!")
 	private String name;
 	
+	@NotEmpty(message="Made in is required!")
 	private String made_in;
 	
 	@NotEmpty(message="Price is required!")

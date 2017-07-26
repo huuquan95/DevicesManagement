@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import dao.DeviceDAO;
+import dao.EmployeeDAO;
 import dao.PositionDAO;
 import entities.Position;
 
@@ -21,14 +23,36 @@ public class PositionController {
 
 	@Autowired
 	private PositionDAO mainDAO;
-
+	@Autowired
+	private EmployeeDAO employeeDAO;
+	@Autowired
+	private DeviceDAO deviceDAO;
 
 	@RequestMapping(value="",method=RequestMethod.GET)
 	public String home(ModelMap modelMap){
 		modelMap.addAttribute("listItems", mainDAO.getItems());
 		return "position.index";
 	}
+	
+	
+	@RequestMapping(value="employees/{id}", method=RequestMethod.GET)
+	public String member(ModelMap modelMap,@PathVariable("id") int id){
+		modelMap.addAttribute("listItems", employeeDAO.getListByRole(id));
+	    String nameRole=mainDAO.getItem(id).getNamePos();
+	    modelMap.addAttribute("nameRole", nameRole);
+		return "position.employee";
+	}
 
+	
+	@RequestMapping(value="devices/{id}", method=RequestMethod.GET)
+	public String devices(ModelMap modelMap,@PathVariable("id") String id){
+		modelMap.addAttribute("listItems", deviceDAO.getItemsByEmployee(id));
+		String nameEm=employeeDAO.getItem(id).getName();
+	    modelMap.addAttribute("nameEm", nameEm);
+		return "position.devices";
+	}
+	
+	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public String add(){
 		return "position.add";

@@ -21,12 +21,17 @@
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 
-
+    <!-- START BREADCRUMB -->
+     <ul class="breadcrumb">
+         <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
+         <li class="active">Devices</li>
+     </ul>
+     <!-- END BREADCRUMB -->
 
 	<!-- PAGE TITLE -->
 	<div class="page-title">
 		<h2>
-			<span class="fa fa-arrow-circle-o-left"></span> Devices
+			 Devices
 		</h2>
 	</div>
 	<!-- END PAGE TITLE -->
@@ -34,19 +39,36 @@
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
 
+<c:choose>
+	<c:when test="${param['msg'] eq 'add'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Add
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'edit'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Update
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'del'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Delete
+			Success</div>
+	</c:when>
+	<c:when test="${param['msg'] eq 'err'}">
+		<div class=" alert alert-success" style="font-size: 20px;">Error.Try
+								Again</div>
+	</c:when>
+</c:choose>
+
 		<div class="row">
 			<div class="col-md-12">
 
 				<!-- START DEFAULT DATATABLE -->
 				<div class="panel panel-default">
+				<c:if test="${objLogin.role eq 'ADMIN' }"> 
 					<div class="panel-heading">
-					
-					
-					 <%-- <c:if test="${objAC.role eq 'ADMIN' }"> --%>
+
 						<a href="${pageContext.request.contextPath }/device/add"
 							type="button" class="btn btn-info">Add</a>
-							<%-- </c:if>  --%>
-						<c:if test="${param['msg'] eq 'add' }">
+						<%-- <c:if test="${param['msg'] eq 'add' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Add
 								Success</div>
 						</c:if>
@@ -61,9 +83,9 @@
 						<c:if test="${param['msg'] eq 'err' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Error.Try
 								Again</div>
-						</c:if>
-					</div>
-					<div class="panel-body" id="body">
+						</c:if> --%>
+					</div></c:if> 
+					<div class="panel-body" id="body"><div class="table-responsive">
 						<table class="table datatable">
 							<thead>
 								<tr>
@@ -74,7 +96,8 @@
 									<th>Quantity</th>
 									<th>Picture</th>
 									<th>Detail</th>
-									<th>Action</th>
+									<c:if test="${objLogin.role eq 'ADMIN' }"> 
+									<th>Action</th></c:if>
 								</tr>
 							</thead>
 							<tbody>
@@ -91,7 +114,7 @@
 										<td><c:if test="${objItem.picture eq ''}">
 												<span class="label label-warning">Updating</span>
 											</c:if> <c:if test="${objItem.picture ne ''}">
-												<img style="width: 60px; height: 60px"
+												<img style="width: 70px; height: 70px"
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>
@@ -99,21 +122,27 @@
 											href="${pageContext.request.contextPath }/device/detail/${objItem.id}"
 											style="background-color: #A9F5F2"
 											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
-									    <td width="15%">
-                                           <a href="${pageContext.request.contextPath }/device/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
-                                           <a href="${pageContext.request.contextPath }/device/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want to delete all device belong to this id?')"><span class="fa fa-times">Del</span></a>
-                                        </td>
+										<c:if test="${objLogin.role eq 'ADMIN' }"> 
+										<td width="15%"><a
+											href="${pageContext.request.contextPath }/device/edit/${objItem.id}"
+											class="btn btn-default btn-rounded btn-sm"><span
+												class="fa fa-pencil"></span></a> <a
+											href="${pageContext.request.contextPath }/device/del/${objItem.id}"
+											class="btn btn-danger btn-rounded btn-sm"
+											onClick="return confirm('Do you want to delete all device belong to this id?')"><span
+												class="fa fa-times"></span></a></td></c:if>
 									</tr>
 								</c:forEach>
 
 							</tbody>
-						</table>
+						</table></div>
 					</div>
 				</div>
 				<!-- END DEFAULT DATATABLE -->
 
 
-
 			</div>
 
 		</div>
+
+		

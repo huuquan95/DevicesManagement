@@ -20,18 +20,28 @@
 				
 			</ul>
 			<!-- END X-NAVIGATION VERTICAL -->
+<<<<<<< HEAD
 
-                <!-- START BREADCRUMB -->
-                <ul class="breadcrumb">
-                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>                    
-                    <li><a href="${pageContext.request.contextPath }/cat">Category</a></li>
-                    <li class="active">Detail</li>
-                </ul>
-                <!-- END BREADCRUMB -->
 
                 <!-- PAGE TITLE -->
                 <div class="page-title">                    
-                    <h2> Device of <strong>${objCat.name} </strong></h2>
+                    <h2><span class="fa fa-arrow-circle-o-left"></span>  </h2>
+=======
+			
+			<!-- START BREADCRUMB -->
+			<ul class="breadcrumb">
+				<li><a href="${pageContext.request.contextPath }/home">Home</a></li>
+		        <li><a href="${pageContext.request.contextPath }/position">Position</a></li>                     
+				<li class="active">Devices of ${nameEm} </li>
+			</ul>
+			<!-- END BREADCRUMB -->
+
+                <!-- PAGE TITLE -->
+                <div class="page-title">                    
+
+                    <h2><span class="fa fa-arrow-circle-o-left"></span> Device of <strong> ${nameEm}</strong> </h2>
+
+>>>>>>> master
                 </div>
                 <!-- END PAGE TITLE -->                
 
@@ -43,28 +53,32 @@
 
                             <!-- START DEFAULT DATATABLE -->
                             <div class="panel panel-default">
-                                <div class="panel-body" id="body"><div class="table-responsive">
+                               
+                                <div class="panel-body">
                                     <table class="table datatable">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
 												<th>Name</th>
 												<th>Made</th>
-												<th>Quantity</th>
+											
 												<th>Picture</th>
+<<<<<<< HEAD
 												<th>Detail</th>
-												<c:if test="${objLogin.role eq 'ADMIN' }"> 
-												<th>Action</th></c:if>
+												
+=======
+
+>>>>>>> master
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach var="objItem" items="${listItemsByIdCat}">
+                                        <c:forEach var="objItem" items="${listItems}">
                                             <tr>
 										<td>${objItem.getId()}</td>
 										<td>${objItem.name}</td>
 										<td>${objItem.made_in}</td>
-										<c:set var="quantity" value="${deviceDAO.getCount(objItem.id)}"></c:set>
-										<td>${quantity}</td>
+										
+				
 										<td><c:if test="${objItem.picture eq ''}">
 												<span class="label label-warning">Updating</span>
 											</c:if> <c:if test="${objItem.picture ne ''}">
@@ -72,20 +86,19 @@
 													alt="${objItem.picture }"
 													src="${pageContext.request.contextPath }/files/${objItem.picture }" />
 											</c:if></td>
+<<<<<<< HEAD
 										<td><a
 											href="${pageContext.request.contextPath }/device/detail/${objItem.id}"
 											style="background-color: #A9F5F2"
 											class="btn btn-default btn-rounded btn-sm">Click here</a></td>
-										<c:if test="${objLogin.role eq 'ADMIN' }"> 
-									    <td width="15%">
-                                           <a href="${pageContext.request.contextPath }/device/edit/${objItem.id}" class="btn btn-default btn-rounded btn-sm"><span class="fa fa-pencil">Edit</span></a>
-                                           <a href="${pageContext.request.contextPath }/device/del/${objItem.id}"  class="btn btn-danger btn-rounded btn-sm" onClick="return confirm('Do you want to delete all device belong to this id?')"><span class="fa fa-times">Del</span></a>
-                                        </td>
-                                        </c:if>
+									   
+=======
+
+>>>>>>> master
 									</tr>
                                        </c:forEach>
                                         </tbody>
-                                    </table></div>
+                                    </table>
                                 </div>
                             </div>
                             <!-- END DEFAULT DATATABLE -->
@@ -95,6 +108,11 @@
                         </div>
                          
                     </div>                                
+<script type="text/javascript">
+    function  Confirm(){
+    	
+    }
+</script>
     
 
 

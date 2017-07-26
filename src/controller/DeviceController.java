@@ -64,9 +64,9 @@ public class DeviceController {
 	public String add(@ModelAttribute("objItem") Devices objItem, BindingResult bindingResult,
 			@RequestParam("filename") CommonsMultipartFile commonsMultipartFile, HttpServletRequest request) {
 
-		// if(bindingResult.hasErrors()){
-		// return "device.add";
-		// }
+		 if(bindingResult.hasErrors()){
+		 return "device.add";
+		 }
 		// if(objItem.getIdAccount()==-1){
 		// objItem.setIdAccount(1);
 		// }
@@ -158,6 +158,7 @@ public class DeviceController {
 
 	@RequestMapping(value = "detail/add/{id}", method = RequestMethod.GET)
 	public String add1(@PathVariable("id") String id, ModelMap modelMap) {
+		modelMap.addAttribute("iddetail", id);
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
 		return "device.detail.add";
 	}
@@ -166,6 +167,7 @@ public class DeviceController {
 	public String add1(@PathVariable("id") String id, ModelMap modelMap, @ModelAttribute("objItem") Devices objItem) {
 		Devices objD = mainDAO.getItemDetail(id);
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
+		modelMap.addAttribute("iddetail", id);
 		objItem.setId(id);
 		objItem.setName(objD.getName());
 		objItem.setIdCat(objD.getIdCat());
@@ -187,6 +189,9 @@ public class DeviceController {
 	public String edit1(@PathVariable("seri_number") String seri_number, ModelMap modelMap) {
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
 		modelMap.addAttribute("objDeviceEdit", mainDAO.getItem(seri_number));
+		Devices objD = mainDAO.getItem(seri_number);
+		String id = objD.getId();
+		modelMap.addAttribute("iddetail", id);
 		return "device.detail.edit";
 	}
 
@@ -196,6 +201,7 @@ public class DeviceController {
 		modelMap.addAttribute("listAccounts", accountDAO.getItems());
 		Devices objD = mainDAO.getItem(seri_number);
 		String id = objD.getId();
+		modelMap.addAttribute("iddetail", id);
 		if (mainDAO.editItem1(objDeviceEdit) > 0) {
 			return "redirect:/device/detail/" + id + "?msg=edit";
 		} else {

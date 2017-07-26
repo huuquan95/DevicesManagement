@@ -19,6 +19,18 @@ public class EmployeeDAO {
 		String sql = "Select Employee.id,Employee.name,birthday,address,phone,picture,Role.namePos as namePos,Team.name as nameTeam from Employee left join Role on Employee.id_Position = Role.id left join Team on Employee.id_Team = Team.id";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
 	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Employee> getListByTeam(String id) {
+		String sql = "select * from employee where id_Team ='" + id + "'";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<Employee> getListByRole(int id) {
+		String sql = "select * from employee where id_Position ='" +id +"'";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Employee.class));
+	}
 
 	public int addItem(Employee objItem) {
 		String sql = "Insert into Employee(id,name,birthday,address,phone,picture,id_Position,id_Team,email) values(?,?,?,?,?,?,?,?,?)";
@@ -62,4 +74,5 @@ public class EmployeeDAO {
 						objEmployee.getId_Team(),objEmployee.getEmail(), objEmployee.getId() });
 
 	}
+	
 }

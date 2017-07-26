@@ -9,50 +9,66 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 
 	<http use-expressions="true">
 		<csrf disabled="true"/>
+		<intercept-url pattern="/employee" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/history" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		 <intercept-url pattern="/employee/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+         	<intercept-url pattern="/history/**" access="hasAnyRole('ROLE_ADMIN')" />
+
+		<intercept-url pattern="/account" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/account/edit/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/account/detail/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/account/**" access="hasRole('ROLE_ADMIN')" />
 		
-        <intercept-url pattern="/home" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/employee" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/cat" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/device" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		 <intercept-url pattern="/account" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/contact" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/history" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/position" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		  <intercept-url pattern="/team" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		       
-        <intercept-url pattern="/employee/**" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/cat" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/cat/detail/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
         <intercept-url pattern="/cat/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/device/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/account/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/contact/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/history/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/position/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/team/**" access="hasRole('ROLE_ADMIN')" />
+		
+		<intercept-url pattern="/contact" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		
+		<intercept-url pattern="/device" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/device/detail/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <!-- <intercept-url pattern="/device/detail/add/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device/detail/edit/**" access="hasAnyRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/device/detail/del/**" access="hasAnyRole('ROLE_ADMIN')" /> -->
+        <intercept-url pattern="/device/**" access="hasAnyRole('ROLE_ADMIN')" />
+		
+		<intercept-url pattern="/position" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/position/employees/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/position/devices/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/position/**" access="hasAnyRole('ROLE_ADMIN')" />
+		
+        <intercept-url pattern="/team" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+        <intercept-url pattern="/team/employee/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/team/devices/**" access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+		<intercept-url pattern="/team/**" access="hasAnyRole('ROLE_ADMIN')" />
         
         <intercept-url pattern="/**" access="permitAll()" />
  
         <access-denied-handler error-page="/403" />
  
         <form-login login-page='/login' login-processing-url="/login"
-            default-target-url="/home" always-use-default-target="true"
+            default-target-url="/home" always-use-default-target="false"
             authentication-failure-url="/login?error=loginErr" 
             username-parameter="username"
             password-parameter="password" />
  
         <logout logout-url="/logout" logout-success-url="/login"
             delete-cookies="JSESSIONID" invalidate-session="true" />
+            
+            <remember-me key="uniqueAndSecret" token-validity-seconds="84600"/>
+             <!-- <remember-me token-validity-seconds="30" remember-me-parameter="remember-me"  />  --> 
  
     </http>
     
     <authentication-manager>
-    
         <!-- authentication from database -->
         <authentication-provider>
            	<password-encoder hash="md5" />
             
             <jdbc-user-service data-source-ref="myDataSource" 
                 users-by-username-query="select username,password,enabled from Account where username=?"
-                authorities-by-username-query="select username,concat('ROLE_',role) role from Account where username=?" />
+                authorities-by-username-query="select username,concat('ROLE_',UCASE(role)) role from Account where username=?" />
+
         </authentication-provider>
     </authentication-manager>
 

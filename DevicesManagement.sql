@@ -34,7 +34,7 @@ CREATE TABLE `Account` (
   `password` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `role` varchar(50) COLLATE utf8_vietnamese_ci NOT NULL,
   `id_Employee` varchar(10) COLLATE utf8_vietnamese_ci NOT NULL,
-  `enabled` int(1) NOT NULL
+  `enabled` int(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 --
@@ -46,7 +46,6 @@ INSERT INTO `Account` (`id`, `username`, `password`, `role`, `id_Employee`, `ena
 (1, 'Tom', 'fd41b79badfc9543abe6fb2451aba81d', 'ADMIN', 'E01', 1),
 (2, 'Jerry', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E02', 1),
 (4, 'Tinh', 'e10adc3949ba59abbe56e057f20f883e', 'USER', 'E04', 0);
-
 -- --------------------------------------------------------
 
 --
@@ -64,10 +63,12 @@ CREATE TABLE `Category` (
 
 INSERT INTO `Category` (`id`, `name`) VALUES
 (1, 'Ram'),
+(2, 'PC'),
 (3, 'Keyboard'),
 (4, 'Mouse'),
 (5, 'Monitor'),
-(6, 'PC');
+(6, 'HDD'),
+(7, 'HDD');
 
 -- --------------------------------------------------------
 
@@ -109,15 +110,14 @@ CREATE TABLE `Devices` (
   `warranty` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `isnew` int(1) NOT NULL,
   `status` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `picture` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `date_start` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `picture` varchar(100) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `Devices`
 --
 
-INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `date_start`) VALUES
+INSERT INTO `Devices` (`id`, `seri_number`, `idAccount`, `idCat`, `name`, `made_in`, `price`, `warranty`, `isnew`, `status`, `picture`, `time_start`) VALUES
 ('DV01', '123', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'In use ', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:34:18'),
 ('DV01', '1234', 1, 1, 'RamKingston', 'Italy', '30', '3 years', 1, 'No use', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:35:34'),
 ('DV01', '12345', 2, 1, 'RamKingston', 'Italy', '30', '3 years', 0, 'In use', 'Screenshot from 2017-06-29 13-40-47.png', '2017-07-11 07:34:32'),
@@ -284,7 +284,7 @@ ALTER TABLE `Account`
 -- AUTO_INCREMENT for table `Category`
 --
 ALTER TABLE `Category`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `Contact`
 --

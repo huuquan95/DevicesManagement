@@ -22,6 +22,12 @@ public class ContactDAO {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Contact.class));
 	}
 
+	public List<Contact> getItems(int id) {
+		String sql = "select id,id_Account, (SELECT username from Account WHERE Account.id= id_Account) as userName,  status, description from Contact where id_Account='"
+				+ id + "' GROUP BY id DESC";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Contact.class));
+	}
+
 	public int addItem(Contact objItem) {
 		String sql = "insert into Contact(id_Account,description,status) value (?,?,'new')";
 		return jdbcTemplate.update(sql, new Object[] { objItem.getId_Account(), objItem.getDescription() });

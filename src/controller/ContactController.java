@@ -44,7 +44,6 @@ public class ContactController {
 			modelMap.addAttribute("objLogin", objLogin);
 			return "contact.index";
 		}
-
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
@@ -84,7 +83,6 @@ public class ContactController {
 						+ ")\" class=\"form-control\" style=\"width: 70%;\"><option value=\"in progress\" selected=\"selected\">inprogress</option><option value=\"resolved\">resolved</option></select>");
 			else
 				response.getWriter().print("resolved");
-
 		} else {
 		}
 	}
