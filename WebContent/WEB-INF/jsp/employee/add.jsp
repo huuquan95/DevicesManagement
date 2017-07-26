@@ -22,9 +22,7 @@
 
 			 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
-                    <li><a href="#">Home</a></li>                    
-                    <li><a href="#">Tables</a></li>
-                    <li class="active">Data Tables</li>
+                    <li><a href="${pageContext.request.contextPath }/home">Home</a></li>
                 </ul>
                 <!-- END BREADCRUMB -->
 
@@ -41,7 +39,7 @@
                         <div class="col-md-12" id="body">
 							<div class="panel panel-default" style="padding:10px;">
 							<div class="panel-body" id="body"><div class="table-responsive">
-                                <form class="form-horizontal" action = "${pageContext.request.contextPath }/employee/add" method = "POST"  enctype = "multipart/form-data">
+                                <form id = "addEmployee" class="form-horizontal" action = "${pageContext.request.contextPath }/employee/add" method = "POST"  enctype = "multipart/form-data">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                         <label class="col-md-3 col-xs-12 control-label">Id Employee</label>
@@ -94,7 +92,7 @@
                                         <div class="col-md-6 col-xs-12">                                            
                                             <div class="input-group">
                                                 <span class="input-group-addon"><span class="fa fa-pencil"></span></span>
-                                                <input type="text" name = "email" class="form-control"/>
+                                                <input type="email" name = "email" class="form-control"/>
                                             </div>                                            
                                             <span class="help-block"><form:errors path = "objEmployee.email" style="color:red"></form:errors></span>
                                         </div>
@@ -149,9 +147,42 @@
                                       </div>         
                                     <div class="panel-footer">
                                     <button class="btn btn-default">Clear Form</button>                                    
-                                    <button class="btn btn-primary pull-right">Submit</button>
+                                    <button id = "validate" class="btn btn-primary pull-right">Submit</button>
                                 </div>                                        
-                                </form>    </div></div>                            
+                                </form>    </div></div>   
+                                <script type="text/javascript">
+	                                $( "#addEmployee" ).validate({
+	                                		errorPlacement: function (error, element) {
+	                                	      error.insertBefore(element.parent());
+	                                	    },
+	                                	  rules: {
+	                                		  id: {
+	                                	     	 required: true
+	                                	      },
+	                                	      name: {
+	                                	    	 required: true  
+	                                	      },
+	                                	      birthday: {
+	                                	    	  required: true,	
+	                                	    	  date: true,
+	                                	      },
+	                                	      email:{
+	                                	    	  required: true,
+	                                	    	  email:true,
+	                                	      },
+	                                	      address:{
+	                                	    	  required: true 
+	                                	      },
+	                                	      phone:{
+	                                	    	  required: true,
+	                                	    	  number: true,
+	                                	    	  minlength: 10,
+	                                	    	  maxlength: 11,
+	                                	      }
+	                                	  },
+	                                	});
+	                                
+                                </script>                         
                             </div>
                         </div>
                          

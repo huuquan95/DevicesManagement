@@ -66,12 +66,11 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String home(ModelMap modelMap ,HttpSession session) {
+	public String home(ModelMap modelMap,HttpSession session) {
 		String username = (String) session.getAttribute("userLogin");
 		if("admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
 			session.setAttribute("check", true);
 		}
-		
 		String idObjLogin = accountDAO.getItem(username).getId_Employee();
 		modelMap.addAttribute("idObjLogin", idObjLogin);
 		
