@@ -36,20 +36,7 @@
 
 	<!-- PAGE CONTENT WRAPPER -->
 	<div class="page-content-wrap">
-<c:choose>
-			<c:when test="${param['msg'] eq 'add'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Add
-					Success</div>
-			</c:when>
-			<c:when test="${param['msg'] eq 'del'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Delete
-					Success</div>
-			</c:when>
-			<c:when test="${param['msg'] eq 'err'}">
-				<div class=" alert alert-success" style="font-size: 20px;">Error.Try
-								Again</div>
-			</c:when>
-		</c:choose>
+
 		<div class="row">
 			<div class="col-md-12">
 
@@ -59,13 +46,18 @@
 
 						<c:choose>
 							<c:when test="${objLogin.getRole() eq 'USER'}">
+
 								<a href="${pageContext.request.contextPath}/contact/add"
 									type="button" class="btn btn-info">Add</a>
+
 							</c:when>
 							<c:otherwise>
+
 								<td>${objItem.getStatus()}</td>
+
 							</c:otherwise>
 						</c:choose>
+
 						<c:if test="${param['msg'] eq 'add' }">
 							<div style="color: blue; font-size: 20px; text-align: center">Add
 								Success</div>
@@ -164,6 +156,7 @@
 			var idDel="td_Del"+id;		
 			var se = document.getElementById(idSelect);
 			var status = se.options[se.selectedIndex].text;
+			
 			$.ajax({
 				url: '${pageContext.request.contextPath}/contact/edit',
 				type: 'POST',
