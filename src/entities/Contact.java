@@ -7,7 +7,7 @@ public class Contact {
 	int id;
 	int id_Account;
 	String status;
-	@NotEmpty(message = "Description is not null!")
+	@NotEmpty(message = "Please input")
 	String description;
 	String userName;
 

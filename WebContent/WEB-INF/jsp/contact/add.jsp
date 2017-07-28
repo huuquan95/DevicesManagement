@@ -1,3 +1,4 @@
+<%@ include file="/templates/taglib.jsp"%>
 <!-- PAGE CONTENT -->
 <div class="page-content">
 
@@ -18,16 +19,18 @@
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 	<script type="text/javascript">
-    function check() {
-        var check = true;
-        var description = document.frm.description.value;
+		function check() {
+			var check = true;
+			var description = document.frm.description.value;
 
-        if (description == '') {
-          document.getElementById("erDescription").innerHTML = "Please input";
-          check = false;
-        }
-        return check;
-      }
+			if (description == '') {
+				document.getElementById("erDescription").innerHTML = "Please input";
+				check = false;
+			} else {
+				document.getElementById("erDescription").innerHTML = "";
+			}
+			return check;
+		}
 	</script>
 	<!-- START BREADCRUMB -->
 	<ul class="breadcrumb">
@@ -57,10 +60,12 @@
 								<div class="col-md-6 col-xs-12">
 									<div class="input-group">
 										<span class="input-group-addon"><span
-											class="fa fa-pencil"></span></span> <input type="text"
-											name="description" class="form-control" />
+											class="fa fa-pencil"></span></span> <input onkeyup="return check()"
+											onfocus="return check()" type="text" name="description"
+											class="form-control" />
 									</div>
 									<span id="erDescription" style="color: red" class="help-block">
+										<form:errors path="objItem.description" style="color:red"></form:errors>
 									</span> <span class="help-block">Ex: My PC was destroyed by
 										Torres.</span>
 								</div>
