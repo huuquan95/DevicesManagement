@@ -17,7 +17,6 @@
 				class="fa fa-sign-out"></span></a></li>
 		<!-- END SIGN OUT -->
 
-
 	</ul>
 	<!-- END X-NAVIGATION VERTICAL -->
 
@@ -166,12 +165,17 @@
 				    status: status,
 				},
 				success: function(data){
+					
 					$("#"+idTd).html(data);
 					if(data == "resolved")
 						document.getElementById(idDel).removeAttribute("disabled");
+					
+					if(data.indexOf("in progress")!=-1)
+						document.getElementById("numberOfNewMessages").innerHTML= parseInt(document.getElementById("numberOfNewMessages").innerHTML)-1;
 				},
 				error: function (){
-				alert("Have some errors");
+					
+					alert("Have some errors");
 				}
 			});
 		}

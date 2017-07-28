@@ -16,45 +16,52 @@ import dao.CatDAO;
 import dao.ContactDAO;
 import dao.DeviceDAO;
 import dao.EmployeeDAO;
+import entities.Account;
 
 @Controller
-@RequestMapping(value="/home")
+@RequestMapping(value = "/home")
 public class HomeController {
-	@Autowired 
+	@Autowired
 	private EmployeeDAO employDAO;
-	
-	@Autowired 
+
+	@Autowired
 	private ContactDAO contactDAO;
-	
-	@Autowired 
+
+	@Autowired
 	private DeviceDAO deviceDAO;
-	
-	@Autowired 
+
+	@Autowired
 	private CatDAO catDAO;
-	
-	@Autowired 
+
+	@Autowired
 	private AccountDAO accountDAO;
-	
+
 	@ModelAttribute
-	public void addCommons(ModelMap modelMap,Principal principal,HttpSession session){
-		if(principal!=null){
-			session.setAttribute("userLogin",principal.getName());
-			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
+	public void addCommons(ModelMap modelMap, Principal principal, HttpSession session) {
+		if (principal != null) {
+
+			Account account = accountDAO.getItem(principal.getName());
+
+			session.setAttribute("userLogin", principal.getName());
+			session.setAttribute("objLogin", accountDAO.getItem(principal.getName()));
+			session.setAttribute("numberOfNewMessages",
+					contactDAO.numberOfNewMessages(account.getId(), account.getRole()));
 		}
 	}
-	
-	@RequestMapping(value="",method=RequestMethod.GET)
 
-	public String home(Principal principal, ModelMap modelMap, HttpSession session){
-		if(principal==null){
+	@RequestMapping(value = "", method = RequestMethod.GET)
+
+	public String home(Principal principal, ModelMap modelMap, HttpSession session) {
+		if (principal == null) {
+
 			return "redirect:/login";
-		}else{
+		} else {
+
+			Account account = accountDAO.getItem(principal.getName());
+
 			modelMap.addAttribute("sizeEmployee", employDAO.getList().size());
 			modelMap.addAttribute("numberOfDevices", deviceDAO.getItems().size());
 			modelMap.addAttribute("numberOfCat", catDAO.getItems().size());
-	        modelMap.addAttribute("sizeMessage", contactDAO.getItems().size());
-//			session.setAttribute("userLogin",principal.getName());
-//			session.setAttribute("objLogin",accountDAO.getItem(principal.getName()));
 			return "home.index";
 		}
 	}

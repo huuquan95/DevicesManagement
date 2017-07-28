@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import entities.Account;
 import entities.Contact;
 
 @Repository
@@ -20,6 +21,23 @@ public class ContactDAO {
 		String sql = "select id,id_Account, (SELECT username from Account WHERE Account.id= id_Account) as userName, "
 				+ " status, description from Contact GROUP BY id DESC";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Contact.class));
+	}
+
+	public int numberOfNewMessages(int id, String role) {
+
+		String sql = "";
+		if (role.equals("ADMIN")) {
+			sql = "SELECT COUNT(id) FROM contact WHERE STATUS ='new'";
+		} else {
+			sql = "SELECT COUNT(id) FROM contact WHERE STATUS ='new' AND id_Account='" + id + "'";
+		}
+
+		try {
+			return jdbcTemplate.queryForObject(sql, Integer.class);
+
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 	public List<Contact> getItems(int id) {
