@@ -135,21 +135,24 @@ public class EmployeeController {
 		String username = (String) session.getAttribute("userLogin");
 		if(!"admin".equalsIgnoreCase(accountDAO.checkAccount(username).getRole())){
 			return "redirect:/employee?msg=wrong";
-		}
-		
-		// delete file img
-		String picture = employeeDAO.getItem(id).getPicture();
-		final String path = request.getServletContext().getRealPath("files");
-		if (!"".equals(picture)) {
-			String urlFile = path + File.separator + picture;
-			File delFile = new File(urlFile);
-			delFile.delete();
-		}
-
-		if (employeeDAO.delItem(id) > 0) {
-			return "redirect:/employee?msg=del";
 		} else {
-			return "redirect:/employee?msg=error";
+			if(id.equalsIgnoreCase(accountDAO.checkAccount(username).getId_Employee())){
+				return "redirect:/employee?msg=wrong";
+			}else {
+				// delete file img
+				String picture = employeeDAO.getItem(id).getPicture();
+				final String path = request.getServletContext().getRealPath("files");
+				if (!"".equals(picture)) {
+					String urlFile = path + File.separator + picture;
+					File delFile = new File(urlFile);
+					delFile.delete();
+				}
+				if (employeeDAO.delItem(id) > 0) {
+					return "redirect:/employee?msg=del";
+				} else {
+					return "redirect:/employee?msg=error";
+				}
+			}
 		}
 	}
 
